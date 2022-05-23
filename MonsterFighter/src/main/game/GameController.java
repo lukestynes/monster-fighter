@@ -7,7 +7,7 @@ public class GameController {
 	Player player;
 	
 	private int gameLength;
-	private int currentDay;
+	private int currentDay = 1;
 	private int difficulty;
 	
 	/**
@@ -50,26 +50,23 @@ public class GameController {
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
-
-	
 	
 	public GameController() {
 		CLInterface cli = new CLInterface();
 		Player player = new Player();
 	}
-	
 
 	public static void main(String[] args) {
 		GameController game = new GameController();
-		game.run();
+		game.run(game);
 	}
 	
-	public void run() {
-		gameSetup();
+	public void run(GameController game) {
+		gameSetup(game);
 	}
 	
-	public void gameSetup() {
-		cli.setupScreen(player);
+	public void gameSetup(GameController game) {
+		cli.setupScreen(player, game);
 		
 		//TODO: Display the starting monsters and let you choose them
 	}
