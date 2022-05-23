@@ -6,12 +6,16 @@ import main.monsters.*;
 
 public class Player {
 	
+	static final int EASY_START_GOLD = 500;
+	static final int HARD_START_GOLD = 300;
+	
 	private String name;
 	private int gold;
-	private int score;
+	private int score = 0;
 	
 	private ArrayList<Item> inventory = new ArrayList<Item>();
 	private ArrayList<Monster> monsterTeam = new ArrayList<Monster>();
+	
 	
 	/**
 	 * @return the players chosen name
@@ -49,5 +53,21 @@ public class Player {
 	public void setScore(int score) {
 		this.score = score;
 	}
-
+	
+	//TODO: Methods for managing the inventory
+	//TODO: methods for managing the monster team
+	
+	
+	public void setupValues(String name, int difficulty) {
+		this.setName(name);
+		
+		//Sets the starting gold based on the chosen difficulty
+		if (difficulty == 0) {
+			this.setGold(EASY_START_GOLD);
+		} else {
+			this.setGold(HARD_START_GOLD);
+		}
+		
+		//TODO: add the chosen monster to the starting team
+	}
 }

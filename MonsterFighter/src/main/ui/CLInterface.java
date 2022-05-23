@@ -2,11 +2,13 @@ package main.ui;
 
 import java.util.Scanner;
 
+import main.game.*;
+
 public class CLInterface {
 	
 	Scanner scan = new Scanner(System.in);
 	
-	public void setupScreen() {
+	public void setupScreen(Player player) {
 		String name;
 		int length;
 		int difficulty;
@@ -24,9 +26,8 @@ public class CLInterface {
 		length = scan.nextInt();
 		
 		System.out.println("What difficulty do you want to play on? (0=easy, 1=hard)");
-		difficulty = scan.nextInt();
+		difficulty = scan.nextInt();	
 		
-		System.out.println("Pause");
 		
 	}
 }

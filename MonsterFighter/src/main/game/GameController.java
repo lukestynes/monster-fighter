@@ -3,8 +3,61 @@ package main.game;
 import main.ui.*;
 
 public class GameController {
+	CLInterface cli;
+	Player player;
 	
-	CLInterface cli = new CLInterface();
+	private int gameLength;
+	private int currentDay;
+	private int difficulty;
+	
+	/**
+	 * @return the gameLength in in-game days
+	 */
+	public int getGameLength() {
+		return gameLength;
+	}
+
+	/**
+	 * @param gameLength sets how long the game will run for in in-game days
+	 */
+	public void setGameLength(int gameLength) {
+		this.gameLength = gameLength;
+	}
+	/**
+	 * @return the current day in game
+	 */
+	public int getCurrentDay() {
+		return currentDay;
+	}
+	
+	/**
+	 * Increments the current in game day by 1
+	 */
+	public void increaseCurrentDay() {
+		this.currentDay++;
+	}
+
+	/**
+	 * @return the difficulty (0=easy, 1=hard)
+	 */
+	public int getDifficulty() {
+		return difficulty;
+	}
+
+	/**
+	 * @param difficulty sets the difficulty to easy(0) or hard(1)
+	 */
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
+	}
+
+	
+	
+	public GameController() {
+		CLInterface cli = new CLInterface();
+		Player player = new Player();
+	}
+	
 
 	public static void main(String[] args) {
 		GameController game = new GameController();
@@ -12,17 +65,12 @@ public class GameController {
 	}
 	
 	public void run() {
-		//Create an interface instance
-		
 		gameSetup();
 	}
 	
 	public void gameSetup() {
-		cli.setupScreen();
+		cli.setupScreen(player);
+		
+		//TODO: Display the starting monsters and let you choose them
 	}
-		//TODO: Get player name 3-15 chars
-		//TODO: Get game length 5-15 days
-		//TODO: Choose a starting monster for your team
-		//TODO: Choose a difficulty
-	}
-
+}
