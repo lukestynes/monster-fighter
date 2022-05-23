@@ -10,5 +10,8 @@ public class GameController {
 	public void run() {
 		
 	}
+	
+	public void gameSetup() {
+		
+	}
 
-}
