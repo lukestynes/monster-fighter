@@ -20,7 +20,7 @@ public class Inventory {
 		this.inventory.remove(item);
 	}
 	
-	public ArrayList<Item> getInventory() {
+	public ArrayList<Item> getInventoryList() {
 		return inventory;
 	}
 }
