@@ -170,8 +170,7 @@ public class Shop {
 	}
 	
 	public void returnMonster(Monster monster, Player player) {
-		int monsterReturnPrice = (1 - (monster.getCurrentHealth()/monster.getMaxHealth()) * monster.getReturnPrice()); //Modifies the return price by how damaged the monster is.
-		player.setGold(player.getGold() + monsterReturnPrice);
+		player.setGold(player.getGold() + monster.getReturnPrice());
 		player.getMonsterTeam().removeMonsterFromTeam(monster);
 	}
 	
