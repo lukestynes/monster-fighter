@@ -3,7 +3,7 @@ package main.monsters;
 public class IceMonster extends Monster {
 //All of the values for the monster at levels 1, 2, 3, and 4
 	private final int[] MAX_HEALTH = {150, 175, 200, 225};
-	private final int[] HEAL_AMOUNT = {30, 40, 50, 60};
+	private final int[] HEAL_AMOUNT = {70, 90, 100, 120};
 	private final int[] DAMAGE = {10, 15, 20, 25};
 	private final int[] DEFENCE = {5, 10, 15, 20};
 	
