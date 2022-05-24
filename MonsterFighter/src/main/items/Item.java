@@ -1,6 +1,7 @@
 package main.items;
 
 import main.game.Player;
+import main.monsters.Monster;
 
 public class Item {
 	
@@ -98,6 +99,14 @@ public class Item {
 				Max Health Boost: %d
 				""";
 		return String.format(thing, this.getName(), this.getInstantHealthBoost(), this.getDamageBoost(), this.getHealAmountBoost(), this.getDefenceBoost(), this.getMaxHealthBoost());
+	}
+	
+	public void useItemOnMonster(Monster monster) {
+		monster.setCurrentHealth(monster.getCurrentHealth() + this.getInstantHealthBoost());
+		monster.setDamage(monster.getDamage() + this.getDamageBoost());
+		monster.setHealAmount(monster.getHealAmount() + this.getHealAmountBoost());
+		monster.setDefence(monster.getDefence() + this.getDefenceBoost());
+		monster.setMaxHealth(monster.getMaxHealth() + this.getMaxHealthBoost());
 	}
 	
 	//TODO: Methods for the player to use the items on their monsters

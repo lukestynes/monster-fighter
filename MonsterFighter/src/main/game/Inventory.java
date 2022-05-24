@@ -3,6 +3,7 @@ package main.game;
 import java.util.ArrayList;
 
 import main.items.Item;
+import main.monsters.Monster;
 
 public class Inventory {
 	
@@ -22,5 +23,11 @@ public class Inventory {
 	
 	public ArrayList<Item> getInventoryList() {
 		return inventory;
+	}
+	
+	//Applies the selected item on the monster.
+	public void useItem(Item item, Monster monster) {
+		item.useItemOnMonster(monster);
+		this.removeFromInventory(item);
 	}
 }
