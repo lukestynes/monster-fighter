@@ -23,7 +23,7 @@ public class RandomEvents {
 	}
 	
 	public void randomMonsterLevelUp() {
-		
+		//NEED TO DESIGN THE BATTLE MECHANICS BEFORE THIS WORKS.
 	}
 	
 	public void randomMonsterLeaves() {

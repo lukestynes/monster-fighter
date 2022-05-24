@@ -99,6 +99,7 @@ public class CLInterface {
 		case 5:
 			break;
 		case 6:
+			game.nightReset();
 			break;
 		}
 	}

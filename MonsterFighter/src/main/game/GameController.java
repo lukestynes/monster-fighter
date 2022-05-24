@@ -26,7 +26,7 @@ public class GameController {
 	
 	public GameController() {
 		cli = new CLInterface();
-		randomEvents = new RandomEvents();
+		randomEvents = new RandomEvents(this);
 	}
 	
 	public int getGameLength() {
@@ -63,20 +63,20 @@ public class GameController {
 	
 	public static void main(String[] args) {
 		GameController game = new GameController();
-		game.run(game);
+		game.run();
 	}
 	
-	public void run(GameController game) {
-		shop = new Shop(game);
-		player = cli.setupScreen(game, easyStartingMonsters, hardStartingMonsters);
+	public void run() {
+		shop = new Shop(this);
+		player = cli.setupScreen(this, easyStartingMonsters, hardStartingMonsters);
 		
 		//SIMPLE GAME LOOP FOR JUST THE CLI
 		do {
-			cli.menuScreen(player, game);
+			cli.menuScreen(player, this);
 		} while (running);
 	}
 	
-	public void nightReset(GameController game) {
+	public void nightReset() {
 		ArrayList<Monster> monstersList = player.getMonsterTeam().getMonsterTeamList();
 		
 		//Removes any temporary buffs given to the monsters during the day
@@ -84,9 +84,9 @@ public class GameController {
 			monster.nightResetMonster();
 		}
 		
+		//Runs all 3 of the random events.
 		randomEvents.nightTimeEvents();
-		
-		
-		
+		shop.shopRefresh();
+		this.increaseCurrentDay();
 	}
 }

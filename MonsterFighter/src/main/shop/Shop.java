@@ -35,10 +35,10 @@ public class Shop {
 	//Resets all the items in the shop. Typically happens overnight
 	public void shopRefresh() {
 		refreshMonsters();
-		refreshItems();
+		this.shopItems = refreshItems();
 	}
 	
-	public void refreshItems() {
+	public ArrayList<Item> refreshItems() {
 		shopItems.clear();
 		
 		int numItems = rng.nextInt(4, 7);
@@ -82,6 +82,8 @@ public class Shop {
 			
 			shopItems.add(rngItem);
 		}
+		
+		return shopItems;
 	}
 	
 	public void refreshMonsters() {
