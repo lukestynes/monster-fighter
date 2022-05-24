@@ -40,6 +40,21 @@ public class MonsterTeam {
 		return faintCounter;
 	}
 	
+	public Monster weakestMonster() {
+		//Returns the monster who has fainted the most.
+		
+		int mostFaints = -1;
+		Monster weakestMonster = null;
+		for (Monster monster: monsterTeam) {
+			if (monster.getFaintCount() > mostFaints) {
+				mostFaints = monster.getFaintCount();
+				weakestMonster = monster;
+			}
+		}
+		
+		return weakestMonster;
+	}
+	
 	public int getEmptySlots() {
 		return 4 - monsterTeam.size();
 	}

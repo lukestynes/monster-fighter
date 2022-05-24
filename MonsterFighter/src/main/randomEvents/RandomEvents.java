@@ -11,7 +11,8 @@ public class RandomEvents {
 	private Random rng;
 	private GameController game;
 	
-	private final double BASE_LEAVE_CHANCE = 0.01;
+	private final double EASY_LEAVE_CHANCE = 0.01;
+	private final double HARD_LEAVE_CHANCE = 0.02;
 	private final double[] ARRIVE_CHANCE = {0.005, .01, .025, .05};
 	private final double BASE_LEVEL_UP = 0.025;
 	
@@ -26,8 +27,21 @@ public class RandomEvents {
 	}
 	
 	public void randomMonsterLeaves() {
+		boolean easyMode = game.getDifficulty() == 0;
+		int faintCount = game.getPlayer().getMonsterTeam().getTotalTeamFaints();
 		
+		double randomChance = rng.nextDouble();
+		double probability = HARD_LEAVE_CHANCE;
 		
+		if (easyMode) {
+			probability = EASY_LEAVE_CHANCE;
+		}
+		
+		//This runs when the probability is met
+		if (randomChance < (probability + 0.2 * faintCount)) {
+			System.out.println("ATTN: MONSTER LEAVING");
+			game.getPlayer().getMonsterTeam().removeMonsterFromTeam(game.getPlayer().getMonsterTeam().weakestMonster());
+		}
 	}
 	
 	public void randomMonsterArrives() {
@@ -54,6 +68,7 @@ public class RandomEvents {
 		int currentDay = game.getCurrentDay();
 		
 		if (randomChance < probability) {
+			System.out.println("ATTN: MONSTER ARRIVING");
 			//If this runs then the probability has happened and a monster will join the team.
 			if (currentDay < 3) {
 				minLevel = maxLevel = 1;
