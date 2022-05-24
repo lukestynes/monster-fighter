@@ -3,7 +3,7 @@ package main.items;
 import main.game.Player;
 import main.shop.Purchasable;
 
-public class Item implements Purchasable {
+public class Item {
 	
 	private String name;
 	private String description;
@@ -99,18 +99,6 @@ public class Item implements Purchasable {
 				Max Health Boost: %d
 				""";
 		return String.format(thing, this.getName(), this.getInstantHealthBoost(), this.getDamageBoost(), this.getHealAmountBoost(), this.getDefenceBoost(), this.getMaxHealthBoost());
-	}
-
-	@Override
-	public void playerPurchase(Player player, int price, Object bought) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void playerReturn(Player player, int returnPrice, Object returned) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	//TODO: Methods for the player to use the items on their monsters

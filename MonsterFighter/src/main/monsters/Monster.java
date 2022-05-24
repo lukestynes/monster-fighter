@@ -3,7 +3,7 @@ package main.monsters;
 import main.game.Player;
 import main.shop.Purchasable;
 
-public class Monster implements Purchasable {
+public class Monster {
 	private String name;
 	private String description;
 	
@@ -148,18 +148,6 @@ public class Monster implements Purchasable {
 				Heal Amount: %d
 				""";
 		return String.format(thing, this.getName(), this.getType(), this.getDescription(), this.getMaxHealth(), this.getDefence(), this.getDamage(), this.getHealAmount());
-	}
-
-	@Override
-	public void playerPurchase(Player player, int price, Object bought) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void playerReturn(Player player, int returnPrice, Object returned) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
