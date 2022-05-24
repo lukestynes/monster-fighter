@@ -13,20 +13,74 @@ public class Shop {
 	private GameController game;
 	private Random rng;
 	
-	public Shop() {
+	public Shop(GameController game) {
 		shopItems = new ArrayList<Item>();
 		shopMonsters = new ArrayList<Monster>();
-		
+		this.game = game;
 		rng = new Random();
+		
+		shopRefresh();
 	}
+	
+	public ArrayList<Monster> getShopMonsters() {
+		return shopMonsters;
+	}
+	
+	public ArrayList<Item> getShopItems() {
+		return shopItems;
+	}
+	
 	
 	//Resets all the items in the shop. Typically happens overnight
 	public void shopRefresh() {
 		refreshMonsters();
+		refreshItems();
 	}
 	
 	public void refreshItems() {
+		shopItems.clear();
 		
+		int numItems = rng.nextInt(4, 7);
+		int currentDay = game.getCurrentDay();
+		
+		int maxItemValue;
+		
+		if (currentDay < 5) {
+			maxItemValue = 3;
+		} else if (currentDay < 10) {
+			maxItemValue = 5;
+		} else {
+			maxItemValue = 6; 
+		}
+		
+		for (int i = 0; i < numItems; i++) {
+			int itemType = rng.nextInt(maxItemValue);
+			Item rngItem = null;
+			
+			
+			switch (itemType) {
+			case 0:
+				rngItem = new InstantHealthPotion();
+				break;
+			case 1:
+				rngItem = new MysterySoup();
+				break;
+			case 2:
+				rngItem = new RagePotion();
+				break;
+			case 3:
+				rngItem = new MomsSpaghetti();
+				break;
+			case 4:
+				rngItem = new BezerkerPotion();
+				break;
+			case 5:
+				rngItem = new HeartFruit();
+				break;
+			}
+			
+			shopItems.add(rngItem);
+		}
 	}
 	
 	public void refreshMonsters() {
@@ -38,7 +92,6 @@ public class Shop {
 		int numMonsters = rng.nextInt(3, 6);
 		
 		int currentDay = game.getCurrentDay();
-		
 		
 		//Depending on the current day only certain level monsters can show up
 		if (currentDay < 3) {
