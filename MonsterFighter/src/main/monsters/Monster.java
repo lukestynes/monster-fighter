@@ -1,7 +1,16 @@
 package main.monsters;
 
-public class Monster {
+import main.game.Player;
+import main.shop.Purchasable;
+
+public class Monster implements Purchasable {
 	private String name;
+	private String description;
+	
+	private int price;
+	private int returnPrice;
+	
+	
 	private Boolean fainted = false;
 	private int level = 1;
 	private String type;
@@ -28,97 +37,76 @@ public class Monster {
 		this.name = name;
 	}
 	
-	/**
-	 * @return Whether or not the monster has fainted as True or False
-	 */
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	public int getReturnPrice() {
+		return returnPrice;
+	}
+	
+	public void setReturnPrice(int returnPrice) {
+		this.returnPrice = returnPrice;
+	}
+	
+	
 	public Boolean getFainted() {
 		return fainted;
 	}
-	
-	/**
-	 * @param fainted Set's the current status of the monster has it fainted or not
-	 */
-	
+
 	public void setFainted(Boolean fainted) {
 		this.fainted = fainted;
 	}
 	
-	/**
-	 * @return the maxHealth
-	 */
-	
 	public int getMaxHealth() {
 		return maxHealth;
 	}
-	
-	/**
-	 * @param maxHealth the maxHealth to set
-	 */
-	
+		
 	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
 	}
 	
-	/**
-	 * @return the healAmount
-	 */
-	
+
 	public int getHealAmount() {
 		return healAmount;
 	}
-	
-	/**
-	 * @param healAmount the healAmount to set
-	 */
 	
 	public void setHealAmount(int healAmount) {
 		this.healAmount = healAmount;
 	}
 	
-	/**
-	 * @return the currentHealth
-	 */
-	
 	public int getCurrentHealth() {
 		return currentHealth;
 	}
-	
-	/**
-	 * @param currentHealth the currentHealth to set
-	 */
 	
 	public void setCurrentHealth(int currentHealth) {
 		this.currentHealth = currentHealth;
 	}
 	
-	/**
-	 * @return the defence
-	 */
-	
 	public int getDefence() {
 		return defence;
-	}
-	
-	/**
-	 * @param defence the defence to set
-	 */
-	
+	}	
+
 	public void setDefence(int defence) {
 		this.defence = defence;
 	}
 	
-	/**
-	 * @return the damage
-	 */
-	
 	public int getDamage() {
 		return damage;
 	}
-	
-	/**
-	 * @param damage the damage to set
-	 */
-	
+
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
@@ -159,6 +147,18 @@ public class Monster {
 				Heal Amount: %d
 				""";
 		return String.format(thing, this.getName(), this.getType(), this.getMaxHealth(), this.getDefence(), this.getDamage(), this.getHealAmount());
+	}
+
+	@Override
+	public void playerPurchase(Player player, int price, Object bought) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void playerReturn(Player player, int returnPrice, Object returned) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
