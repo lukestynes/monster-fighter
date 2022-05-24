@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import main.game.GameController;
+import main.game.Player;
 import main.monsters.*;
 import main.items.*;
 
@@ -139,4 +140,39 @@ public class Shop {
 			shopMonsters.add(rngMonster);
 		}
 	}
+	
+	//Used to purchase anything
+	public void purchaseItem(Item item, Player player) {
+		//TODO: check there's space on players inventory
+		
+		if (player.getGold() >= item.getPrice()) {
+			player.setGold(player.getGold() - item.getPrice());
+			player.getInventory().addToInventory(item);
+			this.shopItems.remove(item);
+		} else {
+			System.out.println("ERROR: YOU DON'T HAVE ENOUGH GOLD!");
+		}
+	}
+	
+	public void returnItem(Item item, Player player) {
+		player.setGold(player.getGold() + item.getReturnPrice());
+		player.getInventory().removeFromInventory(item);
+	}
+	
+	public void purchaseMonster(Monster monster, Player player) {
+		if (player.getGold() >= monster.getPrice()) {
+			player.setGold(player.getGold() - monster.getPrice());
+			player.getMonsterTeam().addMonsterToTeam(monster);
+			this.shopMonsters.remove(monster);
+		} else {
+			System.out.println("ERROR: YOU DON'T HAVE ENOUGH GOLD!");
+		}
+	}
+	
+	public void returnMonster(Monster monster, Player player) {
+		int monsterReturnPrice = (1 - (monster.getCurrentHealth()/monster.getMaxHealth()) * monster.getReturnPrice()); //Modifies the return price by how damaged the monster is.
+		player.setGold(player.getGold() + monsterReturnPrice);
+		player.getMonsterTeam().removeMonsterFromTeam(monster);
+	}
+	
 }
