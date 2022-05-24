@@ -124,6 +124,7 @@ public class CLInterface {
 		System.out.println("Would you like to shop for Monsters (1) or Items (2)? ");
 		
 		int playerChoice = scan.nextInt();
+		Boolean buyingMonsters = null;
 		
 		switch (playerChoice) {
 		case 1:
@@ -135,6 +136,7 @@ public class CLInterface {
 				System.out.println("PRICE: " + monster.getPrice());
 				count++;
 			}
+			buyingMonsters = true;
 			break;
 		case 2:
 			count = 1;
@@ -145,7 +147,24 @@ public class CLInterface {
 				System.out.println("PRICE: " + item.getPrice());
 				count++;
 			}
+			buyingMonsters = false;
 			break;
+		}
+		
+		System.out.println("Your gold is currently: " + player.getGold());
+		System.out.println("Do you want to buy anything? 0 or 1");
+		int response = scan.nextInt();
+		if (response == 1) {
+			System.out.println("Enter the number of the thing you want to buy: ");
+			int purchaseItem = scan.nextInt();
+			
+			if (buyingMonsters) {
+				shop.purchaseMonster(shop.getShopMonsters().get(purchaseItem - 1), player);
+			} else {
+				shop.purchaseItem(shop.getShopItems().get(purchaseItem - 1), player);
+			}
+			
+			
 		}
 	}
 }
