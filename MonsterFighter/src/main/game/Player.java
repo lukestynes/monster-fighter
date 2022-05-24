@@ -54,11 +54,34 @@ public class Player {
 		this.score = score;
 	}
 	
+	public void addMonsterToTeam(Monster monster) {
+		//TODO: Update to properly limit the monster team to a size of 4
+		if (monsterTeam.size() < 4) {
+			monsterTeam.add(monster);
+		} else {
+			System.out.println("ERROR: MAX TEAM SIZE ALREADY REACHED");
+		}
+		
+	}
+	
+	public void removeMonsterFromTeam(Monster monster) {
+		//TODO: maybe look at setting up an equals method properly for monster to handle the comparison
+		
+		if (monsterTeam.contains(monster)) {
+			monsterTeam.remove(monster);
+		} else {
+			System.out.println("ERROR: MONSTER NOT ON TEAM");
+		}
+	}
+	
+	public ArrayList<Monster> getMonsterTeam() {
+		return monsterTeam;
+	}
+	
 	//TODO: Methods for managing the inventory
-	//TODO: methods for managing the monster team
 	
 	
-	public void setupValues(String name, int difficulty) {
+	public void setupValues(String name, int difficulty, Monster startingMonster) {
 		this.setName(name);
 		
 		//Sets the starting gold based on the chosen difficulty
@@ -68,6 +91,7 @@ public class Player {
 			this.setGold(HARD_START_GOLD);
 		}
 		
-		//TODO: add the chosen monster to the starting team
+		//Adds chosen starting monster to team
+		addMonsterToTeam(startingMonster);
 	}
 }
