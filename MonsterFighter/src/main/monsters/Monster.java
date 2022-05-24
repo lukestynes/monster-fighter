@@ -152,4 +152,8 @@ public class Monster {
 		return String.format(thing, this.getName(), this.getType(), this.getDescription(), this.getMaxHealth(), this.getDefence(), this.getDamage(), this.getHealAmount());
 	}
 	
+	public void nightResetMonster() {
+		this.setFainted(false);
+	}
+	
 }

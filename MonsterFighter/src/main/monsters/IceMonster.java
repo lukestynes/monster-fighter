@@ -29,6 +29,7 @@ public class IceMonster extends Monster {
 	//Constructs a monster at a specified level
 	public IceMonster(int level) {
 		int index = level--;
+		this.setLevel(level);
 		
 		this.setMaxHealth(MAX_HEALTH[index]);
 		this.setCurrentHealth(getMaxHealth());
@@ -44,5 +45,16 @@ public class IceMonster extends Monster {
 		
 		this.setPrice(PRICES[index]);
 		this.setReturnPrice(RETURN_PRICES[index]);
+	}
+	
+	@Override
+	public void nightResetMonster() {
+		int index = this.getLevel() - 1;
+
+		this.setDamage(DAMAGE[index]);
+		this.setDefence(DEFENCE[index]);
+		this.setHealAmount(HEAL_AMOUNT[index]);
+		
+		this.setFainted(false);
 	}
 }
