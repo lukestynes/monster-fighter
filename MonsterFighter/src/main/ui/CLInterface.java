@@ -136,15 +136,34 @@ public class CLInterface {
 			count++;
 		}
 		
-		System.out.println("Do you want to sell anything? 1 or 0");
+		System.out.println("Do you want to sell anything (1) or use anything (2)?");
 		
 		int response = scan.nextInt();
 		
 		if (response == 1) {
-			System.out.println("Enter the number of the thing you want to buy: ");
+			System.out.println("Enter the number of the thing you want to sell: ");
 			int returnItem = scan.nextInt();
 			Item itemToReturn = player.getInventory().getInventoryList().get(returnItem - 1);
 			shop.returnItem(itemToReturn, player);
+		} else if (response == 2) {
+			System.out.println("Enter the number of the item you want to use? ");
+			int useItem = scan.nextInt();
+			
+			Item usedItem = player.getInventory().getInventoryList().get(useItem - 1);
+			
+			System.out.println("\n\n\nYour Monster Team: \n");
+			
+			count = 1;
+			for (Monster monster: player.getMonsterTeam().getMonsterTeamList()) {
+				System.out.println("\n " + count + " " + monster + "\n");
+				count++;
+			}
+			System.out.println("Enter the number of the monster you want to use it on? ");
+			
+			int usingMonster = scan.nextInt();
+			Monster monsterToImpact = player.getMonsterTeam().getMonsterTeamList().get(usingMonster - 1);
+			
+			player.getInventory().useItem(usedItem, monsterToImpact);
 		}
 		
 		//TODO: something about using items on monsters
