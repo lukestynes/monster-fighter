@@ -31,7 +31,7 @@ public class MonsterTeam {
 		}
 	}
 	
-	public ArrayList<Monster> getMonsterTeam() {
+	public ArrayList<Monster> getMonsterTeamList() {
 		return monsterTeam;
 	}
 }

@@ -14,7 +14,7 @@ public class CLInterface {
 	 * @param player the player object that stores all of the relevant player information
 	 * @param game the game object which is responsible for the control of the entire game system
 	 */
-	public void setupScreen(Player player, GameController game, Monster[] easyStartingMonsters, Monster[] hardStartingMonsters) {
+	public Player setupScreen(GameController game, Monster[] easyStartingMonsters, Monster[] hardStartingMonsters) {
 		String name;
 		int length;
 		int difficulty;
@@ -41,15 +41,15 @@ public class CLInterface {
 		game.setGameLength(length);
 		
 		if (game.getDifficulty() == 0) {
-			startingMonster = startingMonsterScreen(player, game, easyStartingMonsters);
+			startingMonster = startingMonsterScreen(game, easyStartingMonsters);
 		} else {
-			startingMonster = startingMonsterScreen(player, game, hardStartingMonsters);
+			startingMonster = startingMonsterScreen(game, hardStartingMonsters);
 		}
 		
-		
-		player.setupValues(name, difficulty, startingMonster);
-		
+		Player player = new Player(name, difficulty, startingMonster);
+
 		System.out.println("\n\n******* LET THE ADVENTURE BEGIN!**********\n\n");
+		return player;
 	}
 	
 	/**
@@ -63,7 +63,7 @@ public class CLInterface {
 	 * @param player the player object that stores all of the relevant player information
 	 * @param game the game object which is responsible for the control of the entire game system
 	 */
-	public Monster startingMonsterScreen(Player player, GameController game, Monster[] startingMonsters) {
+	public Monster startingMonsterScreen(GameController game, Monster[] startingMonsters) {
 		int count = 1;
 		int chosenMonster;
 		
@@ -104,7 +104,7 @@ public class CLInterface {
 			break;
 		case 2:
 			System.out.println("\n\n\nYour Monster Team: \n");
-			for (Monster monster: player.getMonsterTeam()) {
+			for (Monster monster: player.getMonsterTeam().getMonsterTeamList()) {
 				System.out.println("\n" + monster + "\n");
 			}
 			break;

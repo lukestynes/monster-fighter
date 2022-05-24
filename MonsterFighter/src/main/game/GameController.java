@@ -20,7 +20,6 @@ public class GameController {
 	
 	public GameController() {
 		cli = new CLInterface();
-		player = new Player();
 	}
 	
 	/**
@@ -64,6 +63,10 @@ public class GameController {
 		this.difficulty = difficulty;
 	}
 	
+	public Player getPlayer() {
+		return player;
+	}
+	
 	public static void main(String[] args) {
 		GameController game = new GameController();
 		game.run(game);
@@ -75,7 +78,7 @@ public class GameController {
 	}
 	
 	public void gameSetup(GameController game) {
-		cli.setupScreen(player, game, easyStartingMonsters, hardStartingMonsters);
+		player = cli.setupScreen(game, easyStartingMonsters, hardStartingMonsters);
 	}
 	
 	public void cliGameLoop(GameController game) {

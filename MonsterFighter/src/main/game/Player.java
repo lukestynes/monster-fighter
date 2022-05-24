@@ -17,60 +17,51 @@ public class Player {
 	Inventory inventory;
 	
 	
-	public Player() {
+	public Player(String name, int difficulty, Monster startingMonster) {
 		monsterTeam = new MonsterTeam();
 		inventory = new Inventory();
-	}
-	
-	/**
-	 * @return the players chosen name
-	 */
-	public String getName() {
-		return name;
-	}
-	/**
-	 * @param name sets the name to what the player chose
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	/**
-	 * @return the players total amount of current gold
-	 */
-	public int getGold() {
-		return gold;
-	}
-	/**
-	 * @param gold the amount of gold to set for the players score
-	 */
-	public void setGold(int gold) {
-		this.gold = gold;
-	}
-	/**
-	 * @return the players current total score
-	 */
-	public int getScore() {
-		return score;
-	}
-	/**
-	 * @param score the score to set for the player
-	 */
-	public void setScore(int score) {
-		this.score = score;
-	}
-	
-	public void setupValues(String name, int difficulty, Monster startingMonster) {
+		
 		this.setName(name);
 		
-		//Sets the starting gold based on the chosen difficulty
 		if (difficulty == 0) {
 			this.setGold(EASY_START_GOLD);
 		} else {
 			this.setGold(HARD_START_GOLD);
 		}
 		
-		//Adds chosen starting monster to team
 		monsterTeam.addMonsterToTeam(startingMonster);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getGold() {
+		return gold;
+	}
+
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
+	public MonsterTeam getMonsterTeam() {
+		return monsterTeam;
+	}
+	
+	public Inventory getInventory() {
+		return inventory;
 	}
 	
 	public String toString() {
@@ -78,9 +69,9 @@ public class Player {
 				Name: %s
 				Score: %d
 				Gold: %d
-				Monsters: %s
+				Monsters: -----
 				Inventory: -----
 				""";
-		return String.format(niceString, this.getName(), this.getScore(), this.getGold(), monsterTeam.getMonsterTeam());
+		return String.format(niceString, this.getName(), this.getScore(), this.getGold());
 	}
 }
