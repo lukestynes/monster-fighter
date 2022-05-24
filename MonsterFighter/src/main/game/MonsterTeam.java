@@ -23,12 +23,7 @@ public class MonsterTeam {
 	
 	public void removeMonsterFromTeam(Monster monster) {
 		//TODO: maybe look at setting up an equals method properly for monster to handle the comparison
-		
-		if (monsterTeam.contains(monster)) {
-			monsterTeam.remove(monster);
-		} else {
-			System.out.println("ERROR: MONSTER NOT ON TEAM");
-		}
+		this.monsterTeam.remove(monster);
 	}
 	
 	public ArrayList<Monster> getMonsterTeamList() {

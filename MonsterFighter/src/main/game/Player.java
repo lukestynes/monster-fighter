@@ -72,6 +72,7 @@ public class Player {
 				Monsters: -----
 				Inventory: -----
 				""";
+		
 		return String.format(niceString, this.getName(), this.getScore(), this.getGold());
 	}
 }
