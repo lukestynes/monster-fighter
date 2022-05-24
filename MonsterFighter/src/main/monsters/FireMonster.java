@@ -7,6 +7,8 @@ public class FireMonster extends Monster {
 	private final int[] HEAL_AMOUNT = {50, 60, 80, 100};
 	private final int[] DAMAGE = {25, 30, 35, 40};
 	private final int[] DEFENCE = {10, 15, 20, 25};
+	private final int[] PRICES = {500, 600, 700, 800};
+	private final int[] RETURN_PRICES = {400, 500, 600, 700};
 	
 	//Default level 1 monster
 	public FireMonster() {
@@ -19,6 +21,10 @@ public class FireMonster extends Monster {
 		
 		this.setName("Fire Monster LVL 1");
 		this.setType("Fire Monster");
+		this.setDescription("This monster is the most simple, it has a normal amount of health, damage, and defence. It's an all rounder");
+		
+		this.setPrice(PRICES[0]);
+		this.setReturnPrice(RETURN_PRICES[0]);
 	}
 	
 	//Constructs a monster at a specified level
@@ -34,5 +40,9 @@ public class FireMonster extends Monster {
 		
 		this.setName("Fire Monster LVL " + level);
 		this.setType("Fire Monster");
+		this.setDescription("This monster is the most simple, it has a normal amount of health, damage, and defence. It's an all rounder");
+		
+		this.setPrice(PRICES[index]);
+		this.setReturnPrice(RETURN_PRICES[index]);
 	}
 }

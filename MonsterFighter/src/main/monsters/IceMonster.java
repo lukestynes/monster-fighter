@@ -6,6 +6,8 @@ public class IceMonster extends Monster {
 	private final int[] HEAL_AMOUNT = {70, 90, 100, 120};
 	private final int[] DAMAGE = {10, 15, 20, 25};
 	private final int[] DEFENCE = {5, 10, 15, 20};
+	private final int[] PRICES = {550, 650, 750, 850};
+	private final int[] RETURN_PRICES = {450, 550, 650, 750};
 	
 	//Default level 1 monster
 	public IceMonster() {
@@ -18,6 +20,10 @@ public class IceMonster extends Monster {
 		
 		this.setName("Ice Monster LVL 1");
 		this.setType("Ice Monster");
+		this.setDescription("This monster has a lot of health, but it's damage is quite low. It's more of a tank");
+		
+		this.setPrice(PRICES[0]);
+		this.setReturnPrice(RETURN_PRICES[0]);
 	}
 	
 	//Constructs a monster at a specified level
@@ -34,5 +40,9 @@ public class IceMonster extends Monster {
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
 		this.setName("Ice Monster LVL " + level);
 		this.setType("Ice Monster");
+		this.setDescription("This monster has a lot of health, but it's damage is quite low. It's more of a tank");
+		
+		this.setPrice(PRICES[index]);
+		this.setReturnPrice(RETURN_PRICES[index]);
 	}
 }

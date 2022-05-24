@@ -6,6 +6,8 @@ public class AirMonster extends Monster {
 	private final int[] HEAL_AMOUNT = {30, 50, 80, 120};
 	private final int[] DAMAGE = {10, 15, 35, 40};
 	private final int[] DEFENCE = {5, 10, 20, 25};
+	private final int[] PRICES = {400, 500, 650, 800};
+	private final int[] RETURN_PRICES = {350, 450, 550, 750};
 	
 	//Default level 1 monster
 	public AirMonster() {
@@ -18,6 +20,10 @@ public class AirMonster extends Monster {
 		
 		this.setName("Air Monster LVL 1");
 		this.setType("Air Monster");
+		this.setDescription("Weaker in the early game, this monster really comes out to play when it's leveled up.");
+		
+		this.setPrice(PRICES[0]);
+		this.setReturnPrice(RETURN_PRICES[0]);
 	}
 	
 	//Constructs a monster at a specified level
@@ -34,5 +40,9 @@ public class AirMonster extends Monster {
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
 		this.setName("Air Monster LVL " + level);
 		this.setType("Air Monster");
+		this.setDescription("Weaker in the early game, this monster really comes out to play when it's leveled up.");
+		
+		this.setPrice(PRICES[index]);
+		this.setReturnPrice(RETURN_PRICES[index]);
 	}
 }

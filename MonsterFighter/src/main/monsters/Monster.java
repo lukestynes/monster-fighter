@@ -141,12 +141,13 @@ public class Monster implements Purchasable {
 		String thing = """
 				Name: %s
 				Type: %s
+				Description: %s
 				Health: %d
 				Defence: %d
 				Damage: %d
 				Heal Amount: %d
 				""";
-		return String.format(thing, this.getName(), this.getType(), this.getMaxHealth(), this.getDefence(), this.getDamage(), this.getHealAmount());
+		return String.format(thing, this.getName(), this.getType(), this.getDescription(), this.getMaxHealth(), this.getDefence(), this.getDamage(), this.getHealAmount());
 	}
 
 	@Override

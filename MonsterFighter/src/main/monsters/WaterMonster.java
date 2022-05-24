@@ -6,6 +6,8 @@ public class WaterMonster extends Monster {
 	private final int[] HEAL_AMOUNT = {55, 65, 70, 80};
 	private final int[] DAMAGE = {20, 25, 30, 35};
 	private final int[] DEFENCE = {6, 12, 18, 24};
+	private final int[] PRICES = {600, 700, 800, 900};
+	private final int[] RETURN_PRICES = {500, 600, 700, 800};
 	
 	//Default level 1 monster
 	public WaterMonster() {
@@ -18,6 +20,10 @@ public class WaterMonster extends Monster {
 		
 		this.setName("Water Monster LVL 1");
 		this.setType("Water Monster");
+		this.setDescription("With slightly higher health than some monsters, this is a good monster for beginners");
+		
+		this.setPrice(PRICES[0]);
+		this.setReturnPrice(RETURN_PRICES[0]);
 	}
 	
 	//Constructs a monster at a specified level
@@ -34,5 +40,9 @@ public class WaterMonster extends Monster {
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
 		this.setName("Water Monster LVL " + level);
 		this.setType("Water Monster");
+		this.setDescription("With slightly higher health than some monsters, this is a good monster for beginners");
+		
+		this.setPrice(PRICES[index]);
+		this.setReturnPrice(RETURN_PRICES[index]);
 	}
 }
