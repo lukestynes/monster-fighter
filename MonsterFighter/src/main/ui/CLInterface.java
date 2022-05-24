@@ -81,4 +81,20 @@ public class CLInterface {
 		
 		return startingMonsters[chosenMonster-1];
 	}
+	
+	public void menuScreen(Player player, GameController game) {
+		String toDisplay = """
+				Choose an option:
+				
+				1. View your score, gold and current day
+				2. View your monster team
+				3. View your inventory
+				4. Go to Battle
+				5. Visit the shop
+				6. Go to sleep (end the day)
+				""";
+		int playerChoice = scan.nextInt();
+	}
+	
+	public void inventoryViewer()
 }
