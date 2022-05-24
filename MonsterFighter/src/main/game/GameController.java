@@ -77,9 +77,6 @@ public class GameController {
 		
 		cli.setupScreen(player, game, easyStartingMonsters, hardStartingMonsters);
 		
-		System.out.println(player.toString());
-		
-		
-		//TODO: Display the starting monsters and let you choose them
+		//System.out.println(player.toString());
 	}
 }

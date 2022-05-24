@@ -48,6 +48,8 @@ public class CLInterface {
 		
 		
 		player.setupValues(name, difficulty, startingMonster);
+		
+		System.out.println("\n\n******* LET THE ADVENTURE BEGIN!**********\n\n");
 	}
 	
 	/**
