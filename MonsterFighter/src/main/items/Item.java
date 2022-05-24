@@ -14,7 +14,7 @@ public class Item implements Purchasable {
 	private int instantHealthBoost = 0;
 	private int damageBoost = 0;
 	private int healAmountBoost = 0;
-	private int defenseBoost = 0;
+	private int defenceBoost = 0;
 	private int maxHealthBoost = 0;
 	
 	public String getName() {
@@ -73,12 +73,12 @@ public class Item implements Purchasable {
 		this.healAmountBoost = healAmountBoost;
 	}
 	
-	public int getDefenseBoost() {
-		return defenseBoost;
+	public int getDefenceBoost() {
+		return defenceBoost;
 	}
 	
-	public void setDefenseBoost(int defenseBoost) {
-		this.defenseBoost = defenseBoost;
+	public void setDefenceBoost(int defenseBoost) {
+		this.defenceBoost = defenseBoost;
 	}
 	
 	public int getMaxHealthBoost() {
@@ -98,7 +98,7 @@ public class Item implements Purchasable {
 				Defence Boost: %d
 				Max Health Boost: %d
 				""";
-		return String.format(thing, this.getName(), this.getInstantHealthBoost(), this.getDamageBoost(), this.getHealAmountBoost(), this.getDefenseBoost(), this.getMaxHealthBoost());
+		return String.format(thing, this.getName(), this.getInstantHealthBoost(), this.getDamageBoost(), this.getHealAmountBoost(), this.getDefenceBoost(), this.getMaxHealthBoost());
 	}
 
 	@Override
@@ -112,4 +112,6 @@ public class Item implements Purchasable {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	//TODO: Methods for the player to use the items on their monsters
 }
