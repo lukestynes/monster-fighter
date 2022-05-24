@@ -1,7 +1,6 @@
 package main.items;
 
 import main.game.Player;
-import main.shop.Purchasable;
 
 public class Item {
 	
