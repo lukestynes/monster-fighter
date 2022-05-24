@@ -89,11 +89,38 @@ public class CLInterface {
 				1. View your score, gold and current day
 				2. View your monster team
 				3. View your inventory
-				4. Go to Battle
-				5. Visit the shop
+				4. Visit the shop
+				5. Go to Battle
 				6. Go to sleep (end the day)
 				""";
+		
+		System.out.println(toDisplay);
+		
 		int playerChoice = scan.nextInt();
+		
+		switch (playerChoice) {
+		case 1:
+			System.out.printf("\n%s: Gold: %d | Score: %d | Day: %d/%d\n\n\n", player.getName(), player.getGold(), player.getScore(), game.getCurrentDay(), game.getGameLength());
+			break;
+		case 2:
+			System.out.println("\n\n\nYour Monster Team: \n");
+			for (Monster monster: player.getMonsterTeam()) {
+				System.out.println("\n" + monster + "\n");
+			}
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		}
+	}
+	
+	public void viewMonsterTeam(Player player) {
+		
 	}
 	
 	public void inventoryViewer() {

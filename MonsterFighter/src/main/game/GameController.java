@@ -15,6 +15,8 @@ public class GameController {
 	private int currentDay = 1;
 	private int difficulty;
 	
+	private Boolean running = true;
+	
 	
 	public GameController() {
 		cli = new CLInterface();
@@ -62,8 +64,6 @@ public class GameController {
 		this.difficulty = difficulty;
 	}
 	
-	
-
 	public static void main(String[] args) {
 		GameController game = new GameController();
 		game.run(game);
@@ -71,6 +71,7 @@ public class GameController {
 	
 	public void run(GameController game) {
 		gameSetup(game);
+		cliGameLoop(game);
 	}
 	
 	public void gameSetup(GameController game) {
@@ -78,6 +79,9 @@ public class GameController {
 	}
 	
 	public void cliGameLoop(GameController game) {
-		cli.menuScreen(player, game);
+		do {
+			cli.menuScreen(player, game);
+		} while (running);
+		
 	}
 }
