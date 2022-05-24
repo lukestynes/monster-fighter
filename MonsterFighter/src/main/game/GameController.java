@@ -74,9 +74,10 @@ public class GameController {
 	}
 	
 	public void gameSetup(GameController game) {
-		
 		cli.setupScreen(player, game, easyStartingMonsters, hardStartingMonsters);
-		
-		//System.out.println(player.toString());
+	}
+	
+	public void cliGameLoop(GameController game) {
+		cli.menuScreen(player, game);
 	}
 }
