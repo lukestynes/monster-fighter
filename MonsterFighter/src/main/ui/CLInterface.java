@@ -5,6 +5,7 @@ import java.util.Scanner;
 import main.game.*;
 import main.items.Item;
 import main.monsters.Monster;
+import main.shop.Shop;
 
 public class CLInterface {
 	
@@ -86,14 +87,16 @@ public class CLInterface {
 			break;
 		case 2:
 			System.out.println("\n\n\nYour Monster Team: \n");
+			
 			for (Monster monster: player.getMonsterTeam().getMonsterTeamList()) {
 				System.out.println("\n" + monster + "\n");
 			}
 			break;
 		case 3:
-			inventoryViewer(player);
+			inventoryScreen(player);
 			break;
 		case 4:
+			shopScreen(player, game);
 			break;
 		case 5:
 			break;
@@ -106,11 +109,43 @@ public class CLInterface {
 		
 	}
 	
-	public void inventoryViewer(Player player) {
+	public void inventoryScreen(Player player) {
 		for (Item item: player.getInventory().getInventoryList()) {
 			System.out.println(item);
 		}
 		
 		//TODO: something about using items on monsters
+	}
+	
+	public void shopScreen(Player player, GameController game) {
+		Shop shop = game.getShop();
+		
+		System.out.println("\n\n-----Welcome to the Shop-----\n\n");
+		System.out.println("Would you like to shop for Monsters (1) or Items (2)? ");
+		
+		int playerChoice = scan.nextInt();
+		
+		switch (playerChoice) {
+		case 1:
+			System.out.println("***MONSTERS***");
+			
+			int count = 1;
+			for (Monster monster: shop.getShopMonsters()) {
+				System.out.println("\n\n" + count + ": " + monster);
+				System.out.println("PRICE: " + monster.getPrice());
+				count++;
+			}
+			break;
+		case 2:
+			count = 1;
+			System.out.println("***ITEMS***");
+			
+			for (Item item: shop.getShopItems()) {
+				System.out.println("\n\n" + count + ": " + item);
+				System.out.println("PRICE: " + item.getPrice());
+				count++;
+			}
+			break;
+		}
 	}
 }
