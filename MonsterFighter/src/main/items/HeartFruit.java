@@ -1,7 +1,7 @@
 package main.items;
 
-public class HeartFruitFood extends Item {
-	public HeartFruitFood() {
+public class HeartFruit extends Item {
+	public HeartFruit() {
 		this.setInstantHealthBoost(20);
 		this.setHealAmountBoost(10);
 		this.setDefenceBoost(10);

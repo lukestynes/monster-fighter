@@ -1,7 +1,7 @@
 package main.items;
 
-public class MysterySoupFood extends Item {
-	public MysterySoupFood() {
+public class MysterySoup extends Item {
+	public MysterySoup() {
 		this.setInstantHealthBoost(15);
 		this.setDamageBoost(5);
 		this.setDefenceBoost(10);

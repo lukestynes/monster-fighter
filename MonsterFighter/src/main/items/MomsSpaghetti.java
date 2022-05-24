@@ -1,7 +1,7 @@
 package main.items;
 
-public class MomsSpaghettiFood extends Item {
-	public MomsSpaghettiFood() {
+public class MomsSpaghetti extends Item {
+	public MomsSpaghetti() {
 		this.setInstantHealthBoost(55);
 		this.setHealAmountBoost(10);
 		this.setDefenceBoost(5);
