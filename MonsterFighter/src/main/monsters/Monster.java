@@ -11,6 +11,8 @@ public class Monster {
 	
 	
 	private Boolean fainted = false;
+	private int faintCount = 0;
+	
 	private int level = 1;
 	private String type;
 	
@@ -70,6 +72,23 @@ public class Monster {
 
 	public void setFainted(Boolean fainted) {
 		this.fainted = fainted;
+		
+		//Every time a monster faints it is added to the tally, as it changes probabilities of random events.
+		if (fainted) {
+			this.incFaintCount();
+		}
+	}
+	
+	public void setFaintCount(int faintCount) {
+		this.faintCount = faintCount;
+	}
+	
+	public void incFaintCount() {
+		this.faintCount++;
+	}
+	
+	public int getFaintCount() {
+		return faintCount;
 	}
 	
 	public int getMaxHealth() {
