@@ -29,4 +29,18 @@ public class MonsterTeam {
 	public ArrayList<Monster> getMonsterTeamList() {
 		return monsterTeam;
 	}
+	
+	public int getTotalTeamFaints() {
+		int faintCounter = 0;
+		
+		for (Monster monster: monsterTeam) {
+			faintCounter += monster.getFaintCount();
+		}
+		
+		return faintCounter;
+	}
+	
+	public int getEmptySlots() {
+		return 4 - monsterTeam.size();
+	}
 }

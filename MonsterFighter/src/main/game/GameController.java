@@ -6,11 +6,13 @@ import main.shop.Shop;
 import java.util.ArrayList;
 
 import main.monsters.*;
+import main.randomEvents.*;
 
 public class GameController {
 	CLInterface cli;
 	Player player;
 	Shop shop;
+	RandomEvents randomEvents;
 	
 	//Constants for how many monsters there are to choose from at the start
 	private Monster[] easyStartingMonsters = {new FireMonster(), new WaterMonster(), new IceMonster(), new ElectricityMonster()};
@@ -24,6 +26,7 @@ public class GameController {
 	
 	public GameController() {
 		cli = new CLInterface();
+		randomEvents = new RandomEvents();
 	}
 	
 	public int getGameLength() {
@@ -76,9 +79,14 @@ public class GameController {
 	public void nightReset(GameController game) {
 		ArrayList<Monster> monstersList = player.getMonsterTeam().getMonsterTeamList();
 		
+		//Removes any temporary buffs given to the monsters during the day
 		for (Monster monster: monstersList) {
 			monster.nightResetMonster();
 		}
+		
+		randomEvents.nightTimeEvents();
+		
+		
 		
 	}
 }
