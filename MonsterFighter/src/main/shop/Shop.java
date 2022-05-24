@@ -7,24 +7,22 @@ import main.game.GameController;
 import main.monsters.*;
 import main.items.*;
 
-public class ShopController {
+public class Shop {
 	private ArrayList<Item> shopItems;
 	private ArrayList<Monster> shopMonsters;
 	private GameController game;
 	private Random rng;
 	
-	public ShopController(GameController game) {
+	public Shop() {
 		shopItems = new ArrayList<Item>();
 		shopMonsters = new ArrayList<Monster>();
 		
-		this.game = game;
 		rng = new Random();
-		
 	}
 	
 	//Resets all the items in the shop. Typically happens overnight
 	public void shopRefresh() {
-		
+		refreshMonsters();
 	}
 	
 	public void refreshItems() {

@@ -91,6 +91,7 @@ public class CLInterface {
 			}
 			break;
 		case 3:
+			inventoryViewer(player);
 			break;
 		case 4:
 			break;

@@ -1,11 +1,13 @@
 package main.game;
 
 import main.ui.*;
+import main.shop.Shop;
 import main.monsters.*;
 
 public class GameController {
 	CLInterface cli;
 	Player player;
+	Shop shop;
 	
 	//Constants for how many monsters there are to choose from at the start
 	private Monster[] easyStartingMonsters = {new FireMonster(), new WaterMonster(), new IceMonster(), new ElectricityMonster()};
@@ -19,6 +21,7 @@ public class GameController {
 	
 	public GameController() {
 		cli = new CLInterface();
+		shop = new Shop();
 	}
 	
 	public int getGameLength() {
