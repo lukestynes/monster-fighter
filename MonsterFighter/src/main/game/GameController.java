@@ -2,6 +2,9 @@ package main.game;
 
 import main.ui.*;
 import main.shop.Shop;
+
+import java.util.ArrayList;
+
 import main.monsters.*;
 
 public class GameController {
@@ -68,5 +71,14 @@ public class GameController {
 		do {
 			cli.menuScreen(player, game);
 		} while (running);
+	}
+	
+	public void nightReset(GameController game) {
+		ArrayList<Monster> monstersList = player.getMonsterTeam().getMonsterTeamList();
+		
+		for (Monster monster: monstersList) {
+			monster.nightResetMonster();
+		}
+		
 	}
 }
