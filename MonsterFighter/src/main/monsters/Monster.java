@@ -4,6 +4,7 @@ public class Monster {
 	private String name;
 	private Boolean fainted = false;
 	private int level = 1;
+	private String type;
 	
 	private int maxHealth;
 	private int healAmount;
@@ -130,6 +131,14 @@ public class Monster {
 		return level;
 	}
 	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
 	/**
 	 * Generates a random name for the monster chosen from a list of names
 	 * @return the monsters name
@@ -138,6 +147,18 @@ public class Monster {
 		//TODO: implement the random name generation
 		
 		return "";
+	}
+	
+	public String toString() {
+		String thing = """
+				Name: %s
+				Type: %s
+				Health: %d
+				Defence: %d
+				Damage: %d
+				Heal Amount: %d
+				""";
+		return String.format(thing, this.getName(), this.getType(), this.getMaxHealth(), this.getDefence(), this.getDamage(), this.getHealAmount());
 	}
 	
 }

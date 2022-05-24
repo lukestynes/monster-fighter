@@ -17,6 +17,7 @@ public class AirMonster extends Monster {
 		this.setDefence(DEFENCE[0]);
 		
 		this.setName("Air Monster LVL 1");
+		this.setType("Air Monster");
 	}
 	
 	//Constructs a monster at a specified level
@@ -32,5 +33,6 @@ public class AirMonster extends Monster {
 		
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
 		this.setName("Air Monster LVL " + level);
+		this.setType("Air Monster");
 	}
 }

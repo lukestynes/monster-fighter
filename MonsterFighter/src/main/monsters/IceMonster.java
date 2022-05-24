@@ -17,6 +17,7 @@ public class IceMonster extends Monster {
 		this.setDefence(DEFENCE[0]);
 		
 		this.setName("Ice Monster LVL 1");
+		this.setType("Ice Monster");
 	}
 	
 	//Constructs a monster at a specified level
@@ -32,5 +33,6 @@ public class IceMonster extends Monster {
 		
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
 		this.setName("Ice Monster LVL " + level);
+		this.setType("Ice Monster");
 	}
 }

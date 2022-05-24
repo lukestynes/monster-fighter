@@ -17,6 +17,7 @@ public class WaterMonster extends Monster {
 		this.setDefence(DEFENCE[0]);
 		
 		this.setName("Water Monster LVL 1");
+		this.setType("Water Monster");
 	}
 	
 	//Constructs a monster at a specified level
@@ -32,5 +33,6 @@ public class WaterMonster extends Monster {
 		
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
 		this.setName("Water Monster LVL " + level);
+		this.setType("Water Monster");
 	}
 }

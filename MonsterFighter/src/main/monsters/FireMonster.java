@@ -18,6 +18,7 @@ public class FireMonster extends Monster {
 		this.setDefence(DEFENCE[0]);
 		
 		this.setName("Fire Monster LVL 1");
+		this.setType("Fire Monster");
 	}
 	
 	//Constructs a monster at a specified level
@@ -32,5 +33,6 @@ public class FireMonster extends Monster {
 		this.setDefence(DEFENCE[index]);
 		
 		this.setName("Fire Monster LVL " + level);
+		this.setType("Fire Monster");
 	}
 }

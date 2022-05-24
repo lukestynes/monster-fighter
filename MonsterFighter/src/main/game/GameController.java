@@ -1,14 +1,25 @@
 package main.game;
 
 import main.ui.*;
+import main.monsters.*;
 
 public class GameController {
 	CLInterface cli;
 	Player player;
 	
+	//Constants for how many monsters there are to choose from at the start
+	private Monster[] easyStartingMonsters = {new FireMonster(), new WaterMonster(), new IceMonster(), new ElectricityMonster()};
+	private Monster[] hardStartingMonsters = {new WaterMonster(), new AirMonster(), new EarthMonster()};
+	
 	private int gameLength;
 	private int currentDay = 1;
 	private int difficulty;
+	
+	
+	public GameController() {
+		cli = new CLInterface();
+		player = new Player();
+	}
 	
 	/**
 	 * @return the gameLength in in-game days
@@ -51,10 +62,7 @@ public class GameController {
 		this.difficulty = difficulty;
 	}
 	
-	public GameController() {
-		CLInterface cli = new CLInterface();
-		Player player = new Player();
-	}
+	
 
 	public static void main(String[] args) {
 		GameController game = new GameController();
@@ -67,6 +75,13 @@ public class GameController {
 	
 	public void gameSetup(GameController game) {
 		cli.setupScreen(player, game);
+		
+		if (this.getDifficulty() == 0) {
+			cli.startingMonsterScreen(player, game, easyStartingMonsters);
+		} else {
+			cli.startingMonsterScreen(player, game, hardStartingMonsters);
+		}
+		
 		
 		//TODO: Display the starting monsters and let you choose them
 	}

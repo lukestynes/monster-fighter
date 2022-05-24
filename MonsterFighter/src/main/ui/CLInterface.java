@@ -1,8 +1,10 @@
 package main.ui;
 
+import java.util.List;
 import java.util.Scanner;
 
 import main.game.*;
+import main.monsters.Monster;
 
 public class CLInterface {
 	
@@ -33,7 +35,7 @@ public class CLInterface {
 		System.out.println("What difficulty do you want to play on? (0=easy, 1=hard)");
 		difficulty = scan.nextInt();	
 		
-		player.setupValues(name, difficulty);
+		//TODO:player.setupValues(name, difficulty);
 		game.setDifficulty(difficulty);
 		game.setGameLength(length);
 	}
@@ -49,7 +51,13 @@ public class CLInterface {
 	 * @param player the player object that stores all of the relevant player information
 	 * @param game the game object which is responsible for the control of the entire game system
 	 */
-	public void startingMonsterScreen(Player player, GameController game) {
+	public void startingMonsterScreen(Player player, GameController game, Monster[] startingMonsters) {
+		System.out.println("Have a look at these monsters below and choose your starter\n\n");
 		
+		int count = 1;
+		for (Monster monster: startingMonsters) {
+			System.out.println(count + ": " + monster);
+			count++;
+		}
 	}
 }

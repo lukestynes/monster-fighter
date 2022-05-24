@@ -17,6 +17,7 @@ public class EarthMonster extends Monster {
 		this.setDefence(DEFENCE[0]);
 		
 		this.setName("Earth Monster LVL 1");
+		this.setType("Earth Monster");
 	}
 	
 	//Constructs a monster at a specified level
@@ -32,5 +33,6 @@ public class EarthMonster extends Monster {
 		
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
 		this.setName("Earth Monster LVL " + level);
+		this.setType("Earth Monster");
 	}
 }

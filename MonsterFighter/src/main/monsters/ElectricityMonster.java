@@ -17,6 +17,7 @@ public class ElectricityMonster extends Monster {
 		this.setDefence(DEFENCE[0]);
 		
 		this.setName("Electricity Monster LVL 1");
+		this.setType("Electricity Monster");
 	}
 	
 	//Constructs a monster at a specified level
@@ -32,5 +33,6 @@ public class ElectricityMonster extends Monster {
 		
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
 		this.setName("Electricity Monster LVL " + level);
+		this.setType("Electricity Monster");
 	}
 }
