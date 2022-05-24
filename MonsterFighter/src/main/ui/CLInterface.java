@@ -109,5 +109,7 @@ public class CLInterface {
 		for (Item item: player.getInventory().getInventoryList()) {
 			System.out.println(item);
 		}
+		
+		//TODO: something about using items on monsters
 	}
 }
