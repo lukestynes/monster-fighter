@@ -96,5 +96,7 @@ public class CLInterface {
 		int playerChoice = scan.nextInt();
 	}
 	
-	public void inventoryViewer()
+	public void inventoryViewer() {
+		
+	}
 }
