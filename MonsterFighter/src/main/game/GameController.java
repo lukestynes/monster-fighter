@@ -74,12 +74,12 @@ public class GameController {
 	}
 	
 	public void gameSetup(GameController game) {
-		cli.setupScreen(player, game);
+		;
 		
 		if (this.getDifficulty() == 0) {
-			cli.startingMonsterScreen(player, game, easyStartingMonsters);
+			cli.setupScreen(player, game, easyStartingMonsters);
 		} else {
-			cli.startingMonsterScreen(player, game, hardStartingMonsters);
+			cli.setupScreen(player, game, hardStartingMonsters);
 		}
 		
 		

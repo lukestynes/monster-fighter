@@ -15,7 +15,7 @@ public class CLInterface {
 	 * @param player the player object that stores all of the relevant player information
 	 * @param game the game object which is responsible for the control of the entire game system
 	 */
-	public void setupScreen(Player player, GameController game) {
+	public void setupScreen(Player player, GameController game, Monster[] startingMonsters) {
 		String name;
 		int length;
 		int difficulty;
@@ -35,9 +35,12 @@ public class CLInterface {
 		System.out.println("What difficulty do you want to play on? (0=easy, 1=hard)");
 		difficulty = scan.nextInt();	
 		
-		//TODO:player.setupValues(name, difficulty);
+		
 		game.setDifficulty(difficulty);
 		game.setGameLength(length);
+		
+		Monster startingMonster = startingMonsterScreen(player, game, startingMonsters);
+		player.setupValues(name, difficulty, startingMonster);
 	}
 	
 	/**
@@ -51,13 +54,22 @@ public class CLInterface {
 	 * @param player the player object that stores all of the relevant player information
 	 * @param game the game object which is responsible for the control of the entire game system
 	 */
-	public void startingMonsterScreen(Player player, GameController game, Monster[] startingMonsters) {
+	public Monster startingMonsterScreen(Player player, GameController game, Monster[] startingMonsters) {
+		int count = 1;
+		int chosenMonster;
+		
 		System.out.println("Have a look at these monsters below and choose your starter\n\n");
 		
-		int count = 1;
+		
 		for (Monster monster: startingMonsters) {
 			System.out.println(count + ": " + monster);
 			count++;
 		}
+		
+		System.out.println("Enter the number of the monster you want to start with: ");
+		
+		chosenMonster = scan.nextInt();
+		
+		return startingMonsters[chosenMonster-1];
 	}
 }
