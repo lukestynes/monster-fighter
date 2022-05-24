@@ -10,12 +10,14 @@ import main.shop.Shop;
 public class CLInterface {
 	
 	Scanner scan = new Scanner(System.in);
+	Shop shop;
 	
 	public Player setupScreen(GameController game, Monster[] easyStartingMonsters, Monster[] hardStartingMonsters) {
 		String name;
 		int length;
 		int difficulty;
 		Monster startingMonster;
+		shop = new Shop(game);
 		
 		System.out.println("###############################################################");
 		System.out.println("Welcome to Monster Fighter");
@@ -86,11 +88,7 @@ public class CLInterface {
 			System.out.printf("\n%s: Gold: %d | Score: %d | Day: %d/%d\n\n\n", player.getName(), player.getGold(), player.getScore(), game.getCurrentDay(), game.getGameLength());
 			break;
 		case 2:
-			System.out.println("\n\n\nYour Monster Team: \n");
-			
-			for (Monster monster: player.getMonsterTeam().getMonsterTeamList()) {
-				System.out.println("\n" + monster + "\n");
-			}
+			monsterScreen(player);
 			break;
 		case 3:
 			inventoryScreen(player);
@@ -105,21 +103,54 @@ public class CLInterface {
 		}
 	}
 	
-	public void viewMonsterTeam(Player player) {
+	public void monsterScreen(Player player) {
+		System.out.println("\n\n\nYour Monster Team: \n");
 		
+		int count = 1;
+		for (Monster monster: player.getMonsterTeam().getMonsterTeamList()) {
+			System.out.println("\n " + count + " " + monster + "\n");
+			System.out.println("SELLBACK PRICE: " + monster.getReturnPrice());
+			count++;
+		}
+		
+		System.out.println("Do you want to sell anything? 1 or 0");
+		
+		int response = scan.nextInt();
+		
+		if (response == 1) {
+			System.out.println("Enter the number of the thing you want to buy: ");
+			int returnMonster = scan.nextInt();
+			Monster monsterToReturn = player.getMonsterTeam().getMonsterTeamList().get(returnMonster - 1);
+			shop.returnMonster(monsterToReturn, player);
+		}
 	}
 	
 	public void inventoryScreen(Player player) {
+		System.out.println("\n\n\n**********Your Inventory: \n********");
+		
+		int count = 1;
+		
 		for (Item item: player.getInventory().getInventoryList()) {
-			System.out.println(item);
+			System.out.println("\n " + count + " " + item);
+			System.out.println("SELLBACK PRICE: " + item.getReturnPrice());
+			count++;
+		}
+		
+		System.out.println("Do you want to sell anything? 1 or 0");
+		
+		int response = scan.nextInt();
+		
+		if (response == 1) {
+			System.out.println("Enter the number of the thing you want to buy: ");
+			int returnItem = scan.nextInt();
+			Item itemToReturn = player.getInventory().getInventoryList().get(returnItem - 1);
+			shop.returnItem(itemToReturn, player);
 		}
 		
 		//TODO: something about using items on monsters
 	}
 	
 	public void shopScreen(Player player, GameController game) {
-		Shop shop = game.getShop();
-		
 		System.out.println("\n\n-----Welcome to the Shop-----\n\n");
 		System.out.println("Would you like to shop for Monsters (1) or Items (2)? ");
 		
