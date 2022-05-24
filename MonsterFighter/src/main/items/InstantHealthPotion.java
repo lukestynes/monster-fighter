@@ -1,5 +1,7 @@
 package main.items;
 
+
+
 public class InstantHealthPotion extends Item {
 	
 	public InstantHealthPotion() {

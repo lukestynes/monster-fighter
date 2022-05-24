@@ -1,8 +1,15 @@
 package main.items;
 
-public class Item {
+import main.game.Player;
+import main.shop.Purchasable;
+
+public class Item implements Purchasable {
 	
 	private String name;
+	private String description;
+	
+	private int price;
+	private int returnPrice;
 	
 	private int instantHealthBoost = 0;
 	private int damageBoost = 0;
@@ -16,6 +23,30 @@ public class Item {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	public int getReturnPrice() {
+		return returnPrice;
+	}
+	
+	public void setReturnPrice(int returnPrice) {
+		this.returnPrice = returnPrice;
 	}
 	
 	public int getInstantHealthBoost() {
@@ -69,5 +100,16 @@ public class Item {
 				""";
 		return String.format(thing, this.getName(), this.getInstantHealthBoost(), this.getDamageBoost(), this.getHealAmountBoost(), this.getDefenseBoost(), this.getMaxHealthBoost());
 	}
-	
+
+	@Override
+	public void playerPurchase(Player player, int price, Object bought) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void playerReturn(Player player, int returnPrice, Object returned) {
+		// TODO Auto-generated method stub
+		
+	}
 }
