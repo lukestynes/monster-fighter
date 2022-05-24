@@ -1,7 +1,6 @@
 package main.monsters;
 
 import main.game.Player;
-import main.shop.Purchasable;
 
 public class Monster {
 	private String name;
@@ -61,6 +60,9 @@ public class Monster {
 		this.returnPrice = returnPrice;
 	}
 	
+	public int getModifiedReturnPrice() {
+		return (1 - (this.getCurrentHealth()/this.getMaxHealth())) * this.getReturnPrice();
+	}
 	
 	public Boolean getFainted() {
 		return fainted;
