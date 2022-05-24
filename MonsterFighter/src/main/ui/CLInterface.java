@@ -1,6 +1,5 @@
 package main.ui;
 
-import java.util.List;
 import java.util.Scanner;
 
 import main.game.*;
@@ -15,10 +14,12 @@ public class CLInterface {
 	 * @param player the player object that stores all of the relevant player information
 	 * @param game the game object which is responsible for the control of the entire game system
 	 */
-	public void setupScreen(Player player, GameController game, Monster[] startingMonsters) {
+	public void setupScreen(Player player, GameController game, Monster[] easyStartingMonsters, Monster[] hardStartingMonsters) {
 		String name;
 		int length;
 		int difficulty;
+		Monster startingMonster;
+		
 		//TODO: Starting monster
 		
 		
@@ -39,7 +40,13 @@ public class CLInterface {
 		game.setDifficulty(difficulty);
 		game.setGameLength(length);
 		
-		Monster startingMonster = startingMonsterScreen(player, game, startingMonsters);
+		if (game.getDifficulty() == 0) {
+			startingMonster = startingMonsterScreen(player, game, easyStartingMonsters);
+		} else {
+			startingMonster = startingMonsterScreen(player, game, hardStartingMonsters);
+		}
+		
+		
 		player.setupValues(name, difficulty, startingMonster);
 	}
 	

@@ -74,13 +74,10 @@ public class GameController {
 	}
 	
 	public void gameSetup(GameController game) {
-		;
 		
-		if (this.getDifficulty() == 0) {
-			cli.setupScreen(player, game, easyStartingMonsters);
-		} else {
-			cli.setupScreen(player, game, hardStartingMonsters);
-		}
+		cli.setupScreen(player, game, easyStartingMonsters, hardStartingMonsters);
+		
+		System.out.println(player.toString());
 		
 		
 		//TODO: Display the starting monsters and let you choose them

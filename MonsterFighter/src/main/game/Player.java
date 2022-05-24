@@ -94,4 +94,15 @@ public class Player {
 		//Adds chosen starting monster to team
 		addMonsterToTeam(startingMonster);
 	}
+	
+	public String toString() {
+		String niceString = """
+				Name: %s
+				Score: %d
+				Gold: %d
+				Monsters: %s
+				Inventory: -----
+				""";
+		return String.format(niceString, this.getName(), this.getScore(), this.getGold(), this.getMonsterTeam());
+	}
 }
