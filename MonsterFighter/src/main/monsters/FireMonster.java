@@ -1,4 +1,4 @@
-package ma.monsters;
+package main.monsters;
 
 
 public class FireMonster extends Monster {
@@ -17,8 +17,19 @@ public class FireMonster extends Monster {
 		this.setDamage(DAMAGE[0]);
 		this.setDefence(DEFENCE[0]);
 		
-		
+		this.setName("Fire Monster LVL 1");
 	}
 	
+	public FireMonster(int level) {
+		int index = level--;
+		this.setMaxHealth(MAX_HEALTH[index]);
+		this.setCurrentHealth(getMaxHealth());
+		
+		this.setHealAmount(HEAL_AMOUNT[index]);
+		this.setDamage(DAMAGE[index]);
+		this.setDefence(DEFENCE[index]);
+		
+		this.setName("Fire Monster LVL " + level);
+	}
 	//Constructs a monster at a stronger level for later game mechanics
 }

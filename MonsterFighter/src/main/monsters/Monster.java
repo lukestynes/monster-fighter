@@ -2,7 +2,8 @@ package main.monsters;
 
 public class Monster {
 	private String name;
-	private Boolean fainted;
+	private Boolean fainted = false;
+	private int level = 1;
 	
 	private int maxHealth;
 	private int healAmount;
@@ -10,6 +11,8 @@ public class Monster {
 	
 	private int defence;
 	private int damage;
+	
+	
 	/**
 	 * @return the name
 	 */
@@ -119,14 +122,22 @@ public class Monster {
 		this.damage = damage;
 	}
 	
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	
+	public int getLevel() {
+		return level;
+	}
+	
 	/**
 	 * Generates a random name for the monster chosen from a list of names
 	 * @return the monsters name
 	 */
 	public String generateName() {
+		//TODO: implement the random name generation
 		
-		
-		return "name";
+		return "";
 	}
 	
 }
