@@ -21,7 +21,6 @@ public class GameController {
 	
 	public GameController() {
 		cli = new CLInterface();
-		shop = new Shop();
 	}
 	
 	public int getGameLength() {
@@ -52,26 +51,22 @@ public class GameController {
 		return player;
 	}
 	
+	public Shop getShop() {
+		return shop;
+	}
+	
 	public static void main(String[] args) {
 		GameController game = new GameController();
 		game.run(game);
 	}
 	
 	public void run(GameController game) {
-		gameSetup(game);
-		cliGameLoop(game);
-	}
-	
-	public void gameSetup(GameController game) {
+		shop = new Shop(game);
 		player = cli.setupScreen(game, easyStartingMonsters, hardStartingMonsters);
-	}
-	
-	public void cliGameLoop(GameController game) {
+		
+		//SIMPLE GAME LOOP FOR JUST THE CLI
 		do {
 			cli.menuScreen(player, game);
 		} while (running);
-		
 	}
-	
-	
 }
