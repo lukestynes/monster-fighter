@@ -18,7 +18,8 @@ public class EarthMonster extends Monster {
 		this.setDamage(DAMAGE[0]);
 		this.setDefence(DEFENCE[0]);
 		
-		this.setName("Earth Monster LVL 1");
+		this.setName("Earth Monster");
+		this.setLevel(1);
 		this.setType("Earth Monster");
 		this.setDescription("This monster is the strongest at the lower levels but is weaker later on. If you have the money it can make your early game easier");
 		
@@ -28,7 +29,7 @@ public class EarthMonster extends Monster {
 	
 	//Constructs a monster at a specified level
 	public EarthMonster(int level) {
-		int index = level--;
+		int index = level - 1;
 		this.setLevel(level);
 		
 		this.setMaxHealth(MAX_HEALTH[index]);
@@ -39,7 +40,7 @@ public class EarthMonster extends Monster {
 		this.setDefence(DEFENCE[index]);
 		
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
-		this.setName("Earth Monster LVL " + level);
+		this.setName("Earth Monster");
 		this.setType("Earth Monster");
 		this.setDescription("This monster is the strongest at the lower levels but is weaker later on. If you have the money it can make your early game easier");
 		

@@ -18,7 +18,8 @@ public class AirMonster extends Monster {
 		this.setDamage(DAMAGE[0]);
 		this.setDefence(DEFENCE[0]);
 		
-		this.setName("Air Monster LVL 1");
+		this.setName("Air Monster");
+		this.setLevel(1);
 		this.setType("Air Monster");
 		this.setDescription("Weaker in the early game, this monster really comes out to play when it's leveled up.");
 		
@@ -28,7 +29,7 @@ public class AirMonster extends Monster {
 	
 	//Constructs a monster at a specified level
 	public AirMonster(int level) {
-		int index = level--;
+		int index = level - 1;
 		this.setLevel(level);
 		
 		this.setMaxHealth(MAX_HEALTH[index]);
@@ -39,7 +40,7 @@ public class AirMonster extends Monster {
 		this.setDefence(DEFENCE[index]);
 		
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
-		this.setName("Air Monster LVL " + level);
+		this.setName("Air Monster");
 		this.setType("Air Monster");
 		this.setDescription("Weaker in the early game, this monster really comes out to play when it's leveled up.");
 		
