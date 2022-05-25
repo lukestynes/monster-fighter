@@ -113,6 +113,11 @@ public class Monster {
 	}
 	
 	public void setCurrentHealth(int currentHealth) {
+		if (currentHealth < 0) {
+			this.currentHealth = 0;
+			this.setFainted(true);
+		}
+		
 		this.currentHealth = currentHealth;
 	}
 	
@@ -146,6 +151,10 @@ public class Monster {
 	
 	public String getType() {
 		return type;
+	}
+	
+	public void takeDamage(int damage) {
+		this.setCurrentHealth(this.getCurrentHealth() - (damage - this.getDefence()));
 	}
 	
 	/**
