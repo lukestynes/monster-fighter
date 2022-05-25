@@ -59,6 +59,9 @@ public class GUIController {
 	public void closeMonsterTeamScreen(MonsterTeamScreen monsterWindow) {
 		monsterWindow.closeWindow();
 	}
-	
+
+	public MonsterTeamScreen getMonsterScreen() {
+		return this.monsterWindow;
+	}
 	
 }

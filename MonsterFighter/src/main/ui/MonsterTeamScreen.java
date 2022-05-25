@@ -14,6 +14,8 @@ import main.monsters.Monster;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MonsterTeamScreen {
 
@@ -147,6 +149,12 @@ public class MonsterTeamScreen {
 		panelMonster3.add(txtpMonst1_2);
 		
 		JButton btnReturn = new JButton("Return to Menu");
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.launchMenuScreen();
+				gui.closeMonsterTeamScreen(gui.getMonsterScreen());
+			}
+		});
 		btnReturn.setBounds(423, 549, 161, 29);
 		frame.getContentPane().add(btnReturn);
 	}
