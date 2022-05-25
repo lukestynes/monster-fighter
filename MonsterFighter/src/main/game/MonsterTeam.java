@@ -89,7 +89,11 @@ public class MonsterTeam {
 		
 		for (int i = 0; i < numMonsters; i++) {
 			int monsterType = rng.nextInt(6);
-			int monsterLevel = rng.nextInt(maxLevel-minLevel) + minLevel;
+			int monsterLevel = 1;
+			
+			if (maxLevel != 1) {
+				monsterLevel = rng.nextInt(maxLevel-minLevel) + minLevel;
+			} 
 			
 			Monster rngMonster = null;
 			

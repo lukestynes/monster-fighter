@@ -1,35 +1,43 @@
 package main.ui;
 
+import java.util.ArrayList;
+
 import main.game.GameController;
+import main.monsters.Monster;
 
 public class GUIController {
 	GameController game;
+	SetupScreen setupWindow;
+	MenuScreen menuWindow;
 	
 	public GUIController(GameController game) {
 		this.game = game;
-	}
-	
-	public void launchSetupScreen() {
-		SetupScreen setupWindow = new SetupScreen(this);
-	}
-	
-	public void closeSetupScreen(SetupScreen setupWindow) {
-		setupWindow.closeWindow();
 	}
 	
 	public GameController getGame() {
 		return this.game;
 	}
 	
-//	public void safeKeeping() {
-//		String name = ftxtName.getText();
-//		int gameLength = sldGameLength.getValue();
-//		int difficulty = 0;
-//		
-//		if (rdbtnHardMode.isSelected()) {
-//			difficulty = 1;
-//		}
-//		
-//		System.out.printf("%s %d %d", name, gameLength, difficulty);
-//	}
+	public void launchSetupScreen() {
+		System.out.println("DEBUG [GUICONTROLLER]: LAUNCHING SETUP SCREEN");
+		setupWindow = new SetupScreen(this);
+	}
+	
+	public void closeSetupScreen(SetupScreen setupWindow) {
+		setupWindow.closeWindow();
+	}
+	
+	public SetupScreen getScreen() {
+		return this.setupWindow;
+	}
+	
+	public void launchMenuScreen() {
+		System.out.println("DEBUG [GUICONTROLLER]: LAUNCHING MENU SCREEN");
+		menuWindow = new MenuScreen(this);
+		
+	}
+	
+	public void closeMenuScreen(MenuScreen menuWindow) {
+		menuWindow.closeWindow();
+	}
 }

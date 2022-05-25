@@ -2,6 +2,7 @@ package main.game;
 
 import main.ui.*;
 import main.shop.Shop;
+import main.game.*;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ public class GameController {
 	public GameController() {
 		gui = new GUIController(this);
 		randomEvents = new RandomEvents(this);
+		shop = new Shop(this);
 	}
 	
 	public int getGameLength() {
@@ -69,17 +71,22 @@ public class GameController {
 	}
 	
 	public void run() {
-		shop = new Shop(this);
+		gui.launchSetupScreen();
+		gui.launchMenuScreen();
 	}
 	
 	
-	public void setupValues(String name, int length, int difficulty, int startingMonster) {
+	public ArrayList<Monster> getStartingMonsters() {
+		MonsterTeam temporaryTeam = new MonsterTeam();
+		return temporaryTeam.generateRandomMonsters(currentDay, 3);
+	}
+	
+	public void setupValues(String name, int length, int difficulty, Monster startingMonster) {
 		this.setDifficulty(difficulty);
 		this.setGameLength(length);
 		
 		
-		
-		Player player = new Player(name, difficulty, startingMonster);
+		player = new Player(name, difficulty, startingMonster);
 	}
 	
 	public Monster startingMonsters() {
