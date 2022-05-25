@@ -19,7 +19,7 @@ public class FireMonster extends Monster {
 		this.setDamage(DAMAGE[0]);
 		this.setDefence(DEFENCE[0]);
 		
-		this.setName("Fire Monster");
+		this.setName(this.generateName());
 		this.setLevel(1);
 		this.setType("Fire Monster");
 		this.setDescription("This monster is the most simple, it has a normal amount of health, damage, and defence. It's an all rounder");
@@ -40,7 +40,7 @@ public class FireMonster extends Monster {
 		this.setDamage(DAMAGE[index]);
 		this.setDefence(DEFENCE[index]);
 		
-		this.setName("Fire Monster");
+		this.setName(this.generateName());
 		this.setType("Fire Monster");
 		this.setDescription("This monster is the most simple, it has a normal amount of health, damage, and defence. It's an all rounder");
 		

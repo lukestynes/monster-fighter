@@ -18,7 +18,7 @@ public class AirMonster extends Monster {
 		this.setDamage(DAMAGE[0]);
 		this.setDefence(DEFENCE[0]);
 		
-		this.setName("Air Monster");
+		this.setName(this.generateName());
 		this.setLevel(1);
 		this.setType("Air Monster");
 		this.setDescription("Weaker in the early game, this monster really comes out to play when it's leveled up.");
@@ -40,7 +40,7 @@ public class AirMonster extends Monster {
 		this.setDefence(DEFENCE[index]);
 		
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
-		this.setName("Air Monster");
+		this.setName(this.generateName());
 		this.setType("Air Monster");
 		this.setDescription("Weaker in the early game, this monster really comes out to play when it's leveled up.");
 		

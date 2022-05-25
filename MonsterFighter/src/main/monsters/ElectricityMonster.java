@@ -18,7 +18,7 @@ public class ElectricityMonster extends Monster {
 		this.setDamage(DAMAGE[0]);
 		this.setDefence(DEFENCE[0]);
 		
-		this.setName("Electricity Monster");
+		this.setName(this.generateName());
 		this.setLevel(1);
 		this.setType("Electricity Monster");
 		this.setDescription("With higher damage than the others, this monster shines for combat, but watch out for its low health");
@@ -40,7 +40,7 @@ public class ElectricityMonster extends Monster {
 		this.setDefence(DEFENCE[index]);
 		
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
-		this.setName("Electricity Monster");
+		this.setName(this.generateName());
 		this.setType("Electricity Monster");
 		this.setDescription("With higher damage than the others, this monster shines for combat, but watch out for its low health");
 		

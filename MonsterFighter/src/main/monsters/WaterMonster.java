@@ -18,7 +18,7 @@ public class WaterMonster extends Monster {
 		this.setDamage(DAMAGE[0]);
 		this.setDefence(DEFENCE[0]);
 		
-		this.setName("Water Monster");
+		this.setName(this.generateName());
 		this.setLevel(1);
 		this.setType("Water Monster");
 		this.setDescription("With slightly higher health than some monsters, this is a good monster for beginners");
@@ -40,7 +40,7 @@ public class WaterMonster extends Monster {
 		this.setDefence(DEFENCE[index]);
 		
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
-		this.setName("Water Monster");
+		this.setName(this.generateName());
 		this.setType("Water Monster");
 		this.setDescription("With slightly higher health than some monsters, this is a good monster for beginners");
 		

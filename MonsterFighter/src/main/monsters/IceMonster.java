@@ -18,7 +18,7 @@ public class IceMonster extends Monster {
 		this.setDamage(DAMAGE[0]);
 		this.setDefence(DEFENCE[0]);
 		
-		this.setName("Ice Monster");
+		this.setName(this.generateName());
 		this.setLevel(1);
 		this.setType("Ice Monster");
 		this.setDescription("This monster has a lot of health, but it's damage is quite low. It's more of a tank");
@@ -40,7 +40,7 @@ public class IceMonster extends Monster {
 		this.setDefence(DEFENCE[index]);
 		
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
-		this.setName("Ice Monster");
+		this.setName(this.generateName());
 		this.setType("Ice Monster");
 		this.setDescription("This monster has a lot of health, but it's damage is quite low. It's more of a tank");
 		
