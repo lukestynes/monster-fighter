@@ -41,7 +41,7 @@ public class Shop {
 	public ArrayList<Item> refreshItems() {
 		shopItems.clear();
 		
-		int numItems = rng.nextInt(3) + 4;
+		int numItems = rng.nextInt(2) + 3;
 		int currentDay = game.getCurrentDay();
 		
 		int maxItemValue;
@@ -92,7 +92,7 @@ public class Shop {
 		
 		int minLevel, maxLevel;
 		//Randomly decides how many monsters to display that day (between 3 and 5)
-		int numMonsters = rng.nextInt(3) + 3;
+		int numMonsters = rng.nextInt(2) + 3;
 		
 		int currentDay = game.getCurrentDay();
 		
