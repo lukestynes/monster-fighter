@@ -15,6 +15,7 @@ public class GUIController {
 	InventoryScreen inventoryWindow;
 	ShopScreen shopWindow;
 	BattleSelectionScreen battleSelectionWindow;
+	EndGameScreen endGameWindow;
 	
 	public GUIController(GameController game) {
 		this.game = game;
@@ -126,5 +127,18 @@ public class GUIController {
 	public ShopScreen getShopScreen() {
 		return this.shopWindow;
 	}
+	
+	public void launchEndGameScreen() {
+		endGameWindow = new EndGameScreen(this);
+	}
+	
+	public void closeEndGameScreen(EndGameScreen engGameWindow) {
+		endGameWindow.closeWindow();	
+	}
+	
+	public EndGameScreen getEndGameScreen() {
+		return this.endGameWindow;
+	}
+	
 	
 }
