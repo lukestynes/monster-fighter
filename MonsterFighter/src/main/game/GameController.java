@@ -1,13 +1,9 @@
 package main.game;
 
-import main.ui.*;
-import main.shop.Shop;
-import main.game.*;
-
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-
+import main.ui.*;
+import main.shop.Shop;
 import main.monsters.*;
 import main.randomEvents.*;
 
@@ -21,6 +17,11 @@ public class GameController {
 	private int currentDay = 1;
 	private int difficulty;
 	
+	/**
+	 * Default constructor for GameController.
+	 * 
+	 * This creates instances of the other necessary classes that are needed to run the game.
+	 */
 	public GameController() {
 		gui = new GUIController(this);
 		randomEvents = new RandomEvents(this);
@@ -39,6 +40,11 @@ public class GameController {
 		return currentDay;
 	}
 	
+	/**
+	 * Increments the current day by 1.
+	 * 
+	 * This method is used to progress to the next day easily.
+	 */
 	public void increaseCurrentDay() {
 		this.currentDay++;
 	}
@@ -51,10 +57,18 @@ public class GameController {
 		this.difficulty = difficulty;
 	}
 	
+	/**
+	 * Returns the main player instance being used.
+	 * @return Player this returns the player instance that is being used by the game so other classes can access it easily.
+	 */
 	public Player getPlayer() {
 		return player;
 	}
 	
+	/**
+	 * Returns the main shop instance being used.
+	 * @return Shop this returns the shop instance that is being used by the game so other classes can access it easily.
+	 */
 	public Shop getShop() {
 		return shop;
 	}
@@ -64,19 +78,38 @@ public class GameController {
 		game.run();
 	}
 	
+	/**
+	 * This is the method that is called by the main method to start the game sequence.
+	 * 
+	 * This launches the Launch Screen so that the initial values can be gathered from the player.
+	 */
 	public void run() {
 		gui.launchSetupScreen();
 	}
 	
+	/**
+	 * This is called to correctly shutdown the game and the Java Runtime.
+	 */
 	public void endGame() {
 		System.exit(0);
 	}
 	
+	/**
+	 * Generates a list of 3 random monsters for the start of the game for the player to choose.
+	 * @return startingMonsters an ArrayList<Monster> that contains 3 monsters for the player to select from.
+	 */
 	public ArrayList<Monster> getStartingMonsters() {
 		MonsterTeam temporaryTeam = new MonsterTeam();
 		return temporaryTeam.generateRandomMonsters(currentDay, 3);
 	}
 	
+	/**
+	 * Sets all the initial values that are gathered by the set up screen
+	 * @param name the name of the player
+	 * @param length the  total length of the game in days
+	 * @param difficulty the difficulty of the game (0 = easy, 1 = hard)
+	 * @param startingMonster the monster that starts on the players team
+	 */
 	public void setupValues(String name, int length, int difficulty, Monster startingMonster) {
 		this.setDifficulty(difficulty);
 		this.setGameLength(length);
@@ -84,6 +117,17 @@ public class GameController {
 		player = new Player(name, difficulty, startingMonster);
 	}
 
+	/**
+	 * Resets everything that needs to be reset at the end of the day when the player sleeps.
+	 * 
+	 * Does the following items:
+	 * <ul>
+	 * 	<li>Resets the monsters temporarily increased stats from potions and food.
+	 * 	<li>Resets all the items and monsters on sale in the shop.
+	 * 	<li>Checks that the player hasn't met a game ending condition (no monsters and not enough gold, or they slept on the final day)
+	 * 	<li>Ends the game if a game ending condition is met.
+	 * </ul>
+	 */
 	public void nightReset() {
 		if (this.getCurrentDay() < this.getGameLength()) {
 			ArrayList<Monster> monstersList = player.getMonsterTeam().getMonsterTeamList();

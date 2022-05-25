@@ -1,6 +1,5 @@
 package main.items;
 
-import main.game.Player;
 import main.monsters.Monster;
 
 public class Item {
@@ -101,6 +100,10 @@ public class Item {
 		return String.format(thing, this.getName(), this.getInstantHealthBoost(), this.getDamageBoost(), this.getHealAmountBoost(), this.getDefenceBoost(), this.getMaxHealthBoost());
 	}
 	
+	/**
+	 * Applies the current item onto a monster, improving the relevant stats depending on the item.
+	 * @param monster Monster the monster that is being boosted by the item.
+	 */
 	public void useItemOnMonster(Monster monster) {
 		monster.setCurrentHealth(monster.getCurrentHealth() + this.getInstantHealthBoost());
 		monster.setDamage(monster.getDamage() + this.getDamageBoost());

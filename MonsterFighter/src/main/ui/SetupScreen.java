@@ -1,6 +1,7 @@
 package main.ui;
 
 import main.game.*;
+
 import main.monsters.Monster;
 
 import javax.swing.JFrame;
@@ -13,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import java.awt.GridLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -103,6 +104,7 @@ public class SetupScreen {
 		ButtonGroup difficultyButtonGroup = new ButtonGroup();
 		
 		JRadioButton rdbtnEasyMode = new JRadioButton("Easy Mode");
+		rdbtnEasyMode.setSelected(true);
 		panelDifficultyButtons.add(rdbtnEasyMode);
 		
 		JRadioButton rdbtnHardMode = new JRadioButton("Hard Mode");
@@ -162,6 +164,7 @@ public class SetupScreen {
 		panel.add(rdbtnMonst2);
 		
 		JRadioButton rdbtnMonst1 = new JRadioButton("");
+		rdbtnMonst1.setSelected(true);
 		rdbtnMonst1.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnMonst1.setBounds(0, 0, 71, 148);
 		panel.add(rdbtnMonst1);
@@ -179,14 +182,26 @@ public class SetupScreen {
 		btnStartAdventure.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				boolean errorFree = false;
 				String name = txtName.getText();
+				
+				//DISPLAYS A POP UP ERROR IF THE INPUT IS INVALID
+				if (name.length() > 15 || name.length() < 3) {
+					JOptionPane.showMessageDialog(frame, "ERROR: Your name must be 3-15 characters.");
+				} else if (!name.matches("[a-zA-Z]+")) {
+					JOptionPane.showMessageDialog(frame, "ERROR: Your name can't contain numbers or special characters.");
+				} else {
+					errorFree = true;
+				}
+		
 				int gameLength = sldGameLength.getValue();
 				int difficulty = 0;
 				int startingMonster = 1;
 				
 				if (rdbtnHardMode.isSelected()) {
 					difficulty = 1;
-				}
+					errorFree = true;
+				} 
 				
 				if (rdbtnMonst1.isSelected()) {
 					startingMonster = 0;
@@ -196,13 +211,14 @@ public class SetupScreen {
 					startingMonster = 2;
 				}
 				
-				
-				
-				gui.getGame().setupValues(name, gameLength, difficulty, startingMonsters.get(startingMonster));
-				
-				System.out.printf("DEBUG: %s %d %d %d", name, gameLength, difficulty, startingMonster);
-				gui.launchMenuScreen();
-				gui.closeSetupScreen(gui.getScreen());
+				//WILL ONLY PROGRESS SCREENS IF THE INPUT IS ERROR FREE
+				if (errorFree) {
+					gui.getGame().setupValues(name, gameLength, difficulty, startingMonsters.get(startingMonster));
+					
+					System.out.printf("DEBUG: %s %d %d %d", name, gameLength, difficulty, startingMonster);
+					gui.launchMenuScreen();
+					gui.closeSetupScreen(gui.getScreen());
+				}	
 			}
 		});
 		btnStartAdventure.setBounds(408, 576, 186, 29);

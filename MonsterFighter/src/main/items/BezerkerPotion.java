@@ -1,7 +1,7 @@
 package main.items;
 
+
 public class BezerkerPotion extends Item {
-	
 	public BezerkerPotion() {
 		this.setInstantHealthBoost(20);
 		this.setDamageBoost(25);
