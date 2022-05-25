@@ -64,4 +64,16 @@ public class GUIController {
 		return this.monsterWindow;
 	}
 	
+	public void launchInventoryScreen() {
+		inventoryWindow = new InventoryScreen(this);
+	}
+	
+	public void closeInventoryScreen(InventoryScreen inventoryWindow) {
+		inventoryWindow.closeWindow();
+	}
+	
+	public InventoryScreen getInventoryScreen() {
+		return this.inventoryWindow;
+	}
+	
 }
