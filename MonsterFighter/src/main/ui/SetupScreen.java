@@ -120,7 +120,7 @@ public class SetupScreen {
 		txtpMonst1.setEditable(false);
 		
 		Monster monster1 = startingMonsters.get(0);
-		String monster1Text = String.format("1. %s\nDescription: %s\n\nHealth: %d\nHeal Amount: %d\nDefence: %d\nDamage: %d\n", monster1.getName(), monster1.getDescription(), monster1.getMaxHealth(), monster1.getHealAmount(), monster1.getDefence(), monster1.getDamage());
+		String monster1Text = String.format("%s\nType: %s \nLevel: %s\nDescription: %s\n\nHealth: %d\nHeal Amount: %d\nDefence: %d\nDamage: %d\n", monster1.getName(),monster1.getType(), monster1.getLevel(), monster1.getDescription(), monster1.getMaxHealth(), monster1.getHealAmount(), monster1.getDefence(), monster1.getDamage());
 		
 		txtpMonst1.setText(monster1Text);
 		txtpMonst1.setBounds(0, 0, 476, 144);
@@ -130,7 +130,7 @@ public class SetupScreen {
 		txtpMonst2.setEditable(false);
 		
 		Monster monster2 = startingMonsters.get(1);
-		String monster2Text = String.format("1. %s\nDescription: %s\n\nHealth: %d\nHeal Amount: %d\nDefence: %d\nDamage: %d\n", monster2.getName(), monster2.getDescription(), monster2.getMaxHealth(), monster2.getHealAmount(), monster2.getDefence(), monster2.getDamage());
+		String monster2Text = String.format("%s\nType: %s \nLevel: %s\nDescription: %s\n\nHealth: %d\nHeal Amount: %d\nDefence: %d\nDamage: %d\n", monster2.getName(),monster2.getType(), monster2.getLevel(), monster2.getDescription(), monster2.getMaxHealth(), monster2.getHealAmount(), monster2.getDefence(), monster2.getDamage());
 		
 		txtpMonst2.setText(monster2Text);
 		txtpMonst2.setBounds(0, 145, 476, 144);
@@ -140,7 +140,7 @@ public class SetupScreen {
 		txtpMonst3.setEditable(false);
 		
 		Monster monster3 = startingMonsters.get(2);
-		String monster3Text = String.format("1. %s\nDescription: %s\n\nHealth: %d\nHeal Amount: %d\nDefence: %d\nDamage: %d\n", monster3.getName(), monster3.getDescription(), monster3.getMaxHealth(), monster3.getHealAmount(), monster3.getDefence(), monster3.getDamage());
+		String monster3Text = String.format("%s\nType: %s \nLevel: %s\nDescription: %s\n\nHealth: %d\nHeal Amount: %d\nDefence: %d\nDamage: %d\n", monster3.getName(),monster3.getType(), monster3.getLevel(), monster3.getDescription(), monster3.getMaxHealth(), monster3.getHealAmount(), monster3.getDefence(), monster3.getDamage());
 		
 		txtpMonst3.setText(monster3Text);
 		txtpMonst3.setBounds(0, 290, 476, 144);
@@ -201,11 +201,15 @@ public class SetupScreen {
 				gui.getGame().setupValues(name, gameLength, difficulty, startingMonsters.get(startingMonster));
 				
 				System.out.printf("DEBUG: %s %d %d %d", name, gameLength, difficulty, startingMonster);
+				gui.launchMenuScreen();
 				gui.closeSetupScreen(gui.getScreen());
 			}
 		});
 		btnStartAdventure.setBounds(408, 576, 186, 29);
 		frame.getContentPane().add(btnStartAdventure);
 		
+		//Centers the window
+		frame.setLocationRelativeTo(null);
+
 	}
 }
