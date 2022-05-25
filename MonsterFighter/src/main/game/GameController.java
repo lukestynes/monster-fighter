@@ -5,11 +5,13 @@ import main.shop.Shop;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 import main.monsters.*;
 import main.randomEvents.*;
 
 public class GameController {
-	CLInterface cli;
+	GUIController gui;
 	Player player;
 	Shop shop;
 	RandomEvents randomEvents;
@@ -25,7 +27,7 @@ public class GameController {
 	private Boolean running = true;
 	
 	public GameController() {
-		cli = new CLInterface();
+		gui = new GUIController(this);
 		randomEvents = new RandomEvents(this);
 	}
 	
@@ -68,12 +70,20 @@ public class GameController {
 	
 	public void run() {
 		shop = new Shop(this);
-		player = cli.setupScreen(this, easyStartingMonsters, hardStartingMonsters);
+	}
+	
+	
+	public void setupValues(String name, int length, int difficulty, int startingMonster) {
+		this.setDifficulty(difficulty);
+		this.setGameLength(length);
 		
-		//SIMPLE GAME LOOP FOR JUST THE CLI
-		do {
-			cli.menuScreen(player, this);
-		} while (running);
+		//Take the index of teh starting mosnter and get it for the player
+		
+		//Player player = new Player(name, difficulty, startingMonster);
+	}
+	
+	public Monster startingMonsters() {
+		return null;
 	}
 	
 	public void nightReset() {

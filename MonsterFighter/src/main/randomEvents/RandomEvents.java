@@ -86,7 +86,7 @@ public class RandomEvents {
 			}
 			
 			int monsterType = rng.nextInt(6);
-			int monsterLevel = rng.nextInt(minLevel, maxLevel + 1);
+			int monsterLevel = rng.nextInt(maxLevel-minLevel) + minLevel;
 			
 			Monster rngMonster = null;
 			
