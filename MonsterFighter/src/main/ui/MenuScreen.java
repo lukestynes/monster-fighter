@@ -69,6 +69,12 @@ public class MenuScreen {
 		frame.getContentPane().add(btnMonsterTeam);
 		
 		JButton btnInventory = new JButton("View your Inventory");
+		btnInventory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.closeMenuScreen(gui.getMenuScreen());
+				gui.launchInventoryScreen();
+			}
+		});
 		btnInventory.setBounds(242, 291, 535, 36);
 		frame.getContentPane().add(btnInventory);
 		
