@@ -28,7 +28,6 @@ public class SetupScreen {
 	private ArrayList<Monster> startingMonsters;
 
 	public SetupScreen(GUIController gui) {
-		System.out.println("DEBUG [SETUPSCREEN]: RUNNING CONSTRUCTOR");
 		this.gui = gui;
 		startingMonsters = gui.getGame().getStartingMonsters();
 		initialize();
@@ -40,7 +39,7 @@ public class SetupScreen {
 	}
 	
 	public void finishedWindow() {
-		
+		gui.closeSetupScreen(this);
 	}
 
 	/**

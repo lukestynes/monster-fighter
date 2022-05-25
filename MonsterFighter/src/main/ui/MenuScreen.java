@@ -7,36 +7,25 @@ import javax.swing.JFrame;
 public class MenuScreen {
 
 	private JFrame frame;
+	private GUIController gui;
 
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					MenuScreen window = new MenuScreen();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
-	 * Create the application.
-	 */
-	public MenuScreen() {
+	public MenuScreen(GUIController gui) {
+		this.gui = gui;
 		initialize();
+		frame.setVisible(true);
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
+	public void closeWindow() {
+		frame.dispose();
+	}
+	
+	public void finishedWindow() {
+		gui.closeMenuScreen(this);
+	}
+	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 1000, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
