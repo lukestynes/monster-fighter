@@ -77,9 +77,9 @@ public class GameController {
 		this.setDifficulty(difficulty);
 		this.setGameLength(length);
 		
-		//Take the index of teh starting mosnter and get it for the player
 		
-		//Player player = new Player(name, difficulty, startingMonster);
+		
+		Player player = new Player(name, difficulty, startingMonster);
 	}
 	
 	public Monster startingMonsters() {

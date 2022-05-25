@@ -17,7 +17,7 @@ public class Player {
 	Inventory inventory;
 	
 	
-	public Player(String name, int difficulty) {
+	public Player(String name, int difficulty, int startingMonster) {
 		monsterTeam = new MonsterTeam();
 		inventory = new Inventory();
 		
@@ -28,6 +28,11 @@ public class Player {
 		} else {
 			this.setGold(HARD_START_GOLD);
 		}
+		
+		
+		Monster addingMonster;
+		
+		monsterTeam.addMonsterToTeam(addingMonster);
 	}
 
 	public String getName() {
