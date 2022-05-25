@@ -17,15 +17,9 @@ public class GameController {
 	Shop shop;
 	RandomEvents randomEvents;
 	
-	//Constants for how many monsters there are to choose from at the start
-	private Monster[] easyStartingMonsters = {new FireMonster(), new WaterMonster(), new IceMonster(), new ElectricityMonster()};
-	private Monster[] hardStartingMonsters = {new WaterMonster(), new AirMonster(), new EarthMonster()};
-	
 	private int gameLength;
 	private int currentDay = 1;
 	private int difficulty;
-	
-	private Boolean running = true;
 	
 	public GameController() {
 		gui = new GUIController(this);
@@ -72,9 +66,7 @@ public class GameController {
 	
 	public void run() {
 		gui.launchSetupScreen();
-		gui.launchMenuScreen();
 	}
-	
 	
 	public ArrayList<Monster> getStartingMonsters() {
 		MonsterTeam temporaryTeam = new MonsterTeam();
@@ -85,14 +77,9 @@ public class GameController {
 		this.setDifficulty(difficulty);
 		this.setGameLength(length);
 		
-		
 		player = new Player(name, difficulty, startingMonster);
 	}
-	
-	public Monster startingMonsters() {
-		return null;
-	}
-	
+
 	public void nightReset() {
 		ArrayList<Monster> monstersList = player.getMonsterTeam().getMonsterTeamList();
 		
