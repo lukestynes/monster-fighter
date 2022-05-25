@@ -68,6 +68,10 @@ public class GameController {
 		gui.launchSetupScreen();
 	}
 	
+	public void endGame() {
+		System.exit(0);
+	}
+	
 	public ArrayList<Monster> getStartingMonsters() {
 		MonsterTeam temporaryTeam = new MonsterTeam();
 		return temporaryTeam.generateRandomMonsters(currentDay, 3);
@@ -81,16 +85,36 @@ public class GameController {
 	}
 
 	public void nightReset() {
-		ArrayList<Monster> monstersList = player.getMonsterTeam().getMonsterTeamList();
-		
-		//Removes any temporary buffs given to the monsters during the day
-		for (Monster monster: monstersList) {
-			monster.nightResetMonster();
+		if (this.getCurrentDay() < this.getGameLength()) {
+			ArrayList<Monster> monstersList = player.getMonsterTeam().getMonsterTeamList();
+			
+			//Removes any temporary buffs given to the monsters during the day
+			for (Monster monster: monstersList) {
+				monster.nightResetMonster();
+			}
+			//Runs all 3 of the random events.
+			randomEvents.nightTimeEvents();
+			shop.shopRefresh();
+			
+			int cheapestAmount = 5000;
+			for (Monster monster: shop.getShopMonsters()) {
+				if (monster.getPrice() < cheapestAmount) {
+					cheapestAmount = monster.getPrice();
+				}
+			}
+			
+			if (player.getGold() >= cheapestAmount || player.getMonsterTeam().getMonsterTeamList().size() > 0) {
+				this.increaseCurrentDay();
+				gui.launchMenuScreen();
+			} else {
+				System.out.println("DEBUG: PLAYER RAN OUT OF GOLD ENDING GAME");
+				gui.launchEndGameScreen();
+			}
+			
+		} else {
+			System.out.println("DEBUG: PLAYER RAN OUT OF DAYS ENDING GAME");
+			gui.launchEndGameScreen();
 		}
 		
-		//Runs all 3 of the random events.
-		randomEvents.nightTimeEvents();
-		shop.shopRefresh();
-		this.increaseCurrentDay();
 	}
 }
