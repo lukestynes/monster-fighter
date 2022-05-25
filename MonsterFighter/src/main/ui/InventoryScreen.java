@@ -63,23 +63,23 @@ public class InventoryScreen {
 		lblnventory.setBounds(-2, 3, 1000, 63);
 		panelTopBar.add(lblnventory);
 		
-		JLabel lbldisp = new JLabel("{disp}");
+		JLabel lbldisp = new JLabel(gui.getGame().getPlayer().getName());
 		lbldisp.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		lbldisp.setBounds(1, -3, 117, 31);
 		panelTopBar.add(lbldisp);
 		
-		JLabel lblScore = new JLabel("Score: 0");
+		JLabel lblScore = new JLabel("Score: " + gui.getGame().getPlayer().getScore());
 		lblScore.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblScore.setBounds(1, 30, 117, 31);
 		panelTopBar.add(lblScore);
 		
-		JLabel lblDayCount = new JLabel("Day: 0/0");
+		JLabel lblDayCount = new JLabel("Day: " + gui.getGame().getCurrentDay() + "/" + gui.getGame().getGameLength());
 		lblDayCount.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblDayCount.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		lblDayCount.setBounds(881, 1, 117, 31);
 		panelTopBar.add(lblDayCount);
 		
-		JLabel lblGoldCount = new JLabel("Gold: 0");
+		JLabel lblGoldCount = new JLabel("Gold: " + gui.getGame().getPlayer().getGold());
 		lblGoldCount.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblGoldCount.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		lblGoldCount.setBounds(881, 37, 117, 31);
@@ -172,6 +172,8 @@ public class InventoryScreen {
 			if (count < inventory.size()) {
 				invSlot.setText(inventory.get(count).toString());
 			}
+			
+			count++;
 		}
 		
 		
@@ -227,31 +229,28 @@ public class InventoryScreen {
 		frame.getContentPane().add(chckbxInv6);
 		
 		
-		
-		//UPDATES THE INFORMATION FOR THE MONSTERS BEING DISPLAYED
-		ArrayList<String> monsterStrings = gui.updateMonsters();
 
 		
 		JTextPane txtpMonst1 = new JTextPane();
-		txtpMonst1.setText(monsterStrings.get(0));
+		txtpMonst1.setText("This Slot is Empty");
 		txtpMonst1.setEditable(false);
 		txtpMonst1.setBounds(128, 512, 161, 161);
 		frame.getContentPane().add(txtpMonst1);
 		
 		JTextPane txtpMonst2 = new JTextPane();
-		txtpMonst2.setText(monsterStrings.get(1));
+		txtpMonst2.setText("This Slot is Empty");
 		txtpMonst2.setEditable(false);
 		txtpMonst2.setBounds(325, 512, 161, 161);
 		frame.getContentPane().add(txtpMonst2);
 		
 		JTextPane txtpMonst3 = new JTextPane();
-		txtpMonst3.setText(monsterStrings.get(2));
+		txtpMonst3.setText("This Slot is Empty");
 		txtpMonst3.setEditable(false);
 		txtpMonst3.setBounds(526, 512, 161, 161);
 		frame.getContentPane().add(txtpMonst3);
 		
 		JTextPane txtpMonst4 = new JTextPane();
-		txtpMonst4.setText(monsterStrings.get(3));
+		txtpMonst4.setText("This Slot is Empty");
 		txtpMonst4.setEditable(false);
 		txtpMonst4.setBounds(717, 512, 161, 161);
 		frame.getContentPane().add(txtpMonst4);
@@ -261,6 +260,24 @@ public class InventoryScreen {
 		lblMonsters.setFont(new Font("Lucida Grande", Font.BOLD, 26));
 		lblMonsters.setBounds(0, 459, 1000, 63);
 		frame.getContentPane().add(lblMonsters);
+		
+		
+		//SETS ALL THE TEXT FOR THE MONSTERS IN THE TEAM
+		ArrayList<JTextPane> monsterSlots = new ArrayList<JTextPane>(5);
+		monsterSlots.add(txtpMonst1);
+		monsterSlots.add(txtpMonst2);
+		monsterSlots.add(txtpMonst3);
+		monsterSlots.add(txtpMonst4);
+		
+		ArrayList<Monster> monsterTeam = gui.getGame().getPlayer().getMonsterTeam().getMonsterTeamList();
+		
+		count = 0;
+		for (Monster monster: monsterTeam) {
+			if (count < monsterTeam.size()) {
+				monsterSlots.get(count).setText(monsterTeam.get(count).toStringInv());
+			}
+		}
+		
 		
 		
 		//ADD ALL THE CHECKBOXES TO A GROUP TO MAKE LIFE EASY
@@ -289,20 +306,6 @@ public class InventoryScreen {
 		}
 		
 		
-		
-		JButton btnUseItems = new JButton("Use Selected Items on Monster");
-		btnUseItems.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-				
-				
-				
-			}
-		});
-		btnUseItems.setBounds(357, 733, 270, 29);
-		frame.getContentPane().add(btnUseItems);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(128, 685, 752, 36);
@@ -338,21 +341,72 @@ public class InventoryScreen {
 		monsterButtons.add(rdbtnMonst4);
 		
 		
+		ArrayList<JRadioButton> monsterRadButtons = new ArrayList<>(4);
+		monsterRadButtons.add(rdbtnMonst1);
+		monsterRadButtons.add(rdbtnMonst2);
+		monsterRadButtons.add(rdbtnMonst3);
+		monsterRadButtons.add(rdbtnMonst4);
+		
+		count = 0;
+		for (JRadioButton button: monsterRadButtons) {
+			if (count < monsterTeam.size()) {
+				button.setEnabled(true);
+			} else {
+				button.setEnabled(false);
+			}
+			count++;
+		}
+		
+		
+		
+		
+		
+		
+		JButton btnUseItems = new JButton("Use Selected Items on Monster");
+		btnUseItems.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Monster affectedMonster = null;
+				
+				
+				int count = 0;
+				for (JRadioButton button: monsterRadButtons) {
+					
+					if (button.isSelected()) {
+						affectedMonster = gui.getGame().getPlayer().getMonsterTeam().getMonsterTeamList().get(count);
+					}
+					count++;
+				}
+				
+				count = 0;
+				for (JCheckBox checked: checkedItems) {
+					if (checked.isSelected()) {
+						gui.getGame().getPlayer().getInventory().useItem(gui.getGame().getPlayer().getInventory().getInventoryList().get(count), affectedMonster);
+					}
+					count++;
+				}
+				
+				gui.closeInventoryScreen(gui.getInventoryScreen());
+				gui.launchInventoryScreen();
+			}
+		});
+		btnUseItems.setBounds(357, 733, 270, 29);
+		frame.getContentPane().add(btnUseItems);
+		
+		
 		JButton btnSellItems = new JButton("Sell Selected Items");
 		btnSellItems.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				int count = 0;
 				for (JCheckBox checkbox: checkedItems) {
-					
-					int count = 0;
 					if (checkbox.isSelected()) {
-						gui.getGame().getShop().returnItem(null, null);
-						count++;
+						gui.getGame().getShop().returnItem(gui.getGame().getPlayer().getInventory().getInventoryList().get(count), gui.getGame().getPlayer());
 					}
+					count++;
 				}
 				
-				gui.closeMonsterTeamScreen(gui.getMonsterScreen());
-				gui.launchMonsterTeamScreen();
+				gui.closeInventoryScreen(gui.getInventoryScreen());
+				gui.launchInventoryScreen();
 			}
 		});
 		btnSellItems.setBounds(385, 765, 218, 29);
