@@ -151,14 +151,18 @@ public class Shop {
 	//Used to purchase anything
 	public void purchaseItem(Item item, Player player) {
 		//TODO: check there's space on players inventory
-		
-		if (player.getGold() >= item.getPrice()) {
-			player.setGold(player.getGold() - item.getPrice());
-			player.getInventory().addToInventory(item);
-			this.shopItems.remove(item);
+		if (player.getInventory().getInventoryList().size() < 10) {
+			if (player.getGold() >= item.getPrice()) {
+				player.setGold(player.getGold() - item.getPrice());
+				player.getInventory().addToInventory(item);
+				this.shopItems.remove(item);
+			} else {
+				System.out.println("ERROR: YOU DON'T HAVE ENOUGH GOLD!");
+			}
 		} else {
-			System.out.println("ERROR: YOU DON'T HAVE ENOUGH GOLD!");
+			System.out.println("ERROR: NOT ENOUGH SPACE");
 		}
+		
 	}
 	
 	public void returnItem(Item item, Player player) {
@@ -167,13 +171,18 @@ public class Shop {
 	}
 	
 	public void purchaseMonster(Monster monster, Player player) {
-		if (player.getGold() >= monster.getPrice()) {
-			player.setGold(player.getGold() - monster.getPrice());
-			player.getMonsterTeam().addMonsterToTeam(monster);
-			this.shopMonsters.remove(monster);
+		if (player.getMonsterTeam().getMonsterTeamList().size() < 4) {
+			if (player.getGold() >= monster.getPrice()) {
+				player.setGold(player.getGold() - monster.getPrice());
+				player.getMonsterTeam().addMonsterToTeam(monster);
+				this.shopMonsters.remove(monster);
+			} else {
+				System.out.println("ERROR: YOU DON'T HAVE ENOUGH GOLD!");
+			}
 		} else {
-			System.out.println("ERROR: YOU DON'T HAVE ENOUGH GOLD!");
+			System.out.println("ERROR: NOT ENOUGH SPACE");
 		}
+		
 	}
 	
 	public void returnMonster(Monster monster, Player player) {
