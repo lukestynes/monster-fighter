@@ -97,7 +97,6 @@ public class MenuScreen {
 			public void actionPerformed(ActionEvent e) {
 				gui.closeMenuScreen(gui.getMenuScreen());
 				gui.getGame().nightReset();
-				gui.launchMenuScreen();
 			}
 		});
 		btnSleep.setBounds(242, 478, 535, 36);
@@ -112,13 +111,19 @@ public class MenuScreen {
 		JButton btnQuitGame = new JButton("Quit Game");
 		btnQuitGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				gui.getGame().endGame();
 			}
 		});
 		btnQuitGame.setBounds(242, 589, 535, 36);
 		frame.getContentPane().add(btnQuitGame);
 		
 		JButton btnEndGame = new JButton("End Game Now");
+		btnEndGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.closeMenuScreen(gui.getMenuScreen());
+				gui.launchEndGameScreen();
+			}
+		});
 		btnEndGame.setBounds(242, 541, 535, 36);
 		frame.getContentPane().add(btnEndGame);
 		
