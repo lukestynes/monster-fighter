@@ -79,6 +79,12 @@ public class MenuScreen {
 		frame.getContentPane().add(btnInventory);
 		
 		JButton btnShop = new JButton("Visit the Shop");
+		btnShop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.closeMenuScreen(gui.getMenuScreen());
+				gui.launchShopScreen();
+			}
+		});
 		btnShop.setBounds(242, 352, 535, 36);
 		frame.getContentPane().add(btnShop);
 		
@@ -87,6 +93,13 @@ public class MenuScreen {
 		frame.getContentPane().add(btnBattle);
 		
 		JButton btnSleep = new JButton("Sleep (Progress to Next Day)");
+		btnSleep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.closeMenuScreen(gui.getMenuScreen());
+				gui.getGame().nightReset();
+				gui.launchMenuScreen();
+			}
+		});
 		btnSleep.setBounds(242, 478, 535, 36);
 		frame.getContentPane().add(btnSleep);
 		
@@ -95,6 +108,19 @@ public class MenuScreen {
 		lblLogo.setFont(new Font("Lucida Grande", Font.BOLD, 26));
 		lblLogo.setBounds(0, 2, 1000, 63);
 		frame.getContentPane().add(lblLogo);
+		
+		JButton btnQuitGame = new JButton("Quit Game");
+		btnQuitGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnQuitGame.setBounds(242, 589, 535, 36);
+		frame.getContentPane().add(btnQuitGame);
+		
+		JButton btnEndGame = new JButton("End Game Now");
+		btnEndGame.setBounds(242, 541, 535, 36);
+		frame.getContentPane().add(btnEndGame);
 		
 		//Centers the window
 		frame.setLocationRelativeTo(null);
