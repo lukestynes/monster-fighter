@@ -57,10 +57,7 @@ public class MonsterTeamScreen {
 		JTextPane txtpMonst1 = new JTextPane();
 		txtpMonst1.setBounds(0, 0, 200, 250);
 		panelMonster1.add(txtpMonst1);
-		
-		ArrayList<String> monsterStrings = gui.updateMonsters();
-		
-		txtpMonst1.setText(monsterStrings.get(0));
+		txtpMonst1.setText("This Slot is Empty");
 		txtpMonst1.setEditable(false);
 		
 		JPanel panelMonster4 = new JPanel();
@@ -68,33 +65,35 @@ public class MonsterTeamScreen {
 		frame.getContentPane().add(panelMonster4);
 		panelMonster4.setLayout(null);
 		
-		JTextPane txtpMonst1_3 = new JTextPane();
-		txtpMonst1_3.setText(monsterStrings.get(1));
-		txtpMonst1_3.setEditable(false);
-		txtpMonst1_3.setBounds(0, 0, 200, 250);
-		panelMonster4.add(txtpMonst1_3);
+		JTextPane txtpMonst4 = new JTextPane();
+		txtpMonst4.setText("This Slot is Empty");
+		txtpMonst4.setEditable(false);
+		txtpMonst4.setBounds(0, 0, 200, 250);
+		panelMonster4.add(txtpMonst4);
 		
 		JPanel panelMonster2 = new JPanel();
 		panelMonster2.setBounds(285, 231, 200, 250);
 		frame.getContentPane().add(panelMonster2);
 		panelMonster2.setLayout(null);
 		
-		JTextPane txtpMonst1_1 = new JTextPane();
-		txtpMonst1_1.setText(monsterStrings.get(2));
-		txtpMonst1_1.setEditable(false);
-		txtpMonst1_1.setBounds(0, 0, 200, 250);
-		panelMonster2.add(txtpMonst1_1);
+		JTextPane txtpMonst2 = new JTextPane();
+		txtpMonst2.setText("This Slot is Empty");
+		txtpMonst2.setEditable(false);
+		txtpMonst2.setBounds(0, 0, 200, 250);
+		panelMonster2.add(txtpMonst2);
 		
 		JPanel panelMonster3 = new JPanel();
 		panelMonster3.setBounds(525, 231, 200, 250);
 		frame.getContentPane().add(panelMonster3);
 		panelMonster3.setLayout(null);
 		
-		JTextPane txtpMonst1_2 = new JTextPane();
-		txtpMonst1_2.setText(monsterStrings.get(3));
-		txtpMonst1_2.setEditable(false);
-		txtpMonst1_2.setBounds(0, 0, 200, 250);
-		panelMonster3.add(txtpMonst1_2);
+		JTextPane txtpMonst3 = new JTextPane();
+		txtpMonst3.setText("This Slot is Empty");
+		txtpMonst3.setEditable(false);
+		txtpMonst3.setBounds(0, 0, 200, 250);
+		panelMonster3.add(txtpMonst3);
+		
+		
 		
 		JButton btnReturn = new JButton("Return to Menu");
 		btnReturn.addActionListener(new ActionListener() {
@@ -162,15 +161,34 @@ public class MonsterTeamScreen {
 		chckbx4.setBounds(769, 481, 200, 23);
 		frame.getContentPane().add(chckbx4);
 	
-		ArrayList<JCheckBox> checkedMonsters = new ArrayList<>(4);
+		
+		//UPDATES ALL THE INV SLOTS
+		ArrayList<JTextPane> monsterSlots = new ArrayList<JTextPane>(4);
+		monsterSlots.add(txtpMonst1);
+		monsterSlots.add(txtpMonst2);
+		monsterSlots.add(txtpMonst3);
+		monsterSlots.add(txtpMonst4);
+		
 		ArrayList<Monster> monsterTeam = gui.getGame().getPlayer().getMonsterTeam().getMonsterTeamList();
+		
+		int count = 0;
+		
+		for (Monster monster: monsterTeam) {
+			if (count < monsterTeam.size()) {
+				monsterSlots.get(count).setText(monsterTeam.get(count).toString() + "\n Price: " + monsterTeam.get(count).getReturnPrice());
+			}
+		}
+		
+		
+		//BLANKS OUT THE UNUSED CHECKBOXES
+		ArrayList<JCheckBox> checkedMonsters = new ArrayList<>(4);
 		
 		checkedMonsters.add(chckbx1);
 		checkedMonsters.add(chckbx2);
 		checkedMonsters.add(chckbx3);
 		checkedMonsters.add(chckbx4);
 		
-		int count = 0;
+		count = 0;
 		for (JCheckBox checkbox: checkedMonsters) {
 			if (count < monsterTeam.size()) {
 				checkbox.setEnabled(true);
@@ -182,16 +200,20 @@ public class MonsterTeamScreen {
 		}
 		
 		
+	
+		//SELL MONSTERS BACK TO THE SHOP
 		JButton btnSellSelectedMonsters = new JButton("Sell Selected Monsters");
 		btnSellSelectedMonsters.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int count = 0;
+				
 				for (JCheckBox checkbox: checkedMonsters) {
 					
-					int count = 0;
+					
 					if (checkbox.isSelected()) {
 						gui.getGame().getShop().returnMonster(gui.getGame().getPlayer().getMonsterTeam().getMonsterTeamList().get(count), gui.getGame().getPlayer());
-						count++;
 					}
+					count++;
 				}
 				
 				gui.closeMonsterTeamScreen(gui.getMonsterScreen());
