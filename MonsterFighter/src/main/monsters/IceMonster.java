@@ -18,7 +18,8 @@ public class IceMonster extends Monster {
 		this.setDamage(DAMAGE[0]);
 		this.setDefence(DEFENCE[0]);
 		
-		this.setName("Ice Monster LVL 1");
+		this.setName(this.generateName());
+		this.setLevel(1);
 		this.setType("Ice Monster");
 		this.setDescription("This monster has a lot of health, but it's damage is quite low. It's more of a tank");
 		
@@ -28,7 +29,7 @@ public class IceMonster extends Monster {
 	
 	//Constructs a monster at a specified level
 	public IceMonster(int level) {
-		int index = level--;
+		int index = level - 1;
 		this.setLevel(level);
 		
 		this.setMaxHealth(MAX_HEALTH[index]);
@@ -39,7 +40,7 @@ public class IceMonster extends Monster {
 		this.setDefence(DEFENCE[index]);
 		
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
-		this.setName("Ice Monster LVL " + level);
+		this.setName(this.generateName());
 		this.setType("Ice Monster");
 		this.setDescription("This monster has a lot of health, but it's damage is quite low. It's more of a tank");
 		
@@ -56,5 +57,22 @@ public class IceMonster extends Monster {
 		this.setHealAmount(HEAL_AMOUNT[index]);
 		
 		this.setFainted(false);
+	}
+	
+	@Override
+	public void levelUp() {
+		this.setLevel(this.getLevel() + 1);
+		
+		int index = this.getLevel() - 1;
+		
+		this.setMaxHealth(MAX_HEALTH[index]);
+		this.setCurrentHealth(getMaxHealth());
+		
+		this.setHealAmount(HEAL_AMOUNT[index]);
+		this.setDamage(DAMAGE[index]);
+		this.setDefence(DEFENCE[index]);
+		
+		this.setPrice(PRICES[index]);
+		this.setReturnPrice(RETURN_PRICES[index]);
 	}
 }

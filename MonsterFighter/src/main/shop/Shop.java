@@ -41,7 +41,7 @@ public class Shop {
 	public ArrayList<Item> refreshItems() {
 		shopItems.clear();
 		
-		int numItems = rng.nextInt(4, 7);
+		int numItems = rng.nextInt(2) + 3;
 		int currentDay = game.getCurrentDay();
 		
 		int maxItemValue;
@@ -92,7 +92,7 @@ public class Shop {
 		
 		int minLevel, maxLevel;
 		//Randomly decides how many monsters to display that day (between 3 and 5)
-		int numMonsters = rng.nextInt(3, 6);
+		int numMonsters = rng.nextInt(2) + 3;
 		
 		int currentDay = game.getCurrentDay();
 		
@@ -114,7 +114,16 @@ public class Shop {
 		
 		for (int i = 0; i < numMonsters; i++) {
 			int monsterType = rng.nextInt(6);
-			int monsterLevel = rng.nextInt(minLevel, maxLevel + 1);
+			int monsterLevel;
+			
+			if (maxLevel == 1) {
+				monsterLevel = 1;	
+			} else if (minLevel == 4) {
+				monsterLevel = 4;
+			} else {
+				monsterLevel = rng.nextInt(maxLevel-minLevel) + minLevel;
+			}
+			
 			
 			Monster rngMonster = null;
 			
@@ -144,16 +153,21 @@ public class Shop {
 	}
 	
 	//Used to purchase anything
-	public void purchaseItem(Item item, Player player) {
+	public boolean purchaseItem(Item item, Player player) {
 		//TODO: check there's space on players inventory
-		
-		if (player.getGold() >= item.getPrice()) {
-			player.setGold(player.getGold() - item.getPrice());
-			player.getInventory().addToInventory(item);
-			this.shopItems.remove(item);
+		if (player.getInventory().getInventoryList().size() < 10) {
+			if (player.getGold() >= item.getPrice()) {
+				player.setGold(player.getGold() - item.getPrice());
+				player.getInventory().addToInventory(item);
+				this.shopItems.remove(item);
+				return true;
+			} else {
+				return false;
+			}
 		} else {
-			System.out.println("ERROR: YOU DON'T HAVE ENOUGH GOLD!");
+			return false;
 		}
+		
 	}
 	
 	public void returnItem(Item item, Player player) {
@@ -161,14 +175,20 @@ public class Shop {
 		player.getInventory().removeFromInventory(item);
 	}
 	
-	public void purchaseMonster(Monster monster, Player player) {
-		if (player.getGold() >= monster.getPrice()) {
-			player.setGold(player.getGold() - monster.getPrice());
-			player.getMonsterTeam().addMonsterToTeam(monster);
-			this.shopMonsters.remove(monster);
+	public boolean purchaseMonster(Monster monster, Player player) {
+		if (player.getMonsterTeam().getMonsterTeamList().size() < 4) {
+			if (player.getGold() >= monster.getPrice()) {
+				player.setGold(player.getGold() - monster.getPrice());
+				player.getMonsterTeam().addMonsterToTeam(monster);
+				this.shopMonsters.remove(monster);
+				return true;
+			} else {
+				return false;
+			}
 		} else {
-			System.out.println("ERROR: YOU DON'T HAVE ENOUGH GOLD!");
+			return false;
 		}
+		
 	}
 	
 	public void returnMonster(Monster monster, Player player) {

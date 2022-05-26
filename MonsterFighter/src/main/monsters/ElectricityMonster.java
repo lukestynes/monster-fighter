@@ -18,7 +18,8 @@ public class ElectricityMonster extends Monster {
 		this.setDamage(DAMAGE[0]);
 		this.setDefence(DEFENCE[0]);
 		
-		this.setName("Electricity Monster LVL 1");
+		this.setName(this.generateName());
+		this.setLevel(1);
 		this.setType("Electricity Monster");
 		this.setDescription("With higher damage than the others, this monster shines for combat, but watch out for its low health");
 		
@@ -28,7 +29,7 @@ public class ElectricityMonster extends Monster {
 	
 	//Constructs a monster at a specified level
 	public ElectricityMonster(int level) {
-		int index = level--;
+		int index = level - 1;
 		this.setLevel(level);
 		
 		this.setMaxHealth(MAX_HEALTH[index]);
@@ -39,7 +40,7 @@ public class ElectricityMonster extends Monster {
 		this.setDefence(DEFENCE[index]);
 		
 		//TODO: REMOVE THIS AND ADD NAME GENERATOR
-		this.setName("Electricity Monster LVL " + level);
+		this.setName(this.generateName());
 		this.setType("Electricity Monster");
 		this.setDescription("With higher damage than the others, this monster shines for combat, but watch out for its low health");
 		
@@ -56,5 +57,22 @@ public class ElectricityMonster extends Monster {
 		this.setHealAmount(HEAL_AMOUNT[index]);
 		
 		this.setFainted(false);
+	}
+	
+	@Override
+	public void levelUp() {
+		this.setLevel(this.getLevel() + 1);
+		
+		int index = this.getLevel() - 1;
+		
+		this.setMaxHealth(MAX_HEALTH[index]);
+		this.setCurrentHealth(getMaxHealth());
+		
+		this.setHealAmount(HEAL_AMOUNT[index]);
+		this.setDamage(DAMAGE[index]);
+		this.setDefence(DEFENCE[index]);
+		
+		this.setPrice(PRICES[index]);
+		this.setReturnPrice(RETURN_PRICES[index]);
 	}
 }

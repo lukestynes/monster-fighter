@@ -1,15 +1,17 @@
 package main.randomEvents;
 
-import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import main.game.GameController;
-import main.game.MonsterTeam;
 import main.monsters.*;
 
 public class RandomEvents {
 	private Random rng;
 	private GameController game;
+	private JFrame frame;
 	
 	private final double EASY_LEAVE_CHANCE = 0.01;
 	private final double HARD_LEAVE_CHANCE = 0.02;
@@ -23,7 +25,21 @@ public class RandomEvents {
 	}
 	
 	public void randomMonsterLevelUp() {
-		//NEED TO DESIGN THE BATTLE MECHANICS BEFORE THIS WORKS.
+		int battlesWon = game.getBattleController().getBattlesWonToday();
+		
+		double randomChance = rng.nextDouble();
+		double probability = BASE_LEVEL_UP + (0.01 * battlesWon);
+		
+		//If this runs the probability succeeded
+		if (randomChance < probability) {
+			if (game.getPlayer().getMonsterTeam().strongestMonster().getLevel() < 4) {
+				int index = game.getPlayer().getMonsterTeam().getMonsterTeamList().indexOf(game.getPlayer().getMonsterTeam().strongestMonster());
+				game.getPlayer().getMonsterTeam().getMonsterTeamList().get(index).levelUp();
+				JOptionPane.showMessageDialog(frame, "A monster has level up in the night!");
+			}
+			
+			
+		}
 	}
 	
 	public void randomMonsterLeaves() {
@@ -39,9 +55,9 @@ public class RandomEvents {
 		
 		//This runs when the probability is met
 		if (randomChance < (probability + 0.2 * faintCount)) {
-			System.out.println("ATTN: MONSTER LEAVING");
 			game.getPlayer().getMonsterTeam().removeMonsterFromTeam(game.getPlayer().getMonsterTeam().weakestMonster());
-		}
+			JOptionPane.showMessageDialog(frame, "A monster has left in the night!");
+		} 
 	}
 	
 	public void randomMonsterArrives() {
@@ -68,7 +84,8 @@ public class RandomEvents {
 		int currentDay = game.getCurrentDay();
 		
 		if (randomChance < probability) {
-			System.out.println("ATTN: MONSTER ARRIVING");
+			JOptionPane.showMessageDialog(frame, "A monster has arrived in the night!");
+			
 			//If this runs then the probability has happened and a monster will join the team.
 			if (currentDay < 3) {
 				minLevel = maxLevel = 1;
@@ -86,7 +103,11 @@ public class RandomEvents {
 			}
 			
 			int monsterType = rng.nextInt(6);
-			int monsterLevel = rng.nextInt(minLevel, maxLevel + 1);
+			
+			int monsterLevel = 1;
+			if (maxLevel != 1) {
+				monsterLevel = rng.nextInt(maxLevel-minLevel) + minLevel;
+			} 
 			
 			Monster rngMonster = null;
 			

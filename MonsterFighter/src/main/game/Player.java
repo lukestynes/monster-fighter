@@ -1,7 +1,5 @@
 package main.game;
 
-import java.util.ArrayList;
-import main.items.*;
 import main.monsters.*;
 
 public class Player {
@@ -17,6 +15,12 @@ public class Player {
 	Inventory inventory;
 	
 	
+	/**
+	 * Constructs a new player with the given values.
+	 * @param name String the name of the player.
+	 * @param difficulty int the difficulty of the game.
+	 * @param startingMonster Monster the selected starting monster for the team.
+	 */
 	public Player(String name, int difficulty, Monster startingMonster) {
 		monsterTeam = new MonsterTeam();
 		inventory = new Inventory();

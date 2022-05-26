@@ -19,7 +19,8 @@ public class FireMonster extends Monster {
 		this.setDamage(DAMAGE[0]);
 		this.setDefence(DEFENCE[0]);
 		
-		this.setName("Fire Monster LVL 1");
+		this.setName(this.generateName());
+		this.setLevel(1);
 		this.setType("Fire Monster");
 		this.setDescription("This monster is the most simple, it has a normal amount of health, damage, and defence. It's an all rounder");
 		
@@ -29,7 +30,7 @@ public class FireMonster extends Monster {
 	
 	//Constructs a monster at a specified level
 	public FireMonster(int level) {
-		int index = level--;
+		int index = level - 1;
 		this.setLevel(level);
 		
 		this.setMaxHealth(MAX_HEALTH[index]);
@@ -39,7 +40,7 @@ public class FireMonster extends Monster {
 		this.setDamage(DAMAGE[index]);
 		this.setDefence(DEFENCE[index]);
 		
-		this.setName("Fire Monster LVL " + level);
+		this.setName(this.generateName());
 		this.setType("Fire Monster");
 		this.setDescription("This monster is the most simple, it has a normal amount of health, damage, and defence. It's an all rounder");
 		
@@ -56,5 +57,22 @@ public class FireMonster extends Monster {
 		this.setHealAmount(HEAL_AMOUNT[index]);
 		
 		this.setFainted(false);
+	}
+	
+	@Override
+	public void levelUp() {
+		this.setLevel(this.getLevel() + 1);
+		
+		int index = this.getLevel() - 1;
+		
+		this.setMaxHealth(MAX_HEALTH[index]);
+		this.setCurrentHealth(getMaxHealth());
+		
+		this.setHealAmount(HEAL_AMOUNT[index]);
+		this.setDamage(DAMAGE[index]);
+		this.setDefence(DEFENCE[index]);
+		
+		this.setPrice(PRICES[index]);
+		this.setReturnPrice(RETURN_PRICES[index]);
 	}
 }
