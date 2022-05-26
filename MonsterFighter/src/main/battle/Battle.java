@@ -26,7 +26,8 @@ public class Battle {
 	public Battle(GameController game) {
 		this.game = game;
 		this.rng = new Random();
-		
+		this.battleMonsters = new ArrayList<Monster>();
+
 		generateBattleMonsters();
 	}
 	
@@ -58,7 +59,7 @@ public class Battle {
 		
 		if (currentDay < 7) {
 			//1-2 monsters for days 1-6
-			numMonsters = rng.nextInt(2);
+			numMonsters = rng.nextInt(2) + 1;
 		} else {
 			//2-3 monsters for days 7-15
 			numMonsters = rng.nextInt(1) + 2;
@@ -81,11 +82,15 @@ public class Battle {
 		
 		for (int i = 0; i < numMonsters; i++) {
 			int monsterType = rng.nextInt(6);
-			int monsterLevel = 1;
+			int monsterLevel;
 			
-			if (maxLevel != 1) {
+			if (maxLevel == 1) {
+				monsterLevel = 1;	
+			} else if (minLevel == 4) {
+				monsterLevel = 4;
+			} else {
 				monsterLevel = rng.nextInt(maxLevel-minLevel) + minLevel;
-			} 
+			}
 			
 			Monster rngMonster = null;
 			
@@ -114,32 +119,64 @@ public class Battle {
 		}
 	}
 	
-	public void fightBattle(ArrayList<Monster> playerTeam ) {
+	public boolean fightBattle(ArrayList<Monster> playerTeam ) {
 		ArrayList<Monster> battleMonsters = this.getBattleMonsters();
 		
+		System.out.println("DEBUG: CLASH BANG BATTLE");
+		
 		for (int i = 0; i < this.getBattleMonsters().size(); i++) {
+			boolean fightOn = true;
 			if (playerTeam.size() > 0) {
-				//PLAYER STRIKES
-				battleMonsters.get(i).takeDamage(playerTeam.get(i).getDamage());
-				
-				//HAS ANYTHING HAPPENED?
-				
-				if (battleMonsters.get(i).getFainted()) {
-					defeatMonster(battleMonsters.get(i));
+				while (fightOn) {
+					if (playerTeam.size() > 0) {
+						//PLAYER STRIKES
+						System.out.println("PLAYER SWINGS");
+						battleMonsters.get(i).takeDamage(playerTeam.get(i).getDamage());
+						System.out.println("MONSTER HEALTH: " + battleMonsters.get(i).getCurrentHealth());
+						
+						//HAS ANYTHING HAPPENED?
+						
+						if (battleMonsters.get(i).getFainted()) {
+							System.out.println("MONSTER FAINTS");
+							defeatMonster(battleMonsters.get(i));
+							
+							fightOn = false;
+						}
+					}
+					
+					if (battleMonsters.size() > 0) {
+						//MONSTER STRIKES\
+						System.out.println("MONSTER SWINGS");
+						
+						playerTeam.get(i).takeDamage(battleMonsters.get(i).getDamage());
+//						int index = game.getPlayer().getMonsterTeam().getMonsterTeamList().indexOf(playerTeam.get(i));
+//						game.getPlayer().getMonsterTeam().getMonsterTeamList().get(index).takeDamage(battleMonsters.get(i).getDamage());
+						
+
+						
+						System.out.println("Player HEALTH: " + playerTeam.get(i).getCurrentHealth());
+						
+						//HAS ANYTHING HAPPENED?
+						if (playerTeam.get(i).getFainted()) {
+							fightOn = false;
+							System.out.println("PLAYER FAINTS");
+							playerTeam.remove(playerTeam.get(i));
+						}
+					}
 				}
-			}
-			
-			if (battleMonsters.size() > 0) {
-				//MONSTER STRIKES
-				playerTeam.get(i).takeDamage(battleMonsters.get(i).getDamage());
-				
-				//HAS ANYTHING HAPPENED?
-				if (playerTeam.get(i).getFainted()) {
-					playerTeam.remove(playerTeam.get(i));
-				}
-			}
+			} 
 		}
-		this.battleEnd();
+		
+		if (this.getBattleMonsters().size() == 0) {//Battle won
+			System.out.println("BATTLE WON");
+			this.battleEndWin(playerTeam);
+			return true;
+		} else {//Battle lost
+			System.out.println("BATTLE LOST");
+			this.battleEndLoss();
+			return false;
+		}
+		
 	}
 	
 	
@@ -157,16 +194,32 @@ public class Battle {
 		this.getBattleMonsters().remove(monster);
 	}
 	
-	public void battleEnd() {
-		
-		if ()
-		
-		
+	public void battleEndWin(ArrayList<Monster> playerTeam) {		
 		if (game.getDifficulty() == 1) {
 			this.setGold(this.getGold()/2);
 		}
 		
 		game.getPlayer().setGold(this.getGold());
 		game.getPlayer().setScore(this.getScore());
+		
+		for (Monster monster: game.getPlayer().getMonsterTeam().getMonsterTeamList()) {
+			int index = playerTeam.indexOf(monster);
+			
+			if (playerTeam.get(index).getCurrentHealth() < 0) {
+				monster.setCurrentHealth(0);
+				monster.setFainted(true);
+			} else {
+				monster.setCurrentHealth(playerTeam.get(index).getCurrentHealth());
+			}
+		}
+		
+		game.getBattleController().addBattleWon();
+	}
+	
+	public void battleEndLoss() {
+		for (Monster monster: game.getPlayer().getMonsterTeam().getMonsterTeamList()) {
+			monster.setCurrentHealth(0);
+			monster.setFainted(true);
+		}
 	}
 }
