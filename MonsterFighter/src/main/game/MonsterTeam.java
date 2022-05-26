@@ -86,6 +86,20 @@ public class MonsterTeam {
 		return weakestMonster;
 	}
 	
+	public Monster strongestMonster() {
+		int leastFaints = 1000;
+		
+		Monster strongestMonster = null;
+		
+		for (Monster monster: monsterTeam) {
+			if (monster.getFaintCount() < leastFaints) {
+				leastFaints = monster.getFaintCount();
+				strongestMonster = monster;
+			}
+		}
+		return strongestMonster;
+	}
+	
 	/**
 	 * Returns how many empty slots are left on the monster team.
 	 * @return emptySlots an int of remaining slots on the monster team.
