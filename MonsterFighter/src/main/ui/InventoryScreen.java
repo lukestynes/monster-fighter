@@ -1,7 +1,5 @@
 package main.ui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -76,13 +74,13 @@ public class InventoryScreen {
 		JLabel lblDayCount = new JLabel("Day: " + gui.getGame().getCurrentDay() + "/" + gui.getGame().getGameLength());
 		lblDayCount.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblDayCount.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblDayCount.setBounds(881, 1, 117, 31);
+		lblDayCount.setBounds(830, 1, 117, 31);
 		panelTopBar.add(lblDayCount);
 		
 		JLabel lblGoldCount = new JLabel("Gold: " + gui.getGame().getPlayer().getGold());
 		lblGoldCount.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblGoldCount.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblGoldCount.setBounds(881, 37, 117, 31);
+		lblGoldCount.setBounds(830, 37, 117, 31);
 		panelTopBar.add(lblGoldCount);
 		
 		
@@ -274,8 +272,9 @@ public class InventoryScreen {
 		count = 0;
 		for (Monster monster: monsterTeam) {
 			if (count < monsterTeam.size()) {
-				monsterSlots.get(count).setText(monsterTeam.get(count).toStringInv());
+				monsterSlots.get(count).setText(monster.toStringInv());
 			}
+			count++;
 		}
 		
 		
@@ -380,7 +379,8 @@ public class InventoryScreen {
 				
 				count = 0;
 				for (JCheckBox checked: checkedItems) {
-					if (checked.isSelected()) {
+					
+					if (checked.isSelected() && monsterTeam.size() > 0) {
 						gui.getGame().getPlayer().getInventory().useItem(gui.getGame().getPlayer().getInventory().getInventoryList().get(count), affectedMonster);
 					}
 					count++;

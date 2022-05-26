@@ -1,10 +1,10 @@
 package main.ui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.util.ArrayList;
 
@@ -74,13 +74,13 @@ public class ShopScreen {
 		JLabel lblDayCount = new JLabel("Day: " + gui.getGame().getCurrentDay() + "/" + gui.getGame().getGameLength());
 		lblDayCount.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblDayCount.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblDayCount.setBounds(881, 1, 117, 31);
+		lblDayCount.setBounds(830, 1, 117, 31);
 		panelTopBar.add(lblDayCount);
 		
 		JLabel lblGoldCount = new JLabel("Gold: " + gui.getGame().getPlayer().getGold());
 		lblGoldCount.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblGoldCount.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblGoldCount.setBounds(881, 37, 117, 31);
+		lblGoldCount.setBounds(830, 37, 117, 31);
 		panelTopBar.add(lblGoldCount);
 		
 		
@@ -143,56 +143,56 @@ public class ShopScreen {
 		JTextPane txtpMonst1 = new JTextPane();
 		txtpMonst1.setText("This Slot is Empty");
 		txtpMonst1.setEditable(false);
-		txtpMonst1.setBounds(25, 360, 161, 245);
+		txtpMonst1.setBounds(25, 360, 161, 279);
 		frame.getContentPane().add(txtpMonst1);
 		
 		JCheckBox chckbxMonst1 = new JCheckBox("");
 		chckbxMonst1.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxMonst1.setBounds(25, 617, 161, 23);
+		chckbxMonst1.setBounds(25, 651, 161, 23);
 		frame.getContentPane().add(chckbxMonst1);
 		
 		JTextPane txtpMonst2 = new JTextPane();
 		txtpMonst2.setText("This Slot is Empty");
 		txtpMonst2.setEditable(false);
-		txtpMonst2.setBounds(222, 360, 161, 245);
+		txtpMonst2.setBounds(222, 360, 161, 279);
 		frame.getContentPane().add(txtpMonst2);
 		
 		JCheckBox chckbxMonst2 = new JCheckBox("");
 		chckbxMonst2.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxMonst2.setBounds(222, 617, 161, 23);
+		chckbxMonst2.setBounds(222, 651, 161, 23);
 		frame.getContentPane().add(chckbxMonst2);
 		
 		JTextPane txtpMonst3 = new JTextPane();
 		txtpMonst3.setText("This Slot is Empty");
 		txtpMonst3.setEditable(false);
-		txtpMonst3.setBounds(423, 360, 161, 245);
+		txtpMonst3.setBounds(423, 360, 161, 279);
 		frame.getContentPane().add(txtpMonst3);
 		
 		JCheckBox chckbxMonst3 = new JCheckBox("");
 		chckbxMonst3.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxMonst3.setBounds(423, 617, 161, 23);
+		chckbxMonst3.setBounds(423, 651, 161, 23);
 		frame.getContentPane().add(chckbxMonst3);
 		
 		JTextPane txtpMonst4 = new JTextPane();
 		txtpMonst4.setText("This Slot is Empty");
 		txtpMonst4.setEditable(false);
-		txtpMonst4.setBounds(614, 360, 161, 245);
+		txtpMonst4.setBounds(614, 360, 161, 279);
 		frame.getContentPane().add(txtpMonst4);
 		
 		JCheckBox chckbxMonst4 = new JCheckBox("");
 		chckbxMonst4.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxMonst4.setBounds(614, 617, 161, 23);
+		chckbxMonst4.setBounds(614, 651, 161, 23);
 		frame.getContentPane().add(chckbxMonst4);
 		
 		JTextPane txtpMonst5 = new JTextPane();
 		txtpMonst5.setText("This Slot is Empty");
 		txtpMonst5.setEditable(false);
-		txtpMonst5.setBounds(811, 360, 161, 245);
+		txtpMonst5.setBounds(811, 360, 161, 279);
 		frame.getContentPane().add(txtpMonst5);
 		
 		JCheckBox chckbxMonst5 = new JCheckBox("");
 		chckbxMonst5.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxMonst5.setBounds(811, 617, 161, 23);
+		chckbxMonst5.setBounds(811, 651, 161, 23);
 		frame.getContentPane().add(chckbxMonst5);
 		
 		
@@ -266,12 +266,16 @@ public class ShopScreen {
 				for (int i = 0; i < selectedMonsters.size(); i++) {
 					//BUYS MONSTERS
 					if (selectedMonsters.get(i).isSelected()) {
-						gui.getGame().getShop().purchaseMonster(shopMonsters.get(i), gui.getGame().getPlayer());
+						if (!gui.getGame().getShop().purchaseMonster(shopMonsters.get(i), gui.getGame().getPlayer())) {
+							JOptionPane.showMessageDialog(frame, "ERROR: Not enough gold or not enough space");
+						}
 					}
 					
 					//BUYS ITEMS
 					if (selectedItems.get(i).isSelected()) {
-						gui.getGame().getShop().purchaseItem(shopItems.get(i), gui.getGame().getPlayer());
+						if (!gui.getGame().getShop().purchaseItem(shopItems.get(i), gui.getGame().getPlayer())) {
+							JOptionPane.showMessageDialog(frame, "ERROR: Not enough gold or not enough space");
+						}
 					}
 				}
 				
@@ -279,7 +283,7 @@ public class ShopScreen {
 				gui.launchShopScreen();
 			}
 		});
-		btnBuySelectedThings.setBounds(396, 663, 218, 29);
+		btnBuySelectedThings.setBounds(396, 697, 218, 29);
 		frame.getContentPane().add(btnBuySelectedThings);
 		
 		JButton btnReturnToMenu = new JButton("Return to Menu");
@@ -289,7 +293,7 @@ public class ShopScreen {
 				gui.launchMenuScreen();
 			}
 		});
-		btnReturnToMenu.setBounds(425, 704, 169, 29);
+		btnReturnToMenu.setBounds(425, 738, 169, 29);
 		frame.getContentPane().add(btnReturnToMenu);
 		
 		JLabel lblMonsters = new JLabel("Monsters");

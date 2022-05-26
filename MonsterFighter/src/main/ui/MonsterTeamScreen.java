@@ -1,7 +1,5 @@
 package main.ui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -121,13 +119,13 @@ public class MonsterTeamScreen {
 		lblScore.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		
 		JLabel lblDayCount = new JLabel("Day: " + gui.getGame().getCurrentDay() + "/" + gui.getGame().getGameLength());
-		lblDayCount.setBounds(881, 1, 117, 31);
+		lblDayCount.setBounds(838, -1, 117, 31);
 		panelTopBar.add(lblDayCount);
 		lblDayCount.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblDayCount.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JLabel lblGoldCount = new JLabel("Gold: " + gui.getGame().getPlayer().getGold());
-		lblGoldCount.setBounds(881, 37, 117, 31);
+		lblGoldCount.setBounds(838, 35, 117, 31);
 		panelTopBar.add(lblGoldCount);
 		lblGoldCount.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblGoldCount.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
@@ -175,8 +173,9 @@ public class MonsterTeamScreen {
 		
 		for (Monster monster: monsterTeam) {
 			if (count < monsterTeam.size()) {
-				monsterSlots.get(count).setText(monsterTeam.get(count).toString() + "\n Price: " + monsterTeam.get(count).getReturnPrice());
+				monsterSlots.get(count).setText(monster.toString());
 			}
+			count++;
 		}
 		
 		

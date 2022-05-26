@@ -1,7 +1,5 @@
 package main.ui;
 
-import main.game.*;
-
 import main.monsters.Monster;
 
 import javax.swing.JFrame;
@@ -114,7 +112,7 @@ public class SetupScreen {
 		difficultyButtonGroup.add(rdbtnHardMode);
 		
 		JPanel panelStartMonsters = new JPanel();
-		panelStartMonsters.setBounds(440, 84, 560, 438);
+		panelStartMonsters.setBounds(440, 70, 560, 511);
 		frame.getContentPane().add(panelStartMonsters);
 		panelStartMonsters.setLayout(null);
 		
@@ -125,7 +123,7 @@ public class SetupScreen {
 		String monster1Text = String.format("%s\nType: %s \nLevel: %s\nDescription: %s\n\nHealth: %d\nHeal Amount: %d\nDefence: %d\nDamage: %d\n", monster1.getName(),monster1.getType(), monster1.getLevel(), monster1.getDescription(), monster1.getMaxHealth(), monster1.getHealAmount(), monster1.getDefence(), monster1.getDamage());
 		
 		txtpMonst1.setText(monster1Text);
-		txtpMonst1.setBounds(0, 0, 476, 144);
+		txtpMonst1.setBounds(0, 0, 476, 160);
 		panelStartMonsters.add(txtpMonst1);
 		
 		JTextPane txtpMonst2 = new JTextPane();
@@ -135,7 +133,7 @@ public class SetupScreen {
 		String monster2Text = String.format("%s\nType: %s \nLevel: %s\nDescription: %s\n\nHealth: %d\nHeal Amount: %d\nDefence: %d\nDamage: %d\n", monster2.getName(),monster2.getType(), monster2.getLevel(), monster2.getDescription(), monster2.getMaxHealth(), monster2.getHealAmount(), monster2.getDefence(), monster2.getDamage());
 		
 		txtpMonst2.setText(monster2Text);
-		txtpMonst2.setBounds(0, 145, 476, 144);
+		txtpMonst2.setBounds(0, 162, 476, 169);
 		panelStartMonsters.add(txtpMonst2);
 		
 		JTextPane txtpMonst3 = new JTextPane();
@@ -145,28 +143,28 @@ public class SetupScreen {
 		String monster3Text = String.format("%s\nType: %s \nLevel: %s\nDescription: %s\n\nHealth: %d\nHeal Amount: %d\nDefence: %d\nDamage: %d\n", monster3.getName(),monster3.getType(), monster3.getLevel(), monster3.getDescription(), monster3.getMaxHealth(), monster3.getHealAmount(), monster3.getDefence(), monster3.getDamage());
 		
 		txtpMonst3.setText(monster3Text);
-		txtpMonst3.setBounds(0, 290, 476, 144);
+		txtpMonst3.setBounds(0, 334, 476, 177);
 		panelStartMonsters.add(txtpMonst3);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(477, 0, 77, 438);
+		panel.setBounds(477, 0, 77, 511);
 		panelStartMonsters.add(panel);
 		panel.setLayout(null);
 		
 		JRadioButton rdbtnMonst3 = new JRadioButton("");
 		rdbtnMonst3.setHorizontalAlignment(SwingConstants.CENTER);
-		rdbtnMonst3.setBounds(0, 290, 71, 148);
+		rdbtnMonst3.setBounds(0, 331, 71, 179);
 		panel.add(rdbtnMonst3);
 		
 		JRadioButton rdbtnMonst2 = new JRadioButton("");
 		rdbtnMonst2.setHorizontalAlignment(SwingConstants.CENTER);
-		rdbtnMonst2.setBounds(0, 141, 71, 148);
+		rdbtnMonst2.setBounds(0, 171, 71, 148);
 		panel.add(rdbtnMonst2);
 		
 		JRadioButton rdbtnMonst1 = new JRadioButton("");
 		rdbtnMonst1.setSelected(true);
 		rdbtnMonst1.setHorizontalAlignment(SwingConstants.CENTER);
-		rdbtnMonst1.setBounds(0, 0, 71, 148);
+		rdbtnMonst1.setBounds(0, 11, 71, 148);
 		panel.add(rdbtnMonst1);
 		
 		ButtonGroup monsterButtons = new ButtonGroup();
@@ -188,8 +186,10 @@ public class SetupScreen {
 				//DISPLAYS A POP UP ERROR IF THE INPUT IS INVALID
 				if (name.length() > 15 || name.length() < 3) {
 					JOptionPane.showMessageDialog(frame, "ERROR: Your name must be 3-15 characters.");
+					errorFree = false;
 				} else if (!name.matches("[a-zA-Z]+")) {
 					JOptionPane.showMessageDialog(frame, "ERROR: Your name can't contain numbers or special characters.");
+					errorFree = false;
 				} else {
 					errorFree = true;
 				}
@@ -221,7 +221,7 @@ public class SetupScreen {
 				}	
 			}
 		});
-		btnStartAdventure.setBounds(408, 576, 186, 29);
+		btnStartAdventure.setBounds(410, 604, 186, 29);
 		frame.getContentPane().add(btnStartAdventure);
 		
 		//Centers the window

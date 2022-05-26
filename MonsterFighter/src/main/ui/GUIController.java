@@ -3,7 +3,6 @@ package main.ui;
 import java.util.ArrayList;
 
 import main.game.GameController;
-import main.game.Player;
 import main.monsters.Monster;
 
 public class GUIController {
@@ -138,6 +137,19 @@ public class GUIController {
 	
 	public EndGameScreen getEndGameScreen() {
 		return this.endGameWindow;
+	}
+	
+	public void launchBattleSelectionScreen() {
+		System.out.println("DEBUG [GUICONTROLLER]: LAUNCHING BATTLESELECTION SCREEN");
+		battleSelectionWindow = new BattleSelectionScreen(this);
+	}
+	
+	public void closeBattleSelectionScreen(BattleSelectionScreen battleSelectionWindow) {
+		battleSelectionWindow.closeWindow();
+	}
+	
+	public BattleSelectionScreen getBattleSelectionWindow() {
+		return this.battleSelectionWindow;
 	}
 	
 	

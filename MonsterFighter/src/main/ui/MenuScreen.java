@@ -1,7 +1,5 @@
 package main.ui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -44,7 +42,7 @@ public class MenuScreen {
 		JLabel lblGoldCount = new JLabel("Gold: " + gui.getGame().getPlayer().getGold());
 		lblGoldCount.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblGoldCount.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblGoldCount.setBounds(877, 34, 117, 31);
+		lblGoldCount.setBounds(826, 34, 117, 31);
 		frame.getContentPane().add(lblGoldCount);
 		
 		JLabel lblScore = new JLabel("Score: " + gui.getGame().getPlayer().getScore());
@@ -55,7 +53,7 @@ public class MenuScreen {
 		JLabel lblDayCount = new JLabel("Day: " + gui.getGame().getCurrentDay() + "/" + gui.getGame().getGameLength());
 		lblDayCount.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblDayCount.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblDayCount.setBounds(877, 6, 117, 31);
+		lblDayCount.setBounds(826, 6, 117, 31);
 		frame.getContentPane().add(lblDayCount);
 		
 		JButton btnMonsterTeam = new JButton("View your Monster Team");
@@ -89,6 +87,12 @@ public class MenuScreen {
 		frame.getContentPane().add(btnShop);
 		
 		JButton btnBattle = new JButton("View Available Battles");
+		btnBattle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.closeMenuScreen(gui.getMenuScreen());
+				gui.launchBattleSelectionScreen();
+			}
+		});
 		btnBattle.setBounds(242, 413, 535, 36);
 		frame.getContentPane().add(btnBattle);
 		
