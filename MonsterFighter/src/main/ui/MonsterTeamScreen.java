@@ -21,16 +21,26 @@ public class MonsterTeamScreen {
 	private JFrame frame;
 	private GUIController gui;
 
+	/**
+	 * Constructs a new monster team screen
+	 * @param gui the gui controller
+	 */
 	public MonsterTeamScreen(GUIController gui) {
 		this.gui = gui;
 		initialize();
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Ensures the window shuts correctly
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
+	/**
+	 * Shuts the window
+	 */
 	public void finishedWindow() {
 		gui.closeMonsterTeamScreen(this);
 	}
@@ -197,8 +207,6 @@ public class MonsterTeamScreen {
 			
 			count++;
 		}
-		
-		
 	
 		//SELL MONSTERS BACK TO THE SHOP
 		JButton btnSellSelectedMonsters = new JButton("Sell Selected Monsters");

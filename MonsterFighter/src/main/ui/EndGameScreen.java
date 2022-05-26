@@ -12,20 +12,31 @@ public class EndGameScreen {
 
 	private JFrame frame;
 	private GUIController gui;
-
+	
+	/**
+	 * Constructs an end game screen
+	 * @param gui the gui controller
+	 */
 	public EndGameScreen(GUIController gui) {
 		this.gui = gui;
 		initialize();
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Ensures the window is shut correctly
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
+	/**
+	 * Closes this window
+	 */
 	public void finishedWindow() {
 		gui.closeEndGameScreen(this);
 	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */

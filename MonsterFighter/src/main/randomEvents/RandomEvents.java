@@ -19,11 +19,18 @@ public class RandomEvents {
 	private final double BASE_LEVEL_UP = 0.025;
 	
 	
+	/**
+	 * Constructs a new random event object
+	 * @param game the game controller of the game instance
+	 */
 	public RandomEvents(GameController game) {
 		rng = new Random();
 		this.game = game;
 	}
 	
+	/**
+	 * Random levels up one monster at night time if the probability is met
+	 */
 	public void randomMonsterLevelUp() {
 		int battlesWon = game.getBattleController().getBattlesWonToday();
 		
@@ -32,7 +39,9 @@ public class RandomEvents {
 		
 		//If this runs the probability succeeded
 		if (randomChance < probability) {
+			//Checks the monster isn't already level 4
 			if (game.getPlayer().getMonsterTeam().strongestMonster().getLevel() < 4) {
+				//Levels up the monster
 				int index = game.getPlayer().getMonsterTeam().getMonsterTeamList().indexOf(game.getPlayer().getMonsterTeam().strongestMonster());
 				game.getPlayer().getMonsterTeam().getMonsterTeamList().get(index).levelUp();
 				JOptionPane.showMessageDialog(frame, "A monster has level up in the night!");
@@ -42,6 +51,9 @@ public class RandomEvents {
 		}
 	}
 	
+	/**
+	 * Randomly makes a monster leave at night if the probability is met
+	 */
 	public void randomMonsterLeaves() {
 		boolean easyMode = game.getDifficulty() == 0;
 		int faintCount = game.getPlayer().getMonsterTeam().getTotalTeamFaints();
@@ -49,6 +61,7 @@ public class RandomEvents {
 		double randomChance = rng.nextDouble();
 		double probability = HARD_LEAVE_CHANCE;
 		
+		//Lower chance of monster leaving in easy mode
 		if (easyMode) {
 			probability = EASY_LEAVE_CHANCE;
 		}
@@ -60,9 +73,14 @@ public class RandomEvents {
 		} 
 	}
 	
+	/**
+	 * Randomly makes a monster arrive if the probability is met
+	 */
 	public void randomMonsterArrives() {
 		int freeSlots = game.getPlayer().getMonsterTeam().getEmptySlots();
 		double probability = 0;
+		
+		//Changes the probability depending on how many empty slots the player has
 		switch (freeSlots) {
 		case 1:
 			probability = ARRIVE_CHANCE[0];
@@ -83,10 +101,11 @@ public class RandomEvents {
 		int minLevel, maxLevel;
 		int currentDay = game.getCurrentDay();
 		
+		//Only runs when the probability is met
 		if (randomChance < probability) {
 			JOptionPane.showMessageDialog(frame, "A monster has arrived in the night!");
 			
-			//If this runs then the probability has happened and a monster will join the team.
+			//Determines what level the monster will be based on current day
 			if (currentDay < 3) {
 				minLevel = maxLevel = 1;
 			} else if (currentDay < 6) {
@@ -111,6 +130,7 @@ public class RandomEvents {
 			
 			Monster rngMonster = null;
 			
+			//Determines what type of monster to create.
 			switch (monsterType) {
 			case 0:
 				rngMonster = new AirMonster(monsterLevel);
@@ -133,11 +153,12 @@ public class RandomEvents {
 			}
 			
 			game.getPlayer().getMonsterTeam().addMonsterToTeam(rngMonster);
-		}
-		
-		
+		}	
 	}
 	
+	/**
+	 * Runs all the random nightTime events.
+	 */
 	public void nightTimeEvents() {
 		this.randomMonsterArrives();
 		this.randomMonsterLeaves();

@@ -23,6 +23,10 @@ public class Battle {
 	private final int[] HARD_SCORES = {100, 150, 200, 250};
 	
 	
+	/**
+	 * Constructs a new battle to be fought.
+	 * @param game the game controller being passed through to stay synchronised.
+	 */
 	public Battle(GameController game) {
 		this.game = game;
 		this.rng = new Random();
@@ -51,6 +55,10 @@ public class Battle {
 		return score;
 	}
 	
+	/**
+	 * Generates a random list of monsters that are a part of the battle.
+	 * The number and levels of the monsters varies with the current in game day.
+	 */
 	public void generateBattleMonsters() {
 		int currentDay = game.getCurrentDay();
 		int minLevel, maxLevel;
@@ -119,10 +127,13 @@ public class Battle {
 		}
 	}
 	
+	/**
+	 * Allows the players monsters to fight the opposing monsters.
+	 * @param playerTeam the players fighting monsters in the correct order
+	 * @return true or false depending on if the battle was won by the player.
+	 */
 	public boolean fightBattle(ArrayList<Monster> playerTeam ) {
 		ArrayList<Monster> battleMonsters = this.getBattleMonsters();
-		
-		System.out.println("DEBUG: CLASH BANG BATTLE");
 		
 		for (int i = 0; i < this.getBattleMonsters().size(); i++) {
 			boolean fightOn = true;
@@ -130,36 +141,24 @@ public class Battle {
 				while (fightOn) {
 					if (playerTeam.size() > 0) {
 						//PLAYER STRIKES
-						System.out.println("PLAYER SWINGS");
 						battleMonsters.get(i).takeDamage(playerTeam.get(i).getDamage());
-						System.out.println("MONSTER HEALTH: " + battleMonsters.get(i).getCurrentHealth());
 						
 						//HAS ANYTHING HAPPENED?
 						
 						if (battleMonsters.get(i).getFainted()) {
-							System.out.println("MONSTER FAINTS");
 							defeatMonster(battleMonsters.get(i));
-							
 							fightOn = false;
 						}
 					}
 					
 					if (battleMonsters.size() > 0) {
 						//MONSTER STRIKES\
-						System.out.println("MONSTER SWINGS");
 						
 						playerTeam.get(i).takeDamage(battleMonsters.get(i).getDamage());
-//						int index = game.getPlayer().getMonsterTeam().getMonsterTeamList().indexOf(playerTeam.get(i));
-//						game.getPlayer().getMonsterTeam().getMonsterTeamList().get(index).takeDamage(battleMonsters.get(i).getDamage());
-						
-
-						
-						System.out.println("Player HEALTH: " + playerTeam.get(i).getCurrentHealth());
 						
 						//HAS ANYTHING HAPPENED?
 						if (playerTeam.get(i).getFainted()) {
 							fightOn = false;
-							System.out.println("PLAYER FAINTS");
 							playerTeam.remove(playerTeam.get(i));
 						}
 					}
@@ -168,11 +167,9 @@ public class Battle {
 		}
 		
 		if (this.getBattleMonsters().size() == 0) {//Battle won
-			System.out.println("BATTLE WON");
 			this.battleEndWin(playerTeam);
 			return true;
 		} else {//Battle lost
-			System.out.println("BATTLE LOST");
 			this.battleEndLoss();
 			return false;
 		}
@@ -180,7 +177,10 @@ public class Battle {
 	}
 	
 	
-	
+	/**
+	 * If a monster loses to a player this is run to update the score, gold, and remove the fainted monster
+	 * @param monster the monster that has been defeated.
+	 */
 	public void defeatMonster(Monster monster) {
 		
 		this.setGold(this.getGold() + monster.getReturnPrice());
@@ -194,6 +194,12 @@ public class Battle {
 		this.getBattleMonsters().remove(monster);
 	}
 	
+	/**
+	 * The end of a battle when the player has one.
+	 * 
+	 * This updates the players scores and gold depending on what they won during battle. It also makes sure to update the players monsters healths and statuses.
+	 * @param playerTeam the players team of monsters they fought with.
+	 */
 	public void battleEndWin(ArrayList<Monster> playerTeam) {		
 		if (game.getDifficulty() == 1) {
 			this.setGold(this.getGold()/2);
@@ -216,6 +222,12 @@ public class Battle {
 		game.getBattleController().addBattleWon();
 	}
 	
+	
+	/**
+	 * The end of a battle when the player loses.
+	 * 
+	 * Ensures that the players monsters health isn't an incorrect value and sets their fainted status to true.
+	 */
 	public void battleEndLoss() {
 		for (Monster monster: game.getPlayer().getMonsterTeam().getMonsterTeamList()) {
 			monster.setCurrentHealth(0);

@@ -26,6 +26,10 @@ public class SetupScreen {
 	
 	private ArrayList<Monster> startingMonsters;
 
+	/**
+	 * Constructs a setup screen
+	 * @param gui the gui controller
+	 */
 	public SetupScreen(GUIController gui) {
 		this.gui = gui;
 		startingMonsters = gui.getGame().getStartingMonsters();
@@ -33,16 +37,22 @@ public class SetupScreen {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Makes sure the window is correctly closed
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
+	/**
+	 * Used to close this window
+	 */
 	public void finishedWindow() {
 		gui.closeSetupScreen(this);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise all the items on the frame
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -120,7 +130,7 @@ public class SetupScreen {
 		txtpMonst1.setEditable(false);
 		
 		Monster monster1 = startingMonsters.get(0);
-		String monster1Text = String.format("%s\nType: %s \nLevel: %s\nDescription: %s\n\nHealth: %d\nHeal Amount: %d\nDefence: %d\nDamage: %d\n", monster1.getName(),monster1.getType(), monster1.getLevel(), monster1.getDescription(), monster1.getMaxHealth(), monster1.getHealAmount(), monster1.getDefence(), monster1.getDamage());
+		String monster1Text = String.format(monster1.toStringSetup());
 		
 		txtpMonst1.setText(monster1Text);
 		txtpMonst1.setBounds(0, 0, 476, 160);
@@ -130,7 +140,7 @@ public class SetupScreen {
 		txtpMonst2.setEditable(false);
 		
 		Monster monster2 = startingMonsters.get(1);
-		String monster2Text = String.format("%s\nType: %s \nLevel: %s\nDescription: %s\n\nHealth: %d\nHeal Amount: %d\nDefence: %d\nDamage: %d\n", monster2.getName(),monster2.getType(), monster2.getLevel(), monster2.getDescription(), monster2.getMaxHealth(), monster2.getHealAmount(), monster2.getDefence(), monster2.getDamage());
+		String monster2Text = String.format(monster2.toStringSetup());
 		
 		txtpMonst2.setText(monster2Text);
 		txtpMonst2.setBounds(0, 162, 476, 169);
@@ -140,7 +150,7 @@ public class SetupScreen {
 		txtpMonst3.setEditable(false);
 		
 		Monster monster3 = startingMonsters.get(2);
-		String monster3Text = String.format("%s\nType: %s \nLevel: %s\nDescription: %s\n\nHealth: %d\nHeal Amount: %d\nDefence: %d\nDamage: %d\n", monster3.getName(),monster3.getType(), monster3.getLevel(), monster3.getDescription(), monster3.getMaxHealth(), monster3.getHealAmount(), monster3.getDefence(), monster3.getDamage());
+		String monster3Text = String.format(monster3.toStringSetup());
 		
 		txtpMonst3.setText(monster3Text);
 		txtpMonst3.setBounds(0, 334, 476, 177);
@@ -198,11 +208,13 @@ public class SetupScreen {
 				int difficulty = 0;
 				int startingMonster = 1;
 				
+				//Updates the difficulty value
 				if (rdbtnHardMode.isSelected()) {
 					difficulty = 1;
 					errorFree = true;
 				} 
 				
+				//Checks which monster was chosen
 				if (rdbtnMonst1.isSelected()) {
 					startingMonster = 0;
 				} else if (rdbtnMonst2.isSelected()) {
@@ -213,14 +225,14 @@ public class SetupScreen {
 				
 				//WILL ONLY PROGRESS SCREENS IF THE INPUT IS ERROR FREE
 				if (errorFree) {
+					//Passes these setup values to the game controller
 					gui.getGame().setupValues(name, gameLength, difficulty, startingMonsters.get(startingMonster));
-					
-					System.out.printf("DEBUG: %s %d %d %d", name, gameLength, difficulty, startingMonster);
 					gui.launchMenuScreen();
 					gui.closeSetupScreen(gui.getScreen());
 				}	
 			}
 		});
+		
 		btnStartAdventure.setBounds(410, 604, 186, 29);
 		frame.getContentPane().add(btnStartAdventure);
 		

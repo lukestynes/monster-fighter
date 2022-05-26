@@ -190,7 +190,29 @@ public class Monster {
 		}
 		return String.format(thing, this.getName(), this.getLevel(), this.getType(), this.getDescription(), this.getCurrentHealth(), this.getDefence(), this.getDamage(), this.getHealAmount(), temp, this.getReturnPrice());
 	}
+	
+	/**
+	 * Returns a string representation of the monster for the setup screen
+	 * @return a string of monster information
+	 */
+	public String toStringSetup() {
+		String thing = """
+				Name: %s
+				Type: %s
+				Level: %s
+				Description: %s
+				Health: %d
+				Defence: %d
+				Damage: %d
+				Heal Amount: %d
+				""";
+		return String.format(thing, this.getName(), this.getLevel(), this.getType(), this.getDescription(), this.getCurrentHealth(), this.getDefence(), this.getDamage(), this.getHealAmount());
+	}
 
+	/**
+	 * Returns a string representation that is used by the shop
+	 * @return stringShop monster information for shop
+	 */
 	public String toStringShop() {
 		String thing = """
 				Name: %s
@@ -207,24 +229,34 @@ public class Monster {
 		return String.format(thing, this.getName(), this.getLevel(), this.getType(), this.getDescription(), this.getCurrentHealth(), this.getDefence(), this.getDamage(), this.getHealAmount(), this.getPrice());
 	}
 
-
+	/**
+	 * Returns a string representation that is used by the inventory
+	 * @return stringInv monster information for inventory
+	 */
 	public String toStringInv() {
 		String thing = """
 				Name: %s
 				Type: %s
+				Level: %d
 				Health: %d
 				Defence: %d
 				Damage: %d
 				Heal Amount: %d
 				""";
-		return String.format(thing, this.getName(), this.getType(), this.getCurrentHealth(), this.getDefence(), this.getDamage(), this.getHealAmount());
+		return String.format(thing, this.getName(), this.getType(), this.getLevel(), this.getCurrentHealth(), this.getDefence(), this.getDamage(), this.getHealAmount());
 	}
 
-
+	
+	/**
+	 * Night reset method for resetting the monsters values at nighttime
+	 */
 	public void nightResetMonster() {
 		this.setFainted(false);
 	}
 	
+	/**
+	 * Heals the monster by their set heal amount. Runs at night time.
+	 */
 	public void heal() {
 		this.setCurrentHealth(this.getCurrentHealth() + this.getHealAmount());
 		if (this.getCurrentHealth() > this.getMaxHealth()) {
@@ -232,6 +264,9 @@ public class Monster {
 		}
 	}
 	
+	/**
+	 * Increases a monsters level by 1
+	 */
 	public void levelUp() {
 		this.setLevel(this.getLevel() + 1);
 	}

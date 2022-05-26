@@ -9,7 +9,9 @@ public class AirMonster extends Monster {
 	private final int[] PRICES = {400, 500, 650, 800};
 	private final int[] RETURN_PRICES = {350, 450, 550, 750};
 	
-	//Default level 1 monster
+	/**
+	 * Constructs an AirMonster of level 1
+	 */
 	public AirMonster() {
 		this.setMaxHealth(MAX_HEALTH[0]);
 		this.setCurrentHealth(getMaxHealth());
@@ -27,7 +29,10 @@ public class AirMonster extends Monster {
 		this.setReturnPrice(RETURN_PRICES[0]);
 	}
 	
-	//Constructs a monster at a specified level
+	/**
+	 * Constructs an AirMonster at a given level 
+	 * @param level the level of the monster to be constructed
+	 */
 	public AirMonster(int level) {
 		int index = level - 1;
 		this.setLevel(level);
@@ -38,8 +43,6 @@ public class AirMonster extends Monster {
 		this.setHealAmount(HEAL_AMOUNT[index]);
 		this.setDamage(DAMAGE[index]);
 		this.setDefence(DEFENCE[index]);
-		
-		//TODO: REMOVE THIS AND ADD NAME GENERATOR
 		this.setName(this.generateName());
 		this.setType("Air Monster");
 		this.setDescription("Weaker in the early game, this monster really comes out to play when it's leveled up.");
@@ -48,6 +51,9 @@ public class AirMonster extends Monster {
 		this.setReturnPrice(RETURN_PRICES[index]);
 	}
 	
+	/**
+	 * Resets the monsters values that could have potentially been boosted by an item during the day.
+	 */
 	@Override
 	public void nightResetMonster() {
 		int index = this.getLevel() - 1;
@@ -59,6 +65,10 @@ public class AirMonster extends Monster {
 		this.setFainted(false);
 	}
 	
+	
+	/**
+	 * Levels up a monster and ensures the values are correct.
+	 */
 	@Override
 	public void levelUp() {
 		this.setLevel(this.getLevel() + 1);

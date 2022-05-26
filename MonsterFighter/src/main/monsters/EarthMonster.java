@@ -9,7 +9,9 @@ public class EarthMonster extends Monster {
 	private final int[] PRICES = {650, 700, 750, 800};
 	private final int[] RETURN_PRICES = {550, 650, 700, 750};
 	
-	//Default level 1 monster
+	/**
+	 * Constructs an EarthMonster of level 1
+	 */
 	public EarthMonster() {
 		this.setMaxHealth(MAX_HEALTH[0]);
 		this.setCurrentHealth(getMaxHealth());
@@ -27,7 +29,10 @@ public class EarthMonster extends Monster {
 		this.setReturnPrice(RETURN_PRICES[0]);
 	}
 	
-	//Constructs a monster at a specified level
+	/**
+	 * Constructs an EarthMonster at a given level
+	 * @param level the level of the monster you want
+	 */
 	public EarthMonster(int level) {
 		int index = level - 1;
 		this.setLevel(level);
@@ -39,7 +44,6 @@ public class EarthMonster extends Monster {
 		this.setDamage(DAMAGE[index]);
 		this.setDefence(DEFENCE[index]);
 		
-		//TODO: REMOVE THIS AND ADD NAME GENERATOR
 		this.setName(this.generateName());
 		this.setType("Earth Monster");
 		this.setDescription("This monster is the strongest at the lower levels but is weaker later on. If you have the money it can make your early game easier");
@@ -48,6 +52,9 @@ public class EarthMonster extends Monster {
 		this.setReturnPrice(RETURN_PRICES[index]);
 	}
 	
+	/**
+	 * Resets the monsters values that could have potentially been boosted by an item during the day.
+	 */
 	@Override
 	public void nightResetMonster() {
 		int index = this.getLevel() - 1;
@@ -59,6 +66,10 @@ public class EarthMonster extends Monster {
 		this.setFainted(false);
 	}
 	
+	
+	/**
+	 * Levels up a monster and ensures the values are correct.
+	 */
 	@Override
 	public void levelUp() {
 		this.setLevel(this.getLevel() + 1);

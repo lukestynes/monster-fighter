@@ -24,16 +24,26 @@ public class InventoryScreen {
 	private JFrame frame;
 	private GUIController gui;
 
+	/**
+	 * Constructs a new inventory screen
+	 * @param gui the gui controller
+	 */
 	public InventoryScreen(GUIController gui) {
 		this.gui = gui;
 		initialize();
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Ensures the window shuts correctly
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
+	/**
+	 * Closes the window
+	 */
 	public void finishedWindow() {
 		gui.closeInventoryScreen(this);
 	}
@@ -43,7 +53,7 @@ public class InventoryScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1000, 900);
+		frame.setBounds(100, 100, 1000, 829);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Centers the window
@@ -86,7 +96,7 @@ public class InventoryScreen {
 		
 		
 		JTextPane txtpInv1 = new JTextPane();
-		txtpInv1.setBounds(29, 97, 161, 161);
+		txtpInv1.setBounds(29, 71, 161, 161);
 		frame.getContentPane().add(txtpInv1);
 		txtpInv1.setText("This Slot is Empty");
 		txtpInv1.setEditable(false);
@@ -94,55 +104,55 @@ public class InventoryScreen {
 		JTextPane txtpInv2 = new JTextPane();
 		txtpInv2.setText("This Slot is Empty");
 		txtpInv2.setEditable(false);
-		txtpInv2.setBounds(226, 97, 161, 161);
+		txtpInv2.setBounds(226, 71, 161, 161);
 		frame.getContentPane().add(txtpInv2);
 		
 		JTextPane txtpInv3 = new JTextPane();
 		txtpInv3.setText("This Slot is Empty");
 		txtpInv3.setEditable(false);
-		txtpInv3.setBounds(427, 97, 161, 161);
+		txtpInv3.setBounds(427, 71, 161, 161);
 		frame.getContentPane().add(txtpInv3);
 		
 		JTextPane txtpInv4 = new JTextPane();
 		txtpInv4.setText("This Slot is Empty");
 		txtpInv4.setEditable(false);
-		txtpInv4.setBounds(618, 97, 161, 161);
+		txtpInv4.setBounds(618, 71, 161, 161);
 		frame.getContentPane().add(txtpInv4);
 		
 		JTextPane txtpInv5 = new JTextPane();
 		txtpInv5.setText("This Slot is Empty");
 		txtpInv5.setEditable(false);
-		txtpInv5.setBounds(815, 97, 161, 161);
+		txtpInv5.setBounds(815, 71, 161, 161);
 		frame.getContentPane().add(txtpInv5);
 		
 		JTextPane txtpInv6 = new JTextPane();
 		txtpInv6.setText("This Slot is Empty");
 		txtpInv6.setEditable(false);
-		txtpInv6.setBounds(29, 289, 161, 161);
+		txtpInv6.setBounds(29, 263, 161, 161);
 		frame.getContentPane().add(txtpInv6);
 		
 		JTextPane txtpInv7 = new JTextPane();
 		txtpInv7.setText("This Slot is Empty");
 		txtpInv7.setEditable(false);
-		txtpInv7.setBounds(226, 289, 161, 161);
+		txtpInv7.setBounds(226, 263, 161, 161);
 		frame.getContentPane().add(txtpInv7);
 		
 		JTextPane txtpInv8 = new JTextPane();
 		txtpInv8.setText("This Slot is Empty");
 		txtpInv8.setEditable(false);
-		txtpInv8.setBounds(427, 289, 161, 161);
+		txtpInv8.setBounds(427, 263, 161, 161);
 		frame.getContentPane().add(txtpInv8);
 		
 		JTextPane txtpInv9 = new JTextPane();
 		txtpInv9.setText("This Slot is Empty");
 		txtpInv9.setEditable(false);
-		txtpInv9.setBounds(618, 289, 161, 161);
+		txtpInv9.setBounds(618, 263, 161, 161);
 		frame.getContentPane().add(txtpInv9);
 		
 		JTextPane txtpInv10 = new JTextPane();
 		txtpInv10.setText("This Slot is Empty");
 		txtpInv10.setEditable(false);
-		txtpInv10.setBounds(815, 289, 161, 161);
+		txtpInv10.setBounds(815, 263, 161, 161);
 		frame.getContentPane().add(txtpInv10);
 		
 		
@@ -178,52 +188,52 @@ public class InventoryScreen {
 		
 		JCheckBox chckbxInv1 = new JCheckBox("");
 		chckbxInv1.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxInv1.setBounds(29, 259, 161, 23);
+		chckbxInv1.setBounds(29, 233, 161, 23);
 		frame.getContentPane().add(chckbxInv1);
 		
 		JCheckBox chckbxInv2 = new JCheckBox("");
 		chckbxInv2.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxInv2.setBounds(226, 259, 161, 23);
+		chckbxInv2.setBounds(226, 233, 161, 23);
 		frame.getContentPane().add(chckbxInv2);
 		
 		JCheckBox chckbxInv4 = new JCheckBox("");
 		chckbxInv4.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxInv4.setBounds(618, 259, 161, 23);
+		chckbxInv4.setBounds(618, 233, 161, 23);
 		frame.getContentPane().add(chckbxInv4);
 		
 		JCheckBox chckbxInv3 = new JCheckBox("");
 		chckbxInv3.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxInv3.setBounds(427, 259, 161, 23);
+		chckbxInv3.setBounds(427, 233, 161, 23);
 		frame.getContentPane().add(chckbxInv3);
 		
 		JCheckBox chckbxInv5 = new JCheckBox("");
 		chckbxInv5.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxInv5.setBounds(815, 259, 161, 23);
+		chckbxInv5.setBounds(815, 233, 161, 23);
 		frame.getContentPane().add(chckbxInv5);
 		
 		JCheckBox chckbxInv10 = new JCheckBox("");
 		chckbxInv10.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxInv10.setBounds(815, 450, 161, 23);
+		chckbxInv10.setBounds(815, 424, 161, 23);
 		frame.getContentPane().add(chckbxInv10);
 		
 		JCheckBox chckbxInv9 = new JCheckBox("");
 		chckbxInv9.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxInv9.setBounds(618, 450, 161, 23);
+		chckbxInv9.setBounds(618, 424, 161, 23);
 		frame.getContentPane().add(chckbxInv9);
 		
 		JCheckBox chckbxInv8 = new JCheckBox("");
 		chckbxInv8.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxInv8.setBounds(427, 450, 161, 23);
+		chckbxInv8.setBounds(427, 424, 161, 23);
 		frame.getContentPane().add(chckbxInv8);
 		
 		JCheckBox chckbxInv7 = new JCheckBox("");
 		chckbxInv7.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxInv7.setBounds(226, 450, 161, 23);
+		chckbxInv7.setBounds(226, 424, 161, 23);
 		frame.getContentPane().add(chckbxInv7);
 		
 		JCheckBox chckbxInv6 = new JCheckBox("");
 		chckbxInv6.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxInv6.setBounds(29, 450, 161, 23);
+		chckbxInv6.setBounds(29, 424, 161, 23);
 		frame.getContentPane().add(chckbxInv6);
 		
 		
@@ -232,31 +242,31 @@ public class InventoryScreen {
 		JTextPane txtpMonst1 = new JTextPane();
 		txtpMonst1.setText("This Slot is Empty");
 		txtpMonst1.setEditable(false);
-		txtpMonst1.setBounds(128, 512, 161, 161);
+		txtpMonst1.setBounds(126, 474, 161, 161);
 		frame.getContentPane().add(txtpMonst1);
 		
 		JTextPane txtpMonst2 = new JTextPane();
 		txtpMonst2.setText("This Slot is Empty");
 		txtpMonst2.setEditable(false);
-		txtpMonst2.setBounds(325, 512, 161, 161);
+		txtpMonst2.setBounds(323, 474, 161, 161);
 		frame.getContentPane().add(txtpMonst2);
 		
 		JTextPane txtpMonst3 = new JTextPane();
 		txtpMonst3.setText("This Slot is Empty");
 		txtpMonst3.setEditable(false);
-		txtpMonst3.setBounds(526, 512, 161, 161);
+		txtpMonst3.setBounds(524, 474, 161, 161);
 		frame.getContentPane().add(txtpMonst3);
 		
 		JTextPane txtpMonst4 = new JTextPane();
 		txtpMonst4.setText("This Slot is Empty");
 		txtpMonst4.setEditable(false);
-		txtpMonst4.setBounds(717, 512, 161, 161);
+		txtpMonst4.setBounds(715, 474, 161, 161);
 		frame.getContentPane().add(txtpMonst4);
 		
 		JLabel lblMonsters = new JLabel("Monsters");
 		lblMonsters.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMonsters.setFont(new Font("Lucida Grande", Font.BOLD, 26));
-		lblMonsters.setBounds(0, 459, 1000, 63);
+		lblMonsters.setBounds(0, 424, 1000, 63);
 		frame.getContentPane().add(lblMonsters);
 		
 		
@@ -307,7 +317,7 @@ public class InventoryScreen {
 		
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(128, 685, 752, 36);
+		panel.setBounds(126, 647, 752, 36);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -390,7 +400,7 @@ public class InventoryScreen {
 				gui.launchInventoryScreen();
 			}
 		});
-		btnUseItems.setBounds(357, 733, 270, 29);
+		btnUseItems.setBounds(356, 695, 270, 29);
 		frame.getContentPane().add(btnUseItems);
 		
 		
@@ -409,7 +419,7 @@ public class InventoryScreen {
 				gui.launchInventoryScreen();
 			}
 		});
-		btnSellItems.setBounds(385, 765, 218, 29);
+		btnSellItems.setBounds(384, 727, 218, 29);
 		frame.getContentPane().add(btnSellItems);
 		
 		JButton btnReturnToMenu = new JButton("Return to Menu");
@@ -420,7 +430,7 @@ public class InventoryScreen {
 				gui.launchMenuScreen();
 			}
 		});
-		btnReturnToMenu.setBounds(385, 826, 218, 29);
+		btnReturnToMenu.setBounds(384, 758, 218, 29);
 		frame.getContentPane().add(btnReturnToMenu);
 	}
 }

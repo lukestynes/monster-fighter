@@ -1,6 +1,9 @@
 package main.items;
 
 public class HeartFruit extends Item {
+	/**
+	 * Generates a heart fruit
+	 */
 	public HeartFruit() {
 		this.setInstantHealthBoost(20);
 		this.setHealAmountBoost(10);
