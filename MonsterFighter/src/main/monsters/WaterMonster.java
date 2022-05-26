@@ -58,4 +58,21 @@ public class WaterMonster extends Monster {
 		
 		this.setFainted(false);
 	}
+	
+	@Override
+	public void levelUp() {
+		this.setLevel(this.getLevel() + 1);
+		
+		int index = this.getLevel() - 1;
+		
+		this.setMaxHealth(MAX_HEALTH[index]);
+		this.setCurrentHealth(getMaxHealth());
+		
+		this.setHealAmount(HEAL_AMOUNT[index]);
+		this.setDamage(DAMAGE[index]);
+		this.setDefence(DEFENCE[index]);
+		
+		this.setPrice(PRICES[index]);
+		this.setReturnPrice(RETURN_PRICES[index]);
+	}
 }

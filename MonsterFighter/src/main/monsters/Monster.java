@@ -152,6 +152,9 @@ public class Monster {
 	 */
 	public void takeDamage(int damage) {
 		this.setCurrentHealth(this.getCurrentHealth() - (damage - this.getDefence()));
+		if (this.getCurrentHealth() <= 0) {
+			this.setFainted(true);
+		}
 	}
 
 	/**
@@ -169,21 +172,30 @@ public class Monster {
 		String thing = """
 				Name: %s
 				Type: %s
+				Level: %s
 				Description: %s
 				Health: %d
 				Defence: %d
 				Damage: %d
 				Heal Amount: %d
-
+				FAINTED: %s
 				Return Price: %d
 				""";
-		return String.format(thing, this.getName(), this.getType(), this.getDescription(), this.getMaxHealth(), this.getDefence(), this.getDamage(), this.getHealAmount(), this.getReturnPrice());
+		String temp;
+		
+		if (this.getFainted()) {
+			temp = "TRUE";
+		} else {
+			temp = "FALSE";
+		}
+		return String.format(thing, this.getName(), this.getLevel(), this.getType(), this.getDescription(), this.getCurrentHealth(), this.getDefence(), this.getDamage(), this.getHealAmount(), temp, this.getReturnPrice());
 	}
 
 	public String toStringShop() {
 		String thing = """
 				Name: %s
 				Type: %s
+				Level: %s
 				Description: %s
 				Health: %d
 				Defence: %d
@@ -192,7 +204,7 @@ public class Monster {
 
 				Price: %d
 				""";
-		return String.format(thing, this.getName(), this.getType(), this.getDescription(), this.getMaxHealth(), this.getDefence(), this.getDamage(), this.getHealAmount(), this.getPrice());
+		return String.format(thing, this.getName(), this.getLevel(), this.getType(), this.getDescription(), this.getCurrentHealth(), this.getDefence(), this.getDamage(), this.getHealAmount(), this.getPrice());
 	}
 
 
@@ -205,12 +217,22 @@ public class Monster {
 				Damage: %d
 				Heal Amount: %d
 				""";
-		return String.format(thing, this.getName(), this.getType(), this.getMaxHealth(), this.getDefence(), this.getDamage(), this.getHealAmount());
+		return String.format(thing, this.getName(), this.getType(), this.getCurrentHealth(), this.getDefence(), this.getDamage(), this.getHealAmount());
 	}
 
 
 	public void nightResetMonster() {
 		this.setFainted(false);
 	}
-
+	
+	public void heal() {
+		this.setCurrentHealth(this.getCurrentHealth() + this.getHealAmount());
+		if (this.getCurrentHealth() > this.getMaxHealth()) {
+			this.setCurrentHealth(this.getMaxHealth());
+		}
+	}
+	
+	public void levelUp() {
+		this.setLevel(this.getLevel() + 1);
+	}
 }
