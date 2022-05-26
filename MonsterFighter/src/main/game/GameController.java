@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import main.ui.*;
 import main.shop.Shop;
+import main.battle.BattleController;
 import main.monsters.*;
 import main.randomEvents.*;
 
@@ -12,6 +13,7 @@ public class GameController {
 	Player player;
 	Shop shop;
 	RandomEvents randomEvents;
+	BattleController battleControl;
 	
 	private int gameLength;
 	private int currentDay = 1;
@@ -26,6 +28,7 @@ public class GameController {
 		gui = new GUIController(this);
 		randomEvents = new RandomEvents(this);
 		shop = new Shop(this);
+		battleControl = new BattleController(this);
 	}
 	
 	public int getGameLength() {
@@ -70,7 +73,12 @@ public class GameController {
 	 * @return Shop this returns the shop instance that is being used by the game so other classes can access it easily.
 	 */
 	public Shop getShop() {
+
 		return shop;
+	}
+	
+	public BattleController getBattleController() {
+		return battleControl;
 	}
 	
 	public static void main(String[] args) {
@@ -130,17 +138,21 @@ public class GameController {
 	 */
 	public void nightReset() {
 		if (this.getCurrentDay() < this.getGameLength()) {
-			ArrayList<Monster> monstersList = player.getMonsterTeam().getMonsterTeamList();
+		
 			
-			//Removes any temporary buffs given to the monsters during the day
-			for (Monster monster: monstersList) {
-				monster.nightResetMonster();
-			}
 			//Runs all 3 of the random events.
 			randomEvents.nightTimeEvents();
 			shop.shopRefresh();
+			battleControl.createDaysBattles();
+			player.setGold(player.getGold() + 50);
+			
+			//Removes any temporary buffs given to the monsters during the day
+			for (Monster monster: player.getMonsterTeam().getMonsterTeamList()) {
+				monster.heal();
+			}
 			
 			int cheapestAmount = 5000;
+			
 			for (Monster monster: shop.getShopMonsters()) {
 				if (monster.getPrice() < cheapestAmount) {
 					cheapestAmount = monster.getPrice();
