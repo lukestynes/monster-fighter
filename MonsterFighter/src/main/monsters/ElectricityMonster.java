@@ -9,7 +9,9 @@ public class ElectricityMonster extends Monster {
 	private final int[] PRICES = {650, 750, 850, 950};
 	private final int[] RETURN_PRICES = {550, 650, 700, 750};
 	
-	//Default level 1 monster
+	/**
+	 * Constructs an ElectricityMonster of level 1
+	 */
 	public ElectricityMonster() {
 		this.setMaxHealth(MAX_HEALTH[0]);
 		this.setCurrentHealth(getMaxHealth());
@@ -27,7 +29,10 @@ public class ElectricityMonster extends Monster {
 		this.setReturnPrice(RETURN_PRICES[0]);
 	}
 	
-	//Constructs a monster at a specified level
+	/**
+	 * Constructs an ElectricityMonster of a given level
+	 * @param level the level of monster you want
+	 */
 	public ElectricityMonster(int level) {
 		int index = level - 1;
 		this.setLevel(level);
@@ -38,8 +43,7 @@ public class ElectricityMonster extends Monster {
 		this.setHealAmount(HEAL_AMOUNT[index]);
 		this.setDamage(DAMAGE[index]);
 		this.setDefence(DEFENCE[index]);
-		
-		//TODO: REMOVE THIS AND ADD NAME GENERATOR
+	
 		this.setName(this.generateName());
 		this.setType("Electricity Monster");
 		this.setDescription("With higher damage than the others, this monster shines for combat, but watch out for its low health");
@@ -48,6 +52,9 @@ public class ElectricityMonster extends Monster {
 		this.setReturnPrice(RETURN_PRICES[index]);
 	}
 	
+	/**
+	 * Resets the monsters values that could have potentially been boosted by an item during the day.
+	 */
 	@Override
 	public void nightResetMonster() {
 		int index = this.getLevel() - 1;
@@ -59,6 +66,10 @@ public class ElectricityMonster extends Monster {
 		this.setFainted(false);
 	}
 	
+	
+	/**
+	 * Levels up a monster and ensures the values are correct.
+	 */
 	@Override
 	public void levelUp() {
 		this.setLevel(this.getLevel() + 1);

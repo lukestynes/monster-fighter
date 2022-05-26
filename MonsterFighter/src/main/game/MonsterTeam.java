@@ -29,8 +29,6 @@ public class MonsterTeam {
 		//TODO: Update to properly limit the monster team to a size of 4
 		if (monsterTeam.size() < 4) {
 			monsterTeam.add(monster);
-		} else {
-			System.out.println("ERROR: MAX TEAM SIZE ALREADY REACHED");
 		}
 		
 	}

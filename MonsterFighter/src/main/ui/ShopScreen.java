@@ -24,16 +24,26 @@ public class ShopScreen {
 	private JFrame frame;
 	private GUIController gui;
 
+	/**
+	 * Constructs a new shop screen
+	 * @param gui the gui controller
+	 */
 	public ShopScreen(GUIController gui) {
 		this.gui = gui;
 		initialize();
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Ensures the window shuts correctly
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
+	/**
+	 * Shuts the window
+	 */
 	public void finishedWindow() {
 		gui.closeShopScreen(this);
 	}
@@ -43,7 +53,7 @@ public class ShopScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1000, 900);
+		frame.setBounds(100, 100, 1000, 771);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Centers the window
@@ -88,111 +98,111 @@ public class ShopScreen {
 		JTextPane txtpItem1 = new JTextPane();
 		txtpItem1.setText("This Slot is Empty");
 		txtpItem1.setEditable(false);
-		txtpItem1.setBounds(25, 128, 161, 161);
+		txtpItem1.setBounds(25, 106, 161, 161);
 		frame.getContentPane().add(txtpItem1);
 		
 		JCheckBox chckbxItem1 = new JCheckBox("");
 		chckbxItem1.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxItem1.setBounds(25, 290, 161, 23);
+		chckbxItem1.setBounds(25, 268, 161, 23);
 		frame.getContentPane().add(chckbxItem1);
 		
 		JTextPane txtpItem2 = new JTextPane();
 		txtpItem2.setText("This Slot is Empty");
 		txtpItem2.setEditable(false);
-		txtpItem2.setBounds(222, 128, 161, 161);
+		txtpItem2.setBounds(222, 106, 161, 161);
 		frame.getContentPane().add(txtpItem2);
 		
 		JCheckBox chckbxItem2 = new JCheckBox("");
 		chckbxItem2.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxItem2.setBounds(222, 290, 161, 23);
+		chckbxItem2.setBounds(222, 268, 161, 23);
 		frame.getContentPane().add(chckbxItem2);
 		
 		JTextPane txtpItem3 = new JTextPane();
 		txtpItem3.setText("This Slot is Empty");
 		txtpItem3.setEditable(false);
-		txtpItem3.setBounds(423, 128, 161, 161);
+		txtpItem3.setBounds(423, 106, 161, 161);
 		frame.getContentPane().add(txtpItem3);
 		
 		JCheckBox chckbxItem3 = new JCheckBox("");
 		chckbxItem3.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxItem3.setBounds(423, 290, 161, 23);
+		chckbxItem3.setBounds(423, 268, 161, 23);
 		frame.getContentPane().add(chckbxItem3);
 		
 		JTextPane txtpItem4 = new JTextPane();
 		txtpItem4.setText("This Slot is Empty");
 		txtpItem4.setEditable(false);
-		txtpItem4.setBounds(614, 128, 161, 161);
+		txtpItem4.setBounds(614, 106, 161, 161);
 		frame.getContentPane().add(txtpItem4);
 		
 		JCheckBox chckbxItem4 = new JCheckBox("");
 		chckbxItem4.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxItem4.setBounds(614, 290, 161, 23);
+		chckbxItem4.setBounds(614, 268, 161, 23);
 		frame.getContentPane().add(chckbxItem4);
 		
 		JTextPane txtpItem5 = new JTextPane();
 		txtpItem5.setText("This Slot is Empty");
 		txtpItem5.setEditable(false);
-		txtpItem5.setBounds(811, 128, 161, 161);
+		txtpItem5.setBounds(811, 106, 161, 161);
 		frame.getContentPane().add(txtpItem5);
 		
 		JCheckBox chckbxItem5 = new JCheckBox("");
 		chckbxItem5.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxItem5.setBounds(811, 290, 161, 23);
+		chckbxItem5.setBounds(811, 268, 161, 23);
 		frame.getContentPane().add(chckbxItem5);
 		
 		JTextPane txtpMonst1 = new JTextPane();
 		txtpMonst1.setText("This Slot is Empty");
 		txtpMonst1.setEditable(false);
-		txtpMonst1.setBounds(25, 360, 161, 279);
+		txtpMonst1.setBounds(25, 333, 161, 279);
 		frame.getContentPane().add(txtpMonst1);
 		
 		JCheckBox chckbxMonst1 = new JCheckBox("");
 		chckbxMonst1.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxMonst1.setBounds(25, 651, 161, 23);
+		chckbxMonst1.setBounds(25, 624, 161, 23);
 		frame.getContentPane().add(chckbxMonst1);
 		
 		JTextPane txtpMonst2 = new JTextPane();
 		txtpMonst2.setText("This Slot is Empty");
 		txtpMonst2.setEditable(false);
-		txtpMonst2.setBounds(222, 360, 161, 279);
+		txtpMonst2.setBounds(222, 333, 161, 279);
 		frame.getContentPane().add(txtpMonst2);
 		
 		JCheckBox chckbxMonst2 = new JCheckBox("");
 		chckbxMonst2.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxMonst2.setBounds(222, 651, 161, 23);
+		chckbxMonst2.setBounds(222, 624, 161, 23);
 		frame.getContentPane().add(chckbxMonst2);
 		
 		JTextPane txtpMonst3 = new JTextPane();
 		txtpMonst3.setText("This Slot is Empty");
 		txtpMonst3.setEditable(false);
-		txtpMonst3.setBounds(423, 360, 161, 279);
+		txtpMonst3.setBounds(423, 333, 161, 279);
 		frame.getContentPane().add(txtpMonst3);
 		
 		JCheckBox chckbxMonst3 = new JCheckBox("");
 		chckbxMonst3.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxMonst3.setBounds(423, 651, 161, 23);
+		chckbxMonst3.setBounds(423, 624, 161, 23);
 		frame.getContentPane().add(chckbxMonst3);
 		
 		JTextPane txtpMonst4 = new JTextPane();
 		txtpMonst4.setText("This Slot is Empty");
 		txtpMonst4.setEditable(false);
-		txtpMonst4.setBounds(614, 360, 161, 279);
+		txtpMonst4.setBounds(614, 333, 161, 279);
 		frame.getContentPane().add(txtpMonst4);
 		
 		JCheckBox chckbxMonst4 = new JCheckBox("");
 		chckbxMonst4.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxMonst4.setBounds(614, 651, 161, 23);
+		chckbxMonst4.setBounds(614, 624, 161, 23);
 		frame.getContentPane().add(chckbxMonst4);
 		
 		JTextPane txtpMonst5 = new JTextPane();
 		txtpMonst5.setText("This Slot is Empty");
 		txtpMonst5.setEditable(false);
-		txtpMonst5.setBounds(811, 360, 161, 279);
+		txtpMonst5.setBounds(811, 333, 161, 279);
 		frame.getContentPane().add(txtpMonst5);
 		
 		JCheckBox chckbxMonst5 = new JCheckBox("");
 		chckbxMonst5.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxMonst5.setBounds(811, 651, 161, 23);
+		chckbxMonst5.setBounds(811, 624, 161, 23);
 		frame.getContentPane().add(chckbxMonst5);
 		
 		
@@ -283,7 +293,7 @@ public class ShopScreen {
 				gui.launchShopScreen();
 			}
 		});
-		btnBuySelectedThings.setBounds(396, 697, 218, 29);
+		btnBuySelectedThings.setBounds(396, 659, 218, 29);
 		frame.getContentPane().add(btnBuySelectedThings);
 		
 		JButton btnReturnToMenu = new JButton("Return to Menu");
@@ -293,19 +303,19 @@ public class ShopScreen {
 				gui.launchMenuScreen();
 			}
 		});
-		btnReturnToMenu.setBounds(425, 738, 169, 29);
+		btnReturnToMenu.setBounds(425, 700, 169, 29);
 		frame.getContentPane().add(btnReturnToMenu);
 		
 		JLabel lblMonsters = new JLabel("Monsters");
 		lblMonsters.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMonsters.setFont(new Font("Lucida Grande", Font.BOLD, 24));
-		lblMonsters.setBounds(0, 306, 1000, 63);
+		lblMonsters.setFont(new Font("Lucida Grande", Font.BOLD, 19));
+		lblMonsters.setBounds(0, 279, 1000, 63);
 		frame.getContentPane().add(lblMonsters);
 		
 		JLabel lblItems = new JLabel("Items");
 		lblItems.setHorizontalAlignment(SwingConstants.CENTER);
-		lblItems.setFont(new Font("Lucida Grande", Font.BOLD, 24));
-		lblItems.setBounds(0, 65, 1000, 63);
+		lblItems.setFont(new Font("Lucida Grande", Font.BOLD, 19));
+		lblItems.setBounds(0, 52, 1000, 63);
 		frame.getContentPane().add(lblItems);
 	}
 

@@ -2,6 +2,9 @@ package main.items;
 
 
 public class BezerkerPotion extends Item {
+	/**
+	 *Generates a new bezerker potion
+	 */
 	public BezerkerPotion() {
 		this.setInstantHealthBoost(20);
 		this.setDamageBoost(25);

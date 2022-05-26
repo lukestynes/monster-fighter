@@ -10,7 +10,9 @@ public class FireMonster extends Monster {
 	private final int[] PRICES = {500, 600, 700, 800};
 	private final int[] RETURN_PRICES = {400, 500, 600, 700};
 	
-	//Default level 1 monster
+	/**
+	 * Constructs a FireMonster of level 1
+	 */
 	public FireMonster() {
 		this.setMaxHealth(MAX_HEALTH[0]);
 		this.setCurrentHealth(getMaxHealth());
@@ -28,7 +30,10 @@ public class FireMonster extends Monster {
 		this.setReturnPrice(RETURN_PRICES[0]);
 	}
 	
-	//Constructs a monster at a specified level
+	/**
+	 * Constructs a FireMonster of a given level
+	 * @param level the level of monster you want
+	 */
 	public FireMonster(int level) {
 		int index = level - 1;
 		this.setLevel(level);
@@ -48,6 +53,9 @@ public class FireMonster extends Monster {
 		this.setReturnPrice(RETURN_PRICES[index]);
 	}
 	
+	/**
+	 * Resets the monsters values that could have potentially been boosted by an item during the day.
+	 */
 	@Override
 	public void nightResetMonster() {
 		int index = this.getLevel() - 1;
@@ -59,6 +67,10 @@ public class FireMonster extends Monster {
 		this.setFainted(false);
 	}
 	
+	
+	/**
+	 * Levels up a monster and ensures the values are correct.
+	 */
 	@Override
 	public void levelUp() {
 		this.setLevel(this.getLevel() + 1);

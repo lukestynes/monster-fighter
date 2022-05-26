@@ -2,6 +2,9 @@ package main.items;
 
 public class InstantHealthPotion extends Item {
 	
+	/**
+	 * Generates an instant health potion
+	 */
 	public InstantHealthPotion() {
 		this.setInstantHealthBoost(30);
 		

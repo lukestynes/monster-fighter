@@ -26,16 +26,26 @@ public class BattleSelectionScreen {
 	private JFrame frame;
 	private GUIController gui;
 
+	/**
+	 * Constructs a new battle selection screen
+	 * @param gui the gui controller
+	 */
 	public BattleSelectionScreen(GUIController gui) {
 		this.gui = gui;
 		initialize();
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Ensures the window is ended correctly
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
+	/**
+	 * Closes the window
+	 */
 	public void finishedWindow() {
 		gui.closeBattleSelectionScreen(this);
 	}
@@ -45,7 +55,7 @@ public class BattleSelectionScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1250, 850);
+		frame.setBounds(100, 100, 1250, 749);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Centers the window
@@ -83,7 +93,7 @@ public class BattleSelectionScreen {
 		JButton btnReturnToMenu = new JButton("Return to Menu");
 		btnReturnToMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gui.closeBattleSelectionScreen(gui.getBattleSelectionWindow());
+				gui.getBattleSelectionWindow().finishedWindow();
 				gui.launchMenuScreen();
 			}
 		});
@@ -351,6 +361,11 @@ public class BattleSelectionScreen {
 		}
 		
 		
+		/*
+		 * 
+		 * Fights the battle
+		 * 
+		 */
 		JButton btnFightChosenBattle = new JButton("Fight Chosen Battle");
 		btnFightChosenBattle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

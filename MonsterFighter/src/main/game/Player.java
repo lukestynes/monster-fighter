@@ -68,6 +68,9 @@ public class Player {
 		return inventory;
 	}
 	
+	/**Returns a well formatted string of the players central info
+	 * @return string string of the players info
+	 */
 	public String toString() {
 		String niceString = """
 				Name: %s

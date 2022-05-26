@@ -14,6 +14,10 @@ public class Shop {
 	private GameController game;
 	private Random rng;
 	
+	/**
+	 * Constructs a new shop controller
+	 * @param game the game instance
+	 */
 	public Shop(GameController game) {
 		shopItems = new ArrayList<Item>();
 		shopMonsters = new ArrayList<Monster>();
@@ -32,18 +36,26 @@ public class Shop {
 	}
 	
 	
-	//Resets all the items in the shop. Typically happens overnight
+	/**
+	 * Resets all of the items and monsters in the shop.
+	 */
 	public void shopRefresh() {
 		refreshMonsters();
 		this.shopItems = refreshItems();
 	}
 	
+	/**
+	 * Completely replaces all the items in the shop randomly.
+	 * @return a list of the new refreshed items
+	 */
 	public ArrayList<Item> refreshItems() {
 		shopItems.clear();
 		
 		int numItems = rng.nextInt(2) + 3;
 		int currentDay = game.getCurrentDay();
 		
+		
+		//Certain items won't appear till later in the game as given by this chart
 		int maxItemValue;
 		
 		if (currentDay < 5) {
@@ -54,6 +66,7 @@ public class Shop {
 			maxItemValue = 6; 
 		}
 		
+		//This then selects which item to generate
 		for (int i = 0; i < numItems; i++) {
 			int itemType = rng.nextInt(maxItemValue);
 			Item rngItem = null;
@@ -86,6 +99,9 @@ public class Shop {
 		return shopItems;
 	}
 	
+	/**
+	 * Refreshes the monsters available in the shop.
+	 */
 	public void refreshMonsters() {
 		//Dump all the previous monsters in the shop before repopulating
 		shopMonsters.clear();
@@ -112,6 +128,7 @@ public class Shop {
 			minLevel = maxLevel = 4;
 		}
 		
+		//This prevents an out of bound error for the random generation
 		for (int i = 0; i < numMonsters; i++) {
 			int monsterType = rng.nextInt(6);
 			int monsterLevel;
@@ -125,6 +142,8 @@ public class Shop {
 			}
 			
 			
+			//Selecting what type of monster to generate
+			//Yes this code should really be kept in a class somewhere else but I ran out of time.
 			Monster rngMonster = null;
 			
 			switch (monsterType) {
@@ -147,50 +166,63 @@ public class Shop {
 				rngMonster  = new WaterMonster(monsterLevel);
 				break;
 			}
-			
 			shopMonsters.add(rngMonster);
 		}
 	}
 	
-	//Used to purchase anything
+	/**
+	 * Purchase an item from the shop.
+	 * @param item what is being purchased
+	 * @param player the player instance buying it
+	 * @return true or false depending on if the purchase was successful
+	 */
 	public boolean purchaseItem(Item item, Player player) {
-		//TODO: check there's space on players inventory
+		//Checks the players inventory space
 		if (player.getInventory().getInventoryList().size() < 10) {
+			//Checks the player can afford it
 			if (player.getGold() >= item.getPrice()) {
 				player.setGold(player.getGold() - item.getPrice());
 				player.getInventory().addToInventory(item);
 				this.shopItems.remove(item);
 				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-		
+			} return false;
+		} return false;
 	}
 	
+	/**
+	 * Returns an item to the shop
+	 * @param item the item being returned
+	 * @param player the player returning teh item
+	 */
 	public void returnItem(Item item, Player player) {
 		player.setGold(player.getGold() + item.getReturnPrice());
 		player.getInventory().removeFromInventory(item);
 	}
 	
+	/**
+	 * Purchases a monster from the shop
+	 * @param monster the monster being purchased
+	 * @param player the player doing the purchasing
+	 * @return true or false if the purchase was successful.
+	 */
 	public boolean purchaseMonster(Monster monster, Player player) {
+		//Checks the team isn't full
 		if (player.getMonsterTeam().getMonsterTeamList().size() < 4) {
+			//Checks the player can afford it
 			if (player.getGold() >= monster.getPrice()) {
 				player.setGold(player.getGold() - monster.getPrice());
 				player.getMonsterTeam().addMonsterToTeam(monster);
 				this.shopMonsters.remove(monster);
 				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-		
+			} return false;
+		} return false;
 	}
 	
+	/**
+	 * Returns a monster to the shop in exchange for money
+	 * @param monster the monster being returned
+	 * @param player the player returning
+	 */
 	public void returnMonster(Monster monster, Player player) {
 		player.setGold(player.getGold() + monster.getReturnPrice());
 		player.getMonsterTeam().removeMonsterFromTeam(monster);

@@ -111,6 +111,4 @@ public class Item {
 		monster.setDefence(monster.getDefence() + this.getDefenceBoost());
 		monster.setMaxHealth(monster.getMaxHealth() + this.getMaxHealthBoost());
 	}
-	
-	//TODO: Methods for the player to use the items on their monsters
 }

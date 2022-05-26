@@ -9,7 +9,9 @@ public class IceMonster extends Monster {
 	private final int[] PRICES = {550, 650, 750, 850};
 	private final int[] RETURN_PRICES = {450, 550, 650, 750};
 	
-	//Default level 1 monster
+	/**
+	 * Constructs an IceMonster of level 1
+	 */
 	public IceMonster() {
 		this.setMaxHealth(MAX_HEALTH[0]);
 		this.setCurrentHealth(getMaxHealth());
@@ -27,7 +29,10 @@ public class IceMonster extends Monster {
 		this.setReturnPrice(RETURN_PRICES[0]);
 	}
 	
-	//Constructs a monster at a specified level
+	/**
+	 * Constructs an IceMonster of given level
+	 * @param level the level of monster you want
+	 */
 	public IceMonster(int level) {
 		int index = level - 1;
 		this.setLevel(level);
@@ -39,7 +44,6 @@ public class IceMonster extends Monster {
 		this.setDamage(DAMAGE[index]);
 		this.setDefence(DEFENCE[index]);
 		
-		//TODO: REMOVE THIS AND ADD NAME GENERATOR
 		this.setName(this.generateName());
 		this.setType("Ice Monster");
 		this.setDescription("This monster has a lot of health, but it's damage is quite low. It's more of a tank");
@@ -48,6 +52,9 @@ public class IceMonster extends Monster {
 		this.setReturnPrice(RETURN_PRICES[index]);
 	}
 	
+	/**
+	 * Resets the monsters values that could have potentially been boosted by an item during the day.
+	 */
 	@Override
 	public void nightResetMonster() {
 		int index = this.getLevel() - 1;
@@ -59,6 +66,10 @@ public class IceMonster extends Monster {
 		this.setFainted(false);
 	}
 	
+	
+	/**
+	 * Levels up a monster and ensures the values are correct.
+	 */
 	@Override
 	public void levelUp() {
 		this.setLevel(this.getLevel() + 1);

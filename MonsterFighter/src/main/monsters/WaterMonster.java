@@ -9,7 +9,9 @@ public class WaterMonster extends Monster {
 	private final int[] PRICES = {600, 700, 800, 900};
 	private final int[] RETURN_PRICES = {500, 600, 700, 800};
 	
-	//Default level 1 monster
+	/**
+	 * Constructs a WaterMonster of level 1
+	 */
 	public WaterMonster() {
 		this.setMaxHealth(MAX_HEALTH[0]);
 		this.setCurrentHealth(getMaxHealth());
@@ -27,7 +29,10 @@ public class WaterMonster extends Monster {
 		this.setReturnPrice(RETURN_PRICES[0]);
 	}
 	
-	//Constructs a monster at a specified level
+	/**
+	 * Constructs a WaterMonster of given level
+	 * @param level the level of monster you want
+	 */
 	public WaterMonster(int level) {
 		int index = level - 1;
 		this.setLevel(level);
@@ -39,7 +44,6 @@ public class WaterMonster extends Monster {
 		this.setDamage(DAMAGE[index]);
 		this.setDefence(DEFENCE[index]);
 		
-		//TODO: REMOVE THIS AND ADD NAME GENERATOR
 		this.setName(this.generateName());
 		this.setType("Water Monster");
 		this.setDescription("With slightly higher health than some monsters, this is a good monster for beginners");
@@ -48,6 +52,9 @@ public class WaterMonster extends Monster {
 		this.setReturnPrice(RETURN_PRICES[index]);
 	}
 	
+	/**
+	 * Resets the monsters values that could have potentially been boosted by an item during the day.
+	 */
 	@Override
 	public void nightResetMonster() {
 		int index = this.getLevel() - 1;
@@ -59,6 +66,10 @@ public class WaterMonster extends Monster {
 		this.setFainted(false);
 	}
 	
+	
+	/**
+	 * Levels up a monster and ensures the values are correct.
+	 */
 	@Override
 	public void levelUp() {
 		this.setLevel(this.getLevel() + 1);

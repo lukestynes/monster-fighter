@@ -163,12 +163,10 @@ public class GameController {
 				this.increaseCurrentDay();
 				gui.launchMenuScreen();
 			} else {
-				System.out.println("DEBUG: PLAYER RAN OUT OF GOLD ENDING GAME");
 				gui.launchEndGameScreen();
 			}
 			
 		} else {
-			System.out.println("DEBUG: PLAYER RAN OUT OF DAYS ENDING GAME");
 			gui.launchEndGameScreen();
 		}
 		
